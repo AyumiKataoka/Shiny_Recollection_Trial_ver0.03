@@ -102,231 +102,6 @@
 ○現在バージョンに搭載しようとしてまだしてないアップデート内容を次のバージョンで搭載しようとするのはいい
 ○小数点第３位の数値は、第三者にアプリを見せる（見せた）際に切り替える
 */
-#pragma region 業務用history（ver0.0037以前）
-/*
-●0.0021アップデート内容
-○オートモードを搭載
-〇スキップモードを搭載
-●0.0022アップデート内容
-〇ブラックアウト等の背景変更方法で、エフェクトより前面にキャラが出てしまう不具合の修正
-●0.0023アップデート内容
-〇ＳＥを差し替え
-・ＳＥ用のfor文用変数が誤っていたので修正
-〇AUTO、SKIP決定時にＳＥを仮実装
-●0.0024アップデート内容
-〇（入学前）コミュ撮影デバッグモード追加
-●0.0025アップデート内容
-〇（急遽作業内容変更のため記入内容なし）
-●0.0025aアップデート内容
-〇ゲームを32bitから64bitアプリに変更
-●0.0026アップデート内容
-○（作業環境として使用するVisual Studioを2013→2019へコンバート）
-●0.0026aアップデート内容
-○セーブ、ロード画面のプロトタイプを作るために必要な骨組みを作成
-●0.0027アップデート内容
-〇サウンドルームで音量調節ができるように
-●0.0027aアップデート内容
-〇（提出されたgamesaveloadファイルの適用と確認）
-●0.0028アップデート内容
-〇新しいＵＩの搭載
-・『MENU』のクリックで『AUTO』等４種のアイコンが開閉されるように
-・『TEXT OFF』でテキスト含めてほぼ全てのＵＩが非表示になるように
-●0.0029アップデート内容
-・立ち絵に恋鐘を追加
-・立ち絵をキャラの他に『ポーズ』、『服装』、『感情』を設定できるように
-●0.00291アップデート内容
-・特殊表情『閉じ目』、『笑顔閉じ目』をcsvファイルからおこなえるように
-●0.00292アップデート内容
-・樹里、土手背景を使用できるように
-●0.00293アップデート内容
-・めぐるの笑顔閉じ目をきちんとした仕様で適用（リリース版未確認）
-・エクセルの『キャラ』と『ＩＤ』を左側、右側のセルにも適用
-●0.00294アップデート内容
-○不具合の修正
-・左右のキャラが瞬きを行えない
-・キャラを出すとき、変化しないキャラは一瞬消える
-●0.00295アップデート内容
-・（20220221時点まで追加されている）ＢＧＭ、ＳＥを追加し、一部をリネーム
-・追加されたＢＧＭ、ＳＥをエクセル操作で使用できるように
-●0.0031アップデート内容
-・めぐる、恋鐘の立ち絵素材及びそれに関するコミュ作成ファイルを修正
-●0.0032アップデート内容
-・『frame_auto』機能を追加
-●0.0033アップデート内容
-・コミュ開始時、キャラ感覚均一化ができない不具合の修正
-・gamesaveload.cppを新しいものへ置換
-●0.0033aアップデート内容
-・コミュ作成エクセルファイルに以下の要素を追加しました
-　・同名のcsvファイルが作成されるマクロ、及びボタン
-　・ＩＤ等の非表示部分を保護し、編集できないように
-　　・上記部分をさけるように行単位のコピー挿入、削除を行うマクロ
-●0.0033bアップデート内容
-・『txtファイルを元に自動でコミュの台詞部分を入力するマクロ』を作成しました
-●0.0034アップデート内容
-・１行25文字になるまえに改行されていた不具合を修正
-・テストユーザー用テンプレ出力マクロで、特定の列を非表示にするように
-・１コミュの行数を256に
-●0.0036アップデート内容
-・エクセルマクロのコミュ自動作成機能で、ＢＧＭとＳＥも自動で読み込むように
-・ＳＥの追加・修正
-●0.0037アップデート内容
-・月日の概念をつくり、マップ画面に切り替わる度、週が進むように
-*/
-#pragma endregion
-#pragma region 業務用history（ver0.0038以降）
-/*
-●0.0038アップデート内容
-・個別コミュ視聴回数に応じてマップ画面で選択できるコミュが変化するように
-　・このverではめぐる～樹里のみ
-・START選択時にホワイトアウトするように
-●0.0039アップデート内容
-・START時にキャラ別コミュ視聴回数がリセットされてない不具合の修正
-・凛世、千雪のマップアイコン表示、コミュ視聴が行えるように
-●0.00391アップデート内容
-・tipsの座標がずれている不具合の調整
-・ＢＧＭの追加
-●0.00392アップデート内容
-・はづき、校長の立ち絵追加
-●0.00393アップデート内容
-○立ち絵追加（樹里制服、はづきアイマスク）
-○校長立ち絵修正
-○テキストウィンドウの画像を修正
-○ＳＥ（スタート、開き戸、一人の拍手）修正
-○不具合修正
-・スキップ機能で効果音がスキップされない
-・誰かのコミュ選択時に別のキャラがいる座標をクリックすると、そのキャラのコミュ選択画面になる
-・マップ画面で選択コミュ移動確認の『はい』が配置される座標をクリックすると現状態を問わず即座にコミュ移動処理が行われてしまう
-●0.00394アップデート内容
-○マップキャラアイコン用の吹き出しを追加
-●0.00395アップデート内容
-○吹き出しアイコンサイズがキャラアイコンとほぼ同じになっている不具合の修正
-○エクセルデータベースの感情・樹里を正しい表記に
-●0.00396アップデート内容
-○コミュリストモードをデバッグ用として作成
-●0.00397アップデート内容
-○コミュセレクト画面で、メインコミュ選択肢表示時にキャラアイコンが出現する座標をクリックすると、表示される選択肢がキャラのものになってしまう不具合の修正
-○画像、音声、csvファイルをdatファイルとして１つにまとめるように
-●0.00398アップデート内容
-○コミュセレクトでコミュを見た後に元のモードに戻ってもタイトルＢＧＭが再生されない不具合の修正
-○コミュセレクトモードでキャラのコミュが指定されている場合、立ち絵を表示させる
-●0.00399アップデート内容
-○タイトルからコミュセレクト画面に行った際、一度ＢＧＭが止まってしまい、再度タイトルＢＧＭが流れる不具合の修正
-○コミュセレクトモードにテストコミュ５枠を追加
-●0.004aアップデート内容
-○720pxだとコミュセレクトキャラアイコンのサイズ描画がバグる不具合の修正
-●0.0041アップデート内容
-○アプリ起動時、アプリの解像度を尋ねるダイアログボックスの追加
-・それによる、コンフィグモードから解像度変更機能を削除
-●0.0042アップデート内容
-○マップ画面でキャラアイコンが表示されない不具合の修正
-○起動前に何度も暗転していたので、最小限の回数になるように修正
-○オプションのデザインを一新
-○テキストウィンドウ透過度機能を追加
-●0.0043アップデート内容
-○ダイアログボックスが表示される時点でマウスが裏に行ってしまう不具合の修正
-○コミュモードからオプション画面へ行く機能を追加
-●0.0051アップデート内容
-○不具合修正
-・『回想』と同じ曲だった『夜　ピアノ』を削除
-・解像度720pのマップ画面でマップ画面矢印の挙動がおかしくなる
-○soundテストでbgmを止める機能の追加
-●0.0052アップデート内容
-○ファーストロードモードを注意文モードにし、はづきさんや注意文を追加
-*/
-#pragma endregion
-#pragma region ユーザー用アップデート内容
-/*
-●0.002アップデート内容
-○（作業に時間をかけすぎ、また細かい記録を行っていなかったため詳細は不明）
-●0.003アップデート内容
-〇ゲームを32bit→64bitアプリケーションとして起動するようにしました。これにより以下のような影響があります
-・最大４ＧＢ未満の使用メモリ上限が解放されます
-・処理能力（メモリ制限？）が【最大約40億】倍になります
-〇立ち絵に恋鐘、樹里を追加しました
-〇特殊表情『閉じ目』（、素材があるキャラ、ポーズ、衣装、感情なら『笑顔閉じ目』）をエクセルファイルから指定できるようにしました
-○背景『土手』を追加しました
-○一部ＵＩを修正しました
-〇ＢＧＭ、ＳＥの追加、修正をしました
-〇コミュ画面で以下の機能を追加しました
-・オートモード
-・スキップモード
-・テキストオフモード
-〇その他不具合の修正を行いました
-●0.004アップデート内容
-○（コミュテスト用を除いて）配布時のメディアフォルダを『基本的にフォルダとして扱うが通常操作では開けない』datファイルに変更して配布するようにしました
-○本編とは別に指定したコミュを個別に閲覧できる『コミュリストモード』をデバッグ用として追加しました
-○個別コミュ視聴回数に応じてマップ画面で選択できるコミュが変化するようにしました
-・このverではフレンドコミュ以外のみ
-○１コミュに設定できる行数上限を128→256（テンプレファイルなら257行目まで）に増加しました
-○指定したフレーム数後、自動的に次行へ移動するコマンド『frame_auto』機能を追加しました
-○コミュ作成エクセルファイルに以下の要素を追加しました
-・同名のcsvファイルが作成されるマクロ、及びボタン
-・ＩＤ等の誤って編集してはいけないセルを避けるように行単位のコピー挿入、削除を行うマクロ
-・指定したtxtファイルを参照し自動でコミュの台詞部分、ＢＧＭ、ＳＥを入力するマクロ
-○テストコミュ作成マニュアルのpdfファイルを作成しました
-○樹里の服装、表情差分を追加しました
-○立ち絵にはづき、校長を追加しました
-○吹き出し等の細かいＵＩを追加しました
-○ＢＧＭ、ＳＥを追加しました
-○その他、細かい不具合の修正を行いました
-●0.004aアップデート内容
-○720pモードだとコミュセレクトモードでキャラアイコンのサイズ描画が大きくなってしまう不具合を修正しました
-●0.005アップデート内容
-○アプリ起動時、アプリの解像度を尋ねるダイアログボックスを追加しました
-・コンフィグモードから解像度を変更する機能を削除しました
-○オプションのデザインを一新しました
-○コミュモードからオプション画面へ行く機能を追加しました
-○テキストウィンドウ透過度機能を追加しました
-○その他不具合を修正しました
-●0.006アップデート内容
-○タイトル前の『Now loading』表示時に、はづきさんや注意文も表示されるようにしました
-○サウンドルームでＢＧＭを止める機能を追加しました
-○『回想』と同じ内容のだった曲『夜　ピアノ』を削除しました
-○その他不具合を修正しました
-*/
-#pragma endregion
-//●0.0053目的作業
-/*
-●スモールゴール確定要素（『○』は大きいくくりとして使う）
-●スモールゴール未確定要素
-○次回作業をエクセルで作ってみる
-・優先度が高いものを上にして、順序が必要なものを同じ行にする
-　・どの工程にも共通して必要な前作業がある等の状況ではセルを統合したり
-　・これによって、ひとつの作業のモチベがあがらないからといって作業自体をやめてしまう可能性は減る？
-　・優先順位自体を決めておけば、選択肢が多くて何をすればいいか迷う、という状況は防げる？
-●素材を扱う、時間がかかる単純作業（この作業は誰かと雑談しながら行った方がモチベ的にも良い？）
-○８月17日時点での立ち絵追加作業
-・立ち絵フラグの追加
-・感情フラグの追加
-・立ち絵のコピー
-・エクセルファイルに追加
-●次に作業する事、場所（該当のコード付近に直接示すと消し忘れる可能性があるため）
-○mainコードにゲーム内週を代入
-*/
-#pragma region //●0.0054以降目的作業
-/*
-●不具合修正
-○（0.0038制作時）樹里コミュを見終えた後に樹里コミュを選択するとアイコンがバグったコミュが選択できる
-○下記不具合はフルスク状態、解像度が変わった際、『DxLib_Endの後、解像度を変えDxLib_Initを呼び出し必要な宣言を再度行う』処理を行えば起きなくなるかもしれない？
-・720pxの状態でフルスクをオフにすると画面が左上に固定されてしまう
-○テキストウィンドウ透過度100％で校長を出すと字がつぶれてしまう
-●スモールゴール作業（『○』は大きいくくりとして使う）
-●フレンドコミュのマップアイコン、コミュ要素の追加
-●樹里やめぐるのリネーム及び（ＢＧＭ、ＳＥ名なども含めた）エクセル関係の修正（ファイル名とか？）
-○どの曲でループするか再確認しておく
-●写真でコミュ作成の説明をする方法も追加する
-●セーブ、ロード機能をきちんとしたものにする
-○スクショをサムネにする（SaveDrawScreenToBMP関数など）
-○（現状はデバッグ用だけど）コミュ閲覧モードからの閲覧の場合、セーブやロードができないようにする？
-●ＶＢ2019でも作ったアイコンが表示されるように
-●コミュが終わる際、透明度入れ替えなどによるアイキャッチ的存在を挟む処理を追加する
-●ＢＧＭが必要な分だけ読み込まれるように
-●背景の名前を修正
-●『Now loading』をきちんとした場所に描画する
-●１択の選択肢を表示させる機能を追加する
-●datファイルを扱う現在、改めてテストフォルダをまとめるようＶＢＡを修正する
-*/
-#pragma endregion
 #pragma region 以降目的作業計画
 /*
 */
@@ -389,19 +164,7 @@ BOOL g_downkey_prev[2];		// 直前の下キーの状態
 BOOL g_leftkey_prev[2];		// 直前の左キーの状態
 BOOL g_rightkey_prev[2];	// 直前の右キーの状態
 BOOL g_enterkey_prev[2];	// 直前のエンターキーの状態
-/*
-BOOL g_akey_prev[2];		// 直前のＡボタンの状態
-BOOL g_bkey_prev[2];		// 直前のＢボタンの状態
-BOOL g_ckey_prev[2];		// 直前のＣボタンの状態
-BOOL g_xkey_prev[2];		// 直前のＸボタンの状態
-BOOL g_ykey_prev[2];		// 直前のＹボタンの状態
-BOOL g_zkey_prev[2];		// 直前のＺボタンの状態
-BOOL g_lkey_prev[2];		// 直前のＬボタンの状態
-BOOL g_rkey_prev[2];		// 直前のＲボタンの状態
-BOOL g_startkey_prev[2];	// 直前のスタートボタンの状態
-*/
 BOOL quit_game = FALSE;			// ゲームを終了させるか判別するフラグ
-//BOOL mode_title = FALSE;		// 現在タイトル画面にいるか判別するフラグ
 BOOL flag_full_hd_ok = TRUE;	// フルＨＤによるプレイが可能か判別する
 BOOL flag_full_hd_now = TRUE;	// 現在の解像度がフルＨＤか判別する
 BOOL flag_mode_window = TRUE;	// フルスクリーン、ウィンドウの状態を判別するフラグ
@@ -451,9 +214,6 @@ int progress_frame_need_time = 16;			// 前回の経過フレームをカウントするのに必要
 #pragma region 関数
 int WINAPI WinMain(HINSTANCE h1, HINSTANCE hP, LPSTR lpC, int nC)
 {
-	#pragma region ver0.0091制作時コメント化コード
-	//if (mode_debug == FALSE){ SetOutApplicationLogValidFlag(FALSE); }	// デバッグモードでなければログが作成されないようにする
-#pragma endregion
 	if (GlobalStaticDebug::GetLog() == FALSE) { SetOutApplicationLogValidFlag(FALSE); }	// デバッグモードでなければログが作成されないようにする
 	char cpp_title[256] = "";
 	char cpp_title_a[256] = "";
@@ -511,9 +271,6 @@ int WINAPI WinMain(HINSTANCE h1, HINSTANCE hP, LPSTR lpC, int nC)
 	// メインモニター解像度を取得する
 	monitor_resolution_x = GetSystemMetrics(SM_CXSCREEN);
 	monitor_resolution_y = GetSystemMetrics(SM_CYSCREEN);
-	#pragma region ver0.0043制作時コメント化コード
-	//if (DxLib_Init() == -1) return -1;							// DXライブラリ初期化
-#pragma endregion
 	// モニター解像度がフルＨＤを表示できないなら、フルＨＤ表示可能フラグを降ろし、ＨＤサイズの解像度にする
 	if (monitor_resolution_x < 1920 || monitor_resolution_y < 1080)
 	{
@@ -527,18 +284,6 @@ int WINAPI WinMain(HINSTANCE h1, HINSTANCE hP, LPSTR lpC, int nC)
 		#pragma region ver0.0111制作時コメント化コード
 		DialogBox(h1, TEXT("DLG1"), 0, (DLGPROC)DlgProc1);
 #pragma endregion
-		//HWND hDlg = (HWND)DialogBox(h1, TEXT("DLG1"), 0, (DLGPROC)DlgProc1);
-		//RECT dlgRect;
-		//GetWindowRect(hDlg, &dlgRect);
-		//SetWindowPos(hDlg, HWND_TOP, (GetSystemMetrics(SM_CXSCREEN) - GlobalStaticDialog::GetWidth()) / 2,(GetSystemMetrics(SM_CYSCREEN) - GlobalStaticDialog::GetHeight()) / 2, 0, 0, SWP_NOSIZE | SWP_SHOWWINDOW);
-
-		//GetClientRect(hDlg, &dlgRect);  // ダイアログボックスのクライアント領域を取得する
-		//MapDialogRect(hDlg, &dlgRect);  // クライアント座標からスクリーン座標に変換する
-		//SetWindowPos(hDlg, HWND_TOP, (GetSystemMetrics(SM_CXSCREEN) - dlgRect.right) / 2, (GetSystemMetrics(SM_CYSCREEN) - dlgRect.bottom) / 2, 0, 0, SWP_NOSIZE | SWP_SHOWWINDOW);
-
-		//GetWindowRect(hDlg, &dlgRect);  // ダイアログボックスの矩形を取得する
-		//SetWindowPos(hDlg, HWND_TOP, (GetSystemMetrics(SM_CXSCREEN) - (dlgRect.right - dlgRect.left)) / 2, (GetSystemMetrics(SM_CYSCREEN) - (dlgRect.bottom - dlgRect.top)) / 2, 0, 0, SWP_NOSIZE | SWP_SHOWWINDOW);		//SetWindowPos(hDlg, HWND_TOP, 600, (GetSystemMetrics(SM_CYSCREEN) - GlobalStaticDialog::GetHeight()) / 2, 600, 0, SWP_NOSIZE | SWP_SHOWWINDOW);
-
 		if (dialog_not_push == TRUE)return 0;	// 『×』ボタン等の非正規の方法でダイアログボックスを終了した場合、アプリも終了させる
 	}
 	else { DebugWindowChange(); }
@@ -547,32 +292,13 @@ int WINAPI WinMain(HINSTANCE h1, HINSTANCE hP, LPSTR lpC, int nC)
 	SetAlwaysRunFlag(TRUE);				// メインウインドウが非アクティブ状態でも処理を実行するかどうかを設定する( TRUE:実行する  FALSE:停止する( デフォルト ) )	SetMouseDispFlag(TRUE);				// マウスを表示状態にする
 	ScreenResolutionChange();
 	DebugProgram(DEBUG_LOAD);
-	#pragma region ver0.0042制作時コメント化コード
-
-	//SetGraphMode(screen_size_x, screen_size_y, 32);	// ウィンドウサイズを変更する
-	//ChangeWindowMode(window_full_screen);		// FALSEならウィンドウにする
-
-	// （起動前に何度も暗転するのはこの辺りがおかしい？）
-	//if (ChangeWindowMode(FALSE) != DX_CHANGESCREEN_OK){ return -1; };
-	//ChangeWindowMode(flag_mode_window);
-
-	//before_window_full = window_full_screen;
-
-#pragma endregion
 	if(flag_mode_window == TRUE)
 	{
 		if (ChangeWindowMode(TRUE) != DX_CHANGESCREEN_OK) { return -1; };
 	}
 	SetMouseDispFlag(TRUE);										// マウスを表示状態にする
 	SetFullScreenResolutionMode(DX_FSRESOLUTIONMODE_NATIVE);	// フルスクリーンモード時の解像度モードを設定する
-	#pragma region ver0.0043制作時コメント化コード
-	//SetAlwaysRunFlag(TRUE);										// メインウインドウが非アクティブ状態でも処理を実行するかどうかを設定する( TRUE:実行する  FALSE:停止する( デフォルト ) )
-#pragma endregion
 	SetWindowIconID(283);										// ウィンドウ左上のアイコンをオリジナルのものに変更する
-	#pragma region ver0.0041制作時コメント化コード
-	//if (DxLib_Init() == -1) return -1;							// DXライブラリ初期化
-	//SetDxLibEndPostQuitMessageFlag(FALSE);						// DxLib_End で PostQuitMessage を使用するかどうかのフラグを「使用しない」にセット
-#pragma endregion
 	if (mode_debug == FALSE){ SetDXArchiveExtension("dat"); }	// デバッグモードでなければ、datファイルをフォルダとして読み込む
 	SetDXArchiveKeyString("46399292");							// ロックされたデータファイルのパスワード
 
@@ -580,10 +306,6 @@ int WINAPI WinMain(HINSTANCE h1, HINSTANCE hP, LPSTR lpC, int nC)
 	if (LoadGameImage() == FALSE){ return -1; }					
 	LoadFont();
 	BGMData::LoadFirst();
-	//if (LoadBGM(BN_TITLE) == FALSE){ return -1; }
-	//if (LoadSE() == FALSE){ return -1; }
-
-	//CoordinateSetting();						// 画面サイズ、定義した専用フォントから様々な座標を定義する
 	SetDrawScreen(DX_SCREEN_BACK);				// 描画先を裏画面にする
 	g_lasttime = GetNowCount();					// 現在時刻の記録
 	// フルスクリーン切り替えを行っても重くならないようにする処理（仕様詳細は不明）
@@ -774,18 +496,6 @@ int WINAPI WinMain(HINSTANCE h1, HINSTANCE hP, LPSTR lpC, int nC)
 			case GAME_FIRST_LOAD:
 				g_time_load_start = GetNowCount();	// 読み込み開始時間を記録する
 				DrawLoading();						// 読み込みアイコン表示
-				#pragma region ver0.0053制作時コメント化コード
-				//if (LoadBGM(BN_TITLE) == FALSE){ return -1; }
-#pragma endregion
-				#pragma region ver0.00703制作時コメント化コード
-				//if (debug_bgm_load_cut == FALSE || mode_debug == FALSE)
-#pragma endregion
-				#pragma region ver0.017制作時コメント化コード
-				//if (DebugLoadCheckBGM() == FALSE || mode_debug == FALSE)
-				//{
-				//	if (LoadBGM(BN_TITLE) == FALSE) { return -1; }
-				//}
-#pragma endregion
 				if (LoadSE() == FALSE){ return -1; }
 				// 規定ミリ秒経過していなければ強引にロード状態を続ける（テスト）
 				//if (GetNowCount() <= load_test + 5000){ g_gamestate = GAME_FIRST_LOAD; }	
@@ -961,7 +671,6 @@ void DrawGameContinue()
 void DrawGameEnding()
 {
 }
-#pragma region キートリガー処理（使用するか審議中のため削除してはいない）
 // キートリガー処理（上キー）
 BOOL IsUPKeyTrigger(int key, int y)
 {
@@ -1038,144 +747,6 @@ BOOL IsENTERKeyTrigger(int key, int y)
 
 	return FALSE;
 }
-/*
-// キートリガー処理
-BOOL IsAKeyTrigger(int key, int y)
-{
-	if (key & PAD_INPUT_A)
-	{
-		if (g_akey_prev[y] == FALSE)
-		{
-			g_akey_prev[y] = TRUE;
-			return TRUE;
-		}
-	}
-	else{ g_akey_prev[y] = FALSE; }
-
-	return FALSE;
-}
-// キートリガー処理（Ｂボタン）
-BOOL IsBKeyTrigger(int key, int y)
-{
-	if (key & PAD_INPUT_B)
-	{
-		if (g_bkey_prev[y] == FALSE)
-		{
-			g_bkey_prev[y] = TRUE;
-			return TRUE;
-		}
-	}
-	else{ g_bkey_prev[y] = FALSE; }
-
-	return FALSE;
-}
-// キートリガー処理（Ｃボタン）
-BOOL IsCKeyTrigger(int key, int y)
-{
-	if (key & PAD_INPUT_C)
-	{
-		if (g_ckey_prev[y] == FALSE)
-		{
-			g_ckey_prev[y] = TRUE;
-			return TRUE;
-		}
-	}
-	else{ g_ckey_prev[y] = FALSE; }
-
-	return FALSE;
-}
-// キートリガー処理（Ｘボタン）
-BOOL IsXKeyTrigger(int key, int y)
-{
-	if (key & PAD_INPUT_X)
-	{
-		if (g_xkey_prev[y] == FALSE)
-		{
-			g_xkey_prev[y] = TRUE;
-			return TRUE;
-		}
-	}
-	else{ g_xkey_prev[y] = FALSE; }
-
-	return FALSE;
-}
-// キートリガー処理（Ｙボタン）
-BOOL IsYKeyTrigger(int key, int y)
-{
-	if (key & PAD_INPUT_Y)
-	{
-		if (g_ykey_prev[y] == FALSE)
-		{
-			g_ykey_prev[y] = TRUE;
-			return TRUE;
-		}
-	}
-	else{ g_ykey_prev[y] = FALSE; }
-
-	return FALSE;
-}
-// キートリガー処理（Ｚボタン）
-BOOL IsZKeyTrigger(int key, int y)
-{
-	if (key & PAD_INPUT_Z)
-	{
-		if (g_zkey_prev[y] == FALSE)
-		{
-			g_zkey_prev[y] = TRUE;
-			return TRUE;
-		}
-	}
-	else{ g_zkey_prev[y] = FALSE; }
-
-	return FALSE;
-}
-// キートリガー処理（Ｌボタン）
-BOOL IsLKeyTrigger(int key, int y)
-{
-	if (key & PAD_INPUT_L)
-	{
-		if (g_lkey_prev[y] == FALSE)
-		{
-			g_lkey_prev[y] = TRUE;
-			return TRUE;
-		}
-	}
-	else{ g_lkey_prev[y] = FALSE; }
-
-	return FALSE;
-}
-// キートリガー処理（Ｒボタン）
-BOOL IsRKeyTrigger(int key, int y)
-{
-	if (key & PAD_INPUT_R)
-	{
-		if (g_rkey_prev[y] == FALSE)
-		{
-			g_rkey_prev[y] = TRUE;
-			return TRUE;
-		}
-	}
-	else{ g_rkey_prev[y] = FALSE; }
-
-	return FALSE;
-}
-// キートリガー処理（スタートボタン）
-BOOL IsSTARTKeyTrigger(int key, int y)
-{
-	if (key & PAD_INPUT_START)
-	{
-		if (g_startkey_prev[y] == FALSE)
-		{
-			g_startkey_prev[y] = TRUE;
-			return TRUE;
-		}
-	}
-	else{ g_startkey_prev[y] = FALSE; }
-
-	return FALSE;
-}
-*/
-#pragma endregion
 // クリックされたタイミングや状況に応じたフラグを返す
 BOOL ClickFlagCheck(int Cx, int Cy, int Jx, int Jy, int breadth, int length, BOOL z, BOOL a)	// クリックx座標,クリックy座標,判定左端x座標,判定上端y座標,座標横幅,座標縦幅,左ボタンが押されたか離されたか判別するフラグ,条件として使用する変数（zがTRUEなら『FALSE』でいい）
 {
@@ -1229,4 +800,3 @@ BOOL ClickFlagCheckF2(int Cx, int Cy, float Jx, float Jy, float breadth, float l
 	}
 	return FALSE;
 }
-#pragma endregion
