@@ -5,9 +5,6 @@ MapDestinationType g_map_destination = MAP_DESTINATION_LEFT;								// ˆÚ“®æƒ}ƒ
 TipsStringData tips_string[2];
 /* TipsDataƒNƒ‰ƒX ---------*/
 int TipsData::number = 0;
-#pragma region ver0.00708§ìƒRƒƒ“ƒg‰»ƒR[ƒh
-//TipsData tips_data[TIPS_NUMBER];		// tipsŠÖŒW‚Ì\‘¢‘Ì
-#pragma endregion
 TipsData tips_data[TipsData::LOAD_LIMIT];	// tipsŠÖŒW‚Ì\‘¢‘Ì
 /*-------------------------*/
 BOOL GlobalStaticMap::trial_commu_viewed[COMMU_CHARACTER_NUMBER] = { FALSE, FALSE, FALSE , FALSE , FALSE };
@@ -15,9 +12,6 @@ void GlobalStaticMap::TrialCommuViewedReset()
 {
 	for (int i = 0; i < COMMU_CHARACTER_NUMBER; i++) { trial_commu_viewed[i] = FALSE; }
 }
-#pragma region ver0.00704§ìƒRƒƒ“ƒg‰»ƒR[ƒh
-//CommuData commu_data[COMMU_NUMBER], commu_data_map[COMMU_MAP_LIMIT], commu_data_map_choice;	// ƒRƒ~ƒ…‚ÌƒXƒe[ƒ^ƒX
-#pragma endregion
 /* CommuDataƒNƒ‰ƒX ---------*/
 CommuData::MapUpperType CommuData::g_mapuppertype = CommuData::MapUpperType::DEFAULT;
 CommuData commu_data[COMMU_NUMBER_MAX], commu_data_map[COMMU_MAP_LIMIT], commu_data_map_choice;	// ƒRƒ~ƒ…‚ÌƒXƒe[ƒ^ƒX
@@ -39,9 +33,6 @@ BOOL map_commu_upper[3][2];	// ƒ}ƒbƒv‰æ–Ê‚ÉƒRƒ~ƒ…ƒAƒCƒRƒ“‚ªoŒ»‚·‚é‚©
 // “¯‚¶”ÍˆÍ‚Åƒ}ƒEƒX‚ğ‰Ÿ‚µA—£‚³‚ê‚½‚ç››‚·‚éƒtƒ‰ƒOicfgm=click_flag_game_mapj
 //BOOL cfgm_move_left = FALSE;			// ¶ƒ}ƒbƒv‚ÖˆÚ“®
 //BOOL cfgm_move_right = FALSE;			// ‰Eƒ}ƒbƒv‚ÖˆÚ“®
-#pragma region ver0.0038§ìƒRƒƒ“ƒg‰»ƒR[ƒh
-//BOOL cfgm_commu_check = FALSE;		// ‘I‘ğƒRƒ~ƒ…‰{——‰æ–Ê‚ğ•\¦‚·‚é
-#pragma endregion
 BOOL cfgm_commu_check[COMMU_MAP_LIMIT];	// ‘I‘ğƒRƒ~ƒ…‰{——‰æ–Ê‚ğ•\¦‚·‚é
 BOOL cfgm_commu_check_ok = FALSE;		// ‘I‘ğƒRƒ~ƒ…‚ÖˆÚs‚·‚é
 BOOL cfgm_commu_check_no = FALSE;		// ‘I‘ğƒRƒ~ƒ…‰{——‰æ–Ê‚ğ‰ğœ‚·‚é
@@ -55,10 +46,6 @@ float draw_map_plus_x;				// ƒ}ƒbƒv‚t‚h‚É‰ÁZ‚·‚éxÀ•W’l
 //float map_arrow_left_x;				// ¶‘¤‚És‚­–îˆó‚ÌxÀ•W’l
 //float map_arrow_right_x;			// ‰E‘¤‚És‚­–îˆó‚ÌxÀ•W’l
 float draw_map_space;				// Šeƒ}ƒbƒvŠÔ‚ÌŒ„ŠÔ
-#pragma region ver0.0038§ìƒRƒƒ“ƒg‰»ƒR[ƒh
-//float draw_map_character_icon_x;	// ƒLƒƒƒ‰ƒAƒCƒRƒ“xÀ•Wn“_
-//float draw_map_character_icon_y;	// ƒLƒƒƒ‰ƒAƒCƒRƒ“yÀ•Wn“_
-#pragma endregion
 //float draw_map_character_icon_x[COMMU_MAP_LIMIT];		// ƒLƒƒƒ‰ƒAƒCƒRƒ“xÀ•Wn“_
 float draw_map_character_icon_x[COMMU_MAP_LIMIT] = { -300, -300, -300 , -300 , -300 , -300 , -300 , -300 , -300 , -300 };		// ƒLƒƒƒ‰ƒAƒCƒRƒ“xÀ•Wn“_
 float draw_map_character_icon_y[COMMU_MAP_LIMIT];		// ƒLƒƒƒ‰ƒAƒCƒRƒ“yÀ•Wn“_
@@ -97,28 +84,16 @@ void GameMapNext()
 	int x = 0;
 	if (GlobalStaticVariable::GetModeTrial() == FALSE)
 	{
-		#pragma region ver0.0039§ìƒRƒƒ“ƒg‰»ƒR[ƒh
-		//int c[3] = {};	// ƒRƒ~ƒ…Šm”F—p•Ï”
-#pragma endregion
 		int c[COMMU_CHARACTER_NUMBER] = {};	// ƒRƒ~ƒ…Šm”F—p•Ï”
-		#pragma region ver0.00704§ìƒRƒƒ“ƒg‰»ƒR[ƒh
-//for (int i = 0; i < COMMU_NUMBER; i++)
-#pragma endregion
 		for (int i = 0; i < GlobalStaticVariable::GetCommuNumber(); i++)
 		{
 			// ƒRƒ~ƒ…‚ª‚ß‚®‚é`çáê—p‚ÌƒRƒ~ƒ…‚È‚ç
-			#pragma region ver0.00706§ìƒRƒƒ“ƒg‰»ƒR[ƒh
-//if (commu_data[i].character_icon != 0 && commu_data[i].character_icon < 6)	// iƒAƒvƒŠ‚ª’â~‚µ‚È‚¢‘ã‚í‚è‚É‚«o‚µ‚Í‚ ‚é‚ªƒAƒCƒRƒ“‚ª•\¦‚³‚ê‚È‚¢j
-#pragma endregion
 			if (GameMapUpperCheck(commu_data[i].character_icon, i) == TRUE)
 			{
 				//	ƒLƒƒƒ‰–ˆ‚Ì‚±‚Ìƒ‹[ƒv‚ğ’Ê‚Á‚½‰ñ”		ƒLƒƒƒ‰–ˆ‚ÌƒRƒ~ƒ…‚ğŒ©‚½‰ñ”																						
 				if (c[commu_data[i].character_icon - 1] == commu_look_count[commu_data[i].character_icon - 1])
 				{
 					commu_data_map[x].id = commu_data[i].id;
-					#pragma region ver0.00706§ìƒRƒƒ“ƒg‰»ƒR[ƒh
-					//sprintf_s(commu_data_map[i].path, 256, "%s", commu_data[i].path);
-#pragma endregion
 					sprintf_s(commu_data_map[x].path, 256, "%s", commu_data[i].path);
 					sprintf_s(commu_data_map[x].title, 256, "%s", commu_data[i].title);
 					commu_data_map[x].appear_timing = commu_data[i].appear_timing;
@@ -190,26 +165,11 @@ void GameMapControl()
 			if (LogType == MOUSE_INPUT_LOG_DOWN)
 			{
 				BOOL x = FALSE;	// ˆÈ~‚Ìˆ—‚©‚ç”²‚¯o‚·•Ï”
-				#pragma region ver0.0053§ìƒRƒƒ“ƒg‰»ƒR[ƒh
-				//if (ClickFlagCheckF(ClickX, ClickY, map_arrow_left_x, screen_size_y / 2.0f, (float)GetDrawStringWidthToHandle("©", 2, map_font_arrow), bairitu * FONT_SIZE_ORIGINAL_COMMU_NAME, TRUE, FALSE) == TRUE){ cfgm_move_left = TRUE; }
-				//else if (ClickFlagCheckF(ClickX, ClickY, map_arrow_right_x, screen_size_y / 2.0f, (float)GetDrawStringWidthToHandle("¨", 2, map_font_arrow), bairitu * FONT_SIZE_ORIGINAL_COMMU_NAME, TRUE, FALSE) == TRUE){ cfgm_move_right = TRUE; }
-#pragma endregion
 				if(hjimage_map[0].JudgementClickCheck() == TRUE){}
 				else if(hjimage_map[1].JudgementClickCheck() == TRUE){}
 				else if (hjimage_map[2].JudgementClickCheck() == TRUE) {}
 				else if (hjimage_map[3].JudgementClickCheck() == TRUE) {}
-				#pragma region ver0.0038§ìƒRƒƒ“ƒg‰»ƒR[ƒh
-				//else if (ClickFlagCheckF(ClickX, ClickY, draw_map_character_icon_x, draw_map_character_icon_y, size_ui_map_icon.x * bairitu, size_ui_map_icon.y * bairitu, TRUE, FALSE) == TRUE){ cfgm_commu_check = TRUE; }
-#pragma endregion
 				else if (GameMapControlCommuCheck(TRUE)){}
-				#pragma region ver0.00393§ìƒRƒƒ“ƒg‰»ƒR[ƒh
-				//else if (ClickFlagCheckF(ClickX, ClickY, draw_map_commu_choice_x[0], draw_map_commu_choice_y, size_ui_map_check_choice.x * bairitu, size_ui_map_check_choice.y * bairitu, TRUE, FALSE) == TRUE){ cfgm_commu_check_ok = TRUE; }
-				//else if (ClickFlagCheckF(ClickX, ClickY, draw_map_commu_choice_x[1], draw_map_commu_choice_y, size_ui_map_check_choice.x * bairitu, size_ui_map_check_choice.y * bairitu, TRUE, FALSE) == TRUE){ cfgm_commu_check_no = TRUE; }
-#pragma endregion
-				#pragma region ver0.0081§ìƒRƒƒ“ƒg‰»ƒR[ƒh
-				//else if (ClickFlagCheckF(ClickX, ClickY, draw_map_commu_choice_x[0], draw_map_commu_choice_y, size_ui_map_check_choice.x * bairitu, size_ui_map_check_choice.y * bairitu, TRUE, FALSE) == TRUE && map_move_commu_check == TRUE) { cfgm_commu_check_ok = TRUE; }
-				//else if (ClickFlagCheckF(ClickX, ClickY, draw_map_commu_choice_x[1], draw_map_commu_choice_y, size_ui_map_check_choice.x * bairitu, size_ui_map_check_choice.y * bairitu, TRUE, FALSE) == TRUE && map_move_commu_check == TRUE) { cfgm_commu_check_no = TRUE; }
-#pragma endregion
 				else if (image_icon_check[0].JudgementClickCheck() == TRUE && map_move_commu_check == TRUE) {}
 				else if (image_icon_check[1].JudgementClickCheck() == TRUE && map_move_commu_check == TRUE) {}
 			}
@@ -217,24 +177,6 @@ void GameMapControl()
 			{
 				BOOL x = FALSE;	// ˆÈ~‚Ìˆ—‚©‚ç”²‚¯o‚·•Ï”
 				// ƒ}ƒbƒv‚ğˆÚ“®‚·‚é
-				#pragma region ver0.0053§ìƒRƒƒ“ƒg‰»ƒR[ƒh
-				//if (ClickFlagCheckF(ClickX, ClickY, map_arrow_left_x, screen_size_y / 2.0f, (float)GetDrawStringWidthToHandle("©", 2, map_font_arrow), bairitu * FONT_SIZE_ORIGINAL_COMMU_NAME, FALSE, cfgm_move_left) == TRUE)
-				//{
-				//	if (map_move_commu_check == FALSE)
-				//	{
-				//		if (g_map_destination == MAP_DESTINATION_CENTER){ g_map_destination = MAP_DESTINATION_LEFT; }
-				//		else if (g_map_destination == MAP_DESTINATION_RIGHT){ g_map_destination = MAP_DESTINATION_CENTER; }
-				//	}
-				//}
-				//else if (ClickFlagCheckF(ClickX, ClickY, map_arrow_right_x, screen_size_y / 2.0f, (float)GetDrawStringWidthToHandle("¨", 2, map_font_arrow), bairitu * FONT_SIZE_ORIGINAL_COMMU_NAME, FALSE, cfgm_move_right) == TRUE)
-				//{ 
-				//	if (map_move_commu_check == FALSE)
-				//	{
-				//		if (g_map_destination == MAP_DESTINATION_CENTER){ g_map_destination = MAP_DESTINATION_RIGHT; }
-				//		else if (g_map_destination == MAP_DESTINATION_LEFT){ g_map_destination = MAP_DESTINATION_CENTER; }
-				//	}
-				//}
-#pragma endregion
 				if (hjimage_map[0].JudgementReleaseCheck() == TRUE)
 				{
 					if (map_move_commu_check == FALSE)
@@ -261,25 +203,13 @@ void GameMapControl()
 					GameSaveLoadNext(FALSE, SL_BEFORE_MAP);
 					SEPlay(static_cast<int>(SEData::IDName::ALTERNATIVE));
 				}
-				#pragma region ver0.0038§ìƒRƒƒ“ƒg‰»ƒR[ƒh
-				// ƒRƒ~ƒ…ˆÚ“®Šm”Fó‘Ô‚É‚·‚é
-				//else if (ClickFlagCheckF(ClickX, ClickY, draw_map_character_icon_x, draw_map_character_icon_y, size_ui_map_icon.x, size_ui_map_icon.y, FALSE, cfgm_commu_check) == TRUE){ map_move_commu_check = TRUE; }
-				// ‘I‘ğ‚µ‚½ƒRƒ~ƒ…‚ğ‰{——‚·‚é
-				//else if (ClickFlagCheckF(ClickX, ClickY, draw_map_commu_choice_x[0], draw_map_commu_choice_y, size_ui_map_check_choice.x * bairitu, size_ui_map_check_choice.y * bairitu, FALSE, cfgm_commu_check_ok) == TRUE){ GameMainCommunicationNext(2); }
-#pragma endregion
 				// ƒRƒ~ƒ…ˆÚ“®Šm”Fó‘Ô‚É‚·‚é
 				else if (GameMapControlCommuCheck(FALSE)) {}
 				// ‘I‘ğ‚µ‚½ƒRƒ~ƒ…‚ğ‰{——‚·‚é
 				else if (image_icon_check[0].JudgementReleaseCheck() == TRUE && map_move_commu_check == TRUE)
-				#pragma region ver0.0081§ìƒRƒƒ“ƒg‰»ƒR[ƒh
-				//else if (ClickFlagCheckF(ClickX, ClickY, draw_map_commu_choice_x[0], draw_map_commu_choice_y, size_ui_map_check_choice.x * bairitu, size_ui_map_check_choice.y * bairitu, FALSE, cfgm_commu_check_ok) == TRUE)
-#pragma endregion
 				{
 					// iƒfƒoƒbƒOFƒRƒ~ƒ…‚ª‘¶İ‚µ‚Ä‚È‚©‚Á‚½‚ç‹­§I—¹‚³‚¹‚éj
 					if (commu_data_map[0].id == 0) { quit_game = TRUE; }
-					#pragma region ver0.00607§ìƒRƒƒ“ƒg‰»ƒR[ƒh
-					//else { GameMainCommunicationNext(commu_data_map_choice.id - 1, FALSE); }
-#pragma endregion
 					else 
 					{ 
 						SEPlay(static_cast<int>(SEData::IDName::COMMU_START));	// ‚r‚d‚ğ–Â‚ç‚·
@@ -290,19 +220,9 @@ void GameMapControl()
 					commu_look_count[commu_data_map_choice.character_icon - 1]++;	// ƒLƒƒƒ‰•ÊƒRƒ~ƒ…‹’®‰ñ”‚ğƒJƒEƒ“ƒg‚·‚é
 				}
 				// ƒRƒ~ƒ…ˆÚ“®Šm”F‰æ–Ê‚ğÁ‚·
-				#pragma region ver0.0081§ìƒRƒƒ“ƒg‰»ƒR[ƒh
-				//else if (ClickFlagCheckF(ClickX, ClickY, draw_map_commu_choice_x[1], draw_map_commu_choice_y, size_ui_map_check_choice.x * bairitu, size_ui_map_check_choice.y * bairitu, FALSE, cfgm_commu_check_no) == TRUE){ map_move_commu_check = FALSE; }
-#pragma endregion
 				else if (image_icon_check[1].JudgementReleaseCheck() == TRUE && map_move_commu_check == TRUE) { map_move_commu_check = FALSE; }
 				// ‘S‚Ä‚Ìƒtƒ‰ƒO‚ğ–ß‚·
-				#pragma region ver0.0053§ìƒRƒƒ“ƒg‰»ƒR[ƒh
-				//cfgm_move_left = FALSE;														// ¶ƒ}ƒbƒv‚ÖˆÚ“®
-				//cfgm_move_right = FALSE;													// ‰Eƒ}ƒbƒv‚ÖˆÚ“®
-#pragma endregion
 				for (int i = 0; i < HIT_JUDGEMENT_IMAGE_NUMBER_MAP; i++) { hjimage_map[i].CJChange(FALSE); }
-				#pragma region ver0.0038§ìƒRƒƒ“ƒg‰»ƒR[ƒh
-				//cfgm_commu_check = FALSE;		// ‘I‘ğƒRƒ~ƒ…‰{——‰æ–Ê‚ğ•\¦‚·‚é
-#pragma endregion
 				for (int i = 0; i < COMMU_MAP_LIMIT; i++) { cfgm_commu_check[i] = FALSE; }	// ‘I‘ğƒRƒ~ƒ…‰{——‰æ–Ê‚ğ•\¦‚·‚é
 				cfgm_commu_check_ok = FALSE;												// ‘I‘ğƒRƒ~ƒ…‚ÖˆÚs‚·‚é
 				cfgm_commu_check_no = FALSE;												// ‘I‘ğƒRƒ~ƒ…‰{——‰æ–Ê‚ğ‰ğœ‚·‚é
@@ -317,9 +237,6 @@ void GameMapFlame()
 	// tips•¶š—ñ‚ÌXÀ•W‚ğ“®‚©‚·
 	for (int i = 0; i < 2; i++)
 	{ 
-		#pragma region ver0.021§ìƒRƒƒ“ƒg‰»ƒR[ƒh
-		//if (i == 0 || tips_string[0].x < screen_size_x - GetDrawFormatStringWidthToHandle(g_font_tips, tips_string[0].string) - bairitu * 256){ tips_string[i].x -= 3; }
-#pragma endregion
 		if (i == 0 || tips_string[0].x < screen_size_x - GetDrawFormatStringWidthToHandle(g_font_tips, tips_string[0].string) - bairitu * 256) { tips_string[i].x -= 2; }
 	}
 	// tips•¶š—ñ[0]‚ªˆê’èˆÊ’u‚Ü‚Å—ˆ‚½‚çGameMapTipsSubstitutionŠÖ”‚ğŒÄ‚Ño‚·
@@ -335,20 +252,12 @@ void GameMapFlame()
 	if (g_map_destination == MAP_DESTINATION_LEFT && draw_map_plus_x > size_ui_map.x * bairitu + draw_map_space){ draw_map_plus_x = size_ui_map.x * bairitu + draw_map_space; }
 	if (g_map_destination == MAP_DESTINATION_RIGHT && draw_map_plus_x < (size_ui_map.x * bairitu + draw_map_space) * (-1)){ draw_map_plus_x = (size_ui_map.x * bairitu + draw_map_space) * (-1); }
 	// draw_map_plus_x‚É‚æ‚Á‚Ä•Ï‰»‚·‚éÀ•W‚ğÄ’è‹`‚·‚é
-	#pragma region ver0.0038§ìƒRƒƒ“ƒg‰»ƒR[ƒh
-	//draw_map_character_icon_x = screen_size_x / 2 - size_ui_map_icon.x * bairitu / 2 + draw_map_plus_x + (commu_data_map[0].map_zone - 2) * (size_ui_map.x * bairitu + draw_map_space) + commu_data_map[0].map_coordinate_x;	// ƒLƒƒƒ‰ƒAƒCƒRƒ“xÀ•Wn“_
-	//draw_map_character_icon_y = screen_size_y / 2 - size_ui_map_icon.y * bairitu / 2 + commu_data_map[0].map_coordinate_y;																										// ƒLƒƒƒ‰ƒAƒCƒRƒ“yÀ•Wn“_
-#pragma endregion
 	for (int i = 0; i < COMMU_MAP_LIMIT; i++)
 	{
 		if (commu_data_map[i].id != 0)
 		{
 			draw_map_character_icon_x[i] =		screen_size_x / 2 - size_ui_map_icon2.x * bairitu / 2 + draw_map_plus_x + (commu_data_map[i].map_zone - 2) * (size_ui_map.x * bairitu + draw_map_space) + commu_data_map[i].map_coordinate_x + bairitu * 82;				// ƒLƒƒƒ‰ƒAƒCƒRƒ“xÀ•Wn“_
 			draw_map_character_icon_y[i] = screen_size_y / 2 - size_ui_map_icon2.y * bairitu / 2 + commu_data_map[i].map_coordinate_y - bairitu * 45;																												// ƒLƒƒƒ‰ƒAƒCƒRƒ“yÀ•Wn“_
-			#pragma region ver0.0081§ìƒRƒƒ“ƒg‰»ƒR[ƒh
-			//draw_map_coordinate_hukidasi_x[i] = screen_size_x / 2 - size_ui_map_hukidasi[0].x * bairitu / 2 + draw_map_plus_x + (commu_data_map[i].map_zone - 2) * (size_ui_map.x * bairitu + draw_map_space) + commu_data_map[i].map_coordinate_x + bairitu * 82;	// ‚«o‚µxÀ•Wn“_
-			//draw_map_coordinate_hukidasi_y[i] = screen_size_y / 2 - size_ui_map_hukidasi[0].y * bairitu * 2 / 5 + commu_data_map[i].map_coordinate_y - bairitu * 45;																									// ‚«o‚µyÀ•Wn“_
-#pragma endregion
 			// 
 			const float X = (commu_data_map[i].id == static_cast<int>(CommuType::FRIEND) + 1 ? image_icon_map_character[static_cast<int>(CommuData::MapUpperType::FRIEND_CG_MEGURU) - 5].GetSizeX() / 2 : image_icon_map_character[0].GetSizeX() / 2);
 
@@ -373,30 +282,6 @@ void GameMapTipsSubstitution()
 	for (int j = (tips_string[0].string == NULL ? 0 : 1); j < 2; j++)
 	{
 		int x = 0;	// –¢oŒ»tipsƒJƒEƒ“ƒg—p•Ï”
-		#pragma region ver0.00706§ìƒRƒƒ“ƒg‰»ƒR[ƒh
-		//int y[TIPS_NUMBER];
-		//char* c[TIPS_NUMBER];
-#pragma endregion
-		#pragma region ver0.00708§ìƒRƒƒ“ƒg‰»ƒR[ƒh
-		//int y[TIPS_NUMBER] = {0, 0, 0};
-		//char* c[TIPS_NUMBER] = {};
-		//do
-		//{
-		//	for (int i = 0; i < TIPS_NUMBER; i++)
-		//	{
-		//		if (tips_data[i].appear == FALSE)
-		//		{
-		//			c[x] = tips_data[i].tips;
-		//			y[x] = tips_data[i].id;
-		//			x++;
-		//		}
-		//	}
-		//	if (x == 0)
-		//	{
-		//		for (int i = 0; i < TIPS_NUMBER; i++){ tips_data[i].appear = FALSE; }
-		//	}
-		//} while (x == 0);	// x‚ª0‚ÌŒÀ‚èƒ‹[ƒv
-#pragma endregion
 		int y[TipsData::LOAD_LIMIT];
 		char* c[TipsData::LOAD_LIMIT];
 		//int y[3];
@@ -432,12 +317,6 @@ void GameMapCoordinateSetting()
 {
 	// ƒtƒHƒ“ƒg‚à’è‹`‚·‚é
 	map_font_arrow = g_font_commu_name;	// ƒ}ƒbƒv‰æ–Ê–îˆó‚ÌƒtƒHƒ“ƒgƒTƒCƒY
-
-	#pragma region ver0.0051§ìƒRƒƒ“ƒg‰»ƒR[ƒh
-	//float x = screen_size_x / 2.0f;
-	//float y = bairitu * 600;														// —¼–îˆó‚Ì’†S‚©‚ç‚Ì‚¸‚ê
-	//map_arrow_left_x = x - y - GetDrawStringWidthToHandle("©", 2, g_font3);		// ¶‘¤‚És‚­–îˆó‚ÌxÀ•W’l
-#pragma endregion
 
 	draw_map_space = bairitu * 360;													// Šeƒ}ƒbƒvŠÔ‚ÌŒ„ŠÔ
 	// ƒRƒ~ƒ…ˆÚ“®‘I‘ğˆxÀ•Wn“_
@@ -476,42 +355,12 @@ void DrawGameMap()
 		if (commu_data_map[i].id != 0)
 		{
 			// ‚«o‚µiŒ»İ‚Í‚Pl—p‚ÅŒÅ’èAŒãXƒRƒ~ƒ…‚É‰‚¶‚½‘å‚«‚³‚ÌƒAƒCƒRƒ“‚É•Ï‰»‚³‚¹‚é•K—v‚ª‚ ‚éj
-			#pragma region ver0.0081§ìƒRƒƒ“ƒg‰»ƒR[ƒh
-//			DrawExtendGraphF(draw_map_coordinate_hukidasi_x[i], draw_map_coordinate_hukidasi_y[i],draw_map_coordinate_hukidasi_x[i] + size_ui_map_hukidasi[0].x * bairitu, draw_map_coordinate_hukidasi_y[i] + size_ui_map_hukidasi[0].y * bairitu, g_imghandles.ui_map_hukidasi[0], TRUE);
-//			#pragma region ver0.0042§ìƒRƒƒ“ƒg‰»ƒR[ƒh
-//			//DrawExtendGraphF(draw_map_character_icon_x[i], draw_map_character_icon_y[i], draw_map_character_icon_x[i] + size_ui_map_icon.x * bairitu, draw_map_character_icon_y[i] + size_ui_map_icon.y * bairitu, g_imghandles.ui_map_icon[commu_data_map[i].character_icon - 1], TRUE);
-//#pragma endregion
-//			DrawExtendGraphF(draw_map_character_icon_x[i], draw_map_character_icon_y[i],draw_map_character_icon_x[i] + size_ui_map_icon2.x * bairitu, draw_map_character_icon_y[i] + size_ui_map_icon2.y * bairitu, g_imghandles.ui_map_icon[commu_data_map[i].character_icon - 1], TRUE);
-#pragma endregion
-			#pragma region ver0.0081§ìƒRƒƒ“ƒg‰»ƒR[ƒh
-			//DrawExtendGraphF(draw_map_coordinate_hukidasi_x[i], draw_map_coordinate_hukidasi_y[i], draw_map_coordinate_hukidasi_x[i] + size_ui_map_hukidasi[0].x, draw_map_coordinate_hukidasi_y[i] + size_ui_map_hukidasi[0].y, g_imghandles.ui_map_hukidasi[0], TRUE);
-			//DrawExtendGraphF(draw_map_character_icon_x[i], draw_map_character_icon_y[i], draw_map_character_icon_x[i] + size_ui_map_icon2.x, draw_map_character_icon_y[i] + size_ui_map_icon2.y, g_imghandles.ui_map_icon[commu_data_map[i].character_icon - 1], TRUE);
-#pragma endregion
-			#pragma region ver0.00904§ìƒRƒƒ“ƒg‰»ƒR[ƒh
-			//DrawExtendGraphF(draw_map_coordinate_hukidasi_x[i], draw_map_coordinate_hukidasi_y[i], draw_map_coordinate_hukidasi_x[i] + image_icon_map_character[0].GetSizeX(), draw_map_coordinate_hukidasi_y[i] + image_icon_map_character[0].GetSizeY(), image_icon_map_character[commu_data_map[i].character_icon - 1].GetHandle(), TRUE);
-#pragma endregion
 			DrawExtendGraphF(draw_map_coordinate_hukidasi_x[i], draw_map_coordinate_hukidasi_y[i], draw_map_coordinate_hukidasi_x[i] + image_icon_map_character[(commu_data_map[i].GetID() == static_cast<int>(CommuType::FRIEND) + 1) ? static_cast<int>(CommuData::MapUpperType::FRIEND_CG_MEGURU) - 5 : 0].GetSizeX(), draw_map_coordinate_hukidasi_y[i] + image_icon_map_character[0].GetSizeY(), image_icon_map_character[commu_data_map[i].character_icon - 1].GetHandle(), TRUE);
 		}
 	}
 
-	#pragma region ver0.0039§ìƒRƒƒ“ƒg‰»ƒR[ƒh
-	//DrawExtendGraphF(screen_size_x - size_ui_tips.x * bairitu, 0, WINDOW_SIZE_X * bairitu, size_ui_tips.y * bairitu, g_imghandles.ui_tips, TRUE);	// tips‚t‚h
-
-	//// “®ìƒeƒXƒg
-	//for (int i = 0; i < 2; i++){ DrawFormatStringFToHandle(tips_string[i].x, 50, GetColor(0, 0, 0), g_font_tips, tips_string[i].string); }
-
-	//DrawExtendGraphF(0, 0, WINDOW_SIZE_X * bairitu, WINDOW_SIZE_Y * bairitu, g_imghandles.ui_month, TRUE);	// Œ‚t‚h
-#pragma endregion
 	DrawExtendGraphF(screen_size_x - size_ui_tips.x * bairitu, 0, WINDOW_SIZE_X * bairitu, size_ui_tips.y * bairitu, g_imghandles.ui_tips, TRUE);	// tips‚t‚h
-	#pragma region ver0.00391§ìƒRƒƒ“ƒg‰»ƒR[ƒh
-
-	//for (int i = 0; i < 2; i++) { DrawFormatStringFToHandle(tips_string[i].x, 50, GetColor(0, 0, 0), g_font_tips, tips_string[i].string); }
-
-#pragma endregion
 	for (int i = 0; i < 2; i++) { DrawFormatStringFToHandle(tips_string[i].x, bairitu * 24, GetColor(0, 0, 0), g_font_tips, tips_string[i].string); }
-	#pragma region ver0.00706§ìƒRƒƒ“ƒg‰»ƒR[ƒh
-	//DrawExtendGraphF(0, 0, WINDOW_SIZE_X * bairitu, WINDOW_SIZE_Y * bairitu, g_imghandles.ui_month, TRUE);	// Œ‚t‚h
-#pragma endregion
 	// Œ»İŒ‚t‚h
 	if (GlobalStaticVariable::GetModeTrial() == FALSE) { ui_map_month[game_week_number - 12].DrawImage(); }
 	else { bgimage_non_month.DrawImage(); }
@@ -519,20 +368,7 @@ void DrawGameMap()
 	//DrawStringFToHandle(map_arrow_left_x, screen_size_y / 2.0f, "©", DrawTitleStringColor(map_arrow_left_x, screen_size_y / 2.0f, GetDrawStringWidthToHandle("©", 2, g_font3), FONT_SIZE_ORIGINAL * bairitu), g_font3);
 	if (map_move_commu_check == FALSE)
 	{
-		#pragma region ver0.0038§ìƒRƒƒ“ƒg‰»ƒR[ƒh
-		//if (g_map_destination != MAP_DESTINATION_LEFT){ DrawStringFToHandle(map_arrow_left_x, screen_size_y / 2.0f, "©", DrawTitleStringColor(map_arrow_left_x, screen_size_y / 2.0f, GetDrawStringWidthToHandle("©", 2, map_font_arrow), FONT_SIZE_ORIGINAL_COMMU_NAME * bairitu), map_font_arrow); }
-		//if (g_map_destination != MAP_DESTINATION_RIGHT){ DrawStringFToHandle(map_arrow_right_x, screen_size_y / 2.0f, "¨", DrawTitleStringColor(map_arrow_right_x, screen_size_y / 2.0f, GetDrawStringWidthToHandle("¨", 2, map_font_arrow), FONT_SIZE_ORIGINAL_COMMU_NAME * bairitu), map_font_arrow); }
-#pragma endregion
 		// –îˆó‚ğ“®‚©‚·‚½‚ß‚É•K—v‚Èâ‘Î”H
-		#pragma region ver0.0051§ìƒRƒƒ“ƒg‰»ƒR[ƒh
-		//float x = 22.5f - (progress_frame % 45) * bairitu;
-#pragma endregion
-		#pragma region ver0.0053§ìƒRƒƒ“ƒg‰»ƒR[ƒh
-		//float x = (22.5f - (progress_frame % 45)) * bairitu;
-
-		//if (g_map_destination != MAP_DESTINATION_LEFT) { DrawStringFToHandle(map_arrow_left_x - abs(x), screen_size_y / 2.0f, "©", DrawTitleStringColor(map_arrow_left_x, screen_size_y / 2.0f, GetDrawStringWidthToHandle("©", 2, map_font_arrow), FONT_SIZE_ORIGINAL_COMMU_NAME * bairitu), map_font_arrow); }
-		//if (g_map_destination != MAP_DESTINATION_RIGHT) { DrawStringFToHandle(map_arrow_right_x + abs(x), screen_size_y / 2.0f, "¨", DrawTitleStringColor(map_arrow_right_x, screen_size_y / 2.0f, GetDrawStringWidthToHandle("¨", 2, map_font_arrow), FONT_SIZE_ORIGINAL_COMMU_NAME * bairitu), map_font_arrow); }
-#pragma endregion
 		if (g_map_destination != MAP_DESTINATION_LEFT) { hjimage_map[0].DrawImage(); }
 		if (g_map_destination != MAP_DESTINATION_RIGHT) { hjimage_map[1].DrawImage(); }
 	}
@@ -553,12 +389,6 @@ void DrawGameMap()
 		// ƒTƒuƒ^ƒCƒgƒ‹
 		//DrawFormatStringFToHandle(Z, A, GetColor(255, 255, 255), font[static_cast<int>(FontData::Type::MAP_TITLE)].GetHandle(), commu_data_map_choice.GetTitle());
 
-		#pragma region ver0.0042§ìƒRƒƒ“ƒg‰»ƒR[ƒh
-		//DrawExtendGraphF((screen_size_x - bairitu * size_ui_map_icon.x) / 2, (screen_size_y - bairitu * size_ui_map_icon.y) / 2 - bairitu * 150, (screen_size_x + bairitu * size_ui_map_icon.x) / 2, (screen_size_y + bairitu * size_ui_map_icon.y) / 2 - bairitu * 150, g_imghandles.ui_map_icon[commu_data_map_choice.character_icon - 1], TRUE);	// ƒAƒCƒRƒ“i‰¼j
-#pragma endregion
-		#pragma region ver0.0081§ìƒRƒƒ“ƒg‰»ƒR[ƒh
-		//DrawExtendGraphF((screen_size_x - bairitu * size_ui_map_icon2.x) / 2, (screen_size_y - bairitu * size_ui_map_icon2.y) / 2 - bairitu * 150, (screen_size_x + bairitu * size_ui_map_icon2.x) / 2, (screen_size_y + bairitu * size_ui_map_icon2.y) / 2 - bairitu * 150, g_imghandles.ui_map_icon[commu_data_map_choice.character_icon - 1], TRUE);	// ƒAƒCƒRƒ“i‰¼j
-#pragma endregion
 		// ƒtƒŒƒ“ƒh‚ß‚®‚éƒRƒ~ƒ…‚Ìê‡‚Tl‚ÌƒAƒCƒRƒ“‚ğ•\¦‚³‚¹‚é
 		#pragma region ver0.013§ìƒRƒƒ“ƒg‰»ƒR[ƒh
 		if (commu_data_map_choice.GetID() != static_cast<int>(CommuType::FRIEND) + 1)
@@ -581,9 +411,6 @@ void DrawGameMap()
 #pragma endregion
 		//if (commu_data_map_choice.GetID() != static_cast<int>(CommuType::FRIEND) + 1) { image_map_question[commu_data_map_choice.character_icon - 1].DrawImage(); }
 		//else { image_map_question[static_cast<int>(ImgDataMapQuestion::Type::FRIEND_ALL)].DrawImage(); }
-		#pragma region ver0.0081§ìƒRƒƒ“ƒg‰»ƒR[ƒh
-		//for (int i = 0; i < 2; i++){ DrawExtendGraphF(draw_map_commu_choice_x[i], draw_map_commu_choice_y, draw_map_commu_choice_x[i] + size_ui_map_check_choice.x * bairitu, draw_map_commu_choice_y + size_ui_map_check_choice.y * bairitu, g_imghandles.ui_map_check_choice[i], TRUE); }
-#pragma endregion
 		// ‘I‘ğˆƒAƒCƒRƒ“
 		for (int i = 0; i < ImgDataIconCheck::GetImageNumber(); i++) { image_icon_check[i].DrawImage(); }
 		//for (int i = 0; i < 2; i++) { image_icon_map_move_alternative[i].DrawImage(); }
@@ -629,12 +456,6 @@ BOOL GameMapControlCommuCheck(BOOL x)	// ˆ—ƒ^ƒCƒ~ƒ“ƒOiTRUE‚È‚ç‰Ÿ‚µ‚½j
 			const int Y = (commu_data_map[i].GetID() == static_cast<int>(CommuType::FRIEND) + 1) ? static_cast<int>(CommuData::MapUpperType::FRIEND_CG_MEGURU) - 5 : 0;
 			if (x == TRUE)
 			{
-				#pragma region ver0.0081§ìƒRƒƒ“ƒg‰»ƒR[ƒh
-				//if (ClickFlagCheckF(ClickX, ClickY, draw_map_character_icon_x[i], draw_map_character_icon_y[i], size_ui_map_icon2.x * bairitu, size_ui_map_icon2.y * bairitu, TRUE, FALSE) == TRUE)
-#pragma endregion
-				#pragma region ver0.00904§ìƒRƒƒ“ƒg‰»ƒR[ƒh
-//if (ClickFlagCheckF(ClickX, ClickY, draw_map_coordinate_hukidasi_x[i], draw_map_coordinate_hukidasi_y[i], image_icon_map_character[0].GetSizeX(), image_icon_map_character[0].GetSizeY(), TRUE, FALSE) == TRUE)
-#pragma endregion
 				if (ClickFlagCheckF(ClickX, ClickY, draw_map_coordinate_hukidasi_x[i], draw_map_coordinate_hukidasi_y[i], image_icon_map_character[Y].GetSizeX(), image_icon_map_character[0].GetSizeY(), TRUE, FALSE) == TRUE)
 				{
 					cfgm_commu_check[i] = TRUE;
@@ -643,15 +464,6 @@ BOOL GameMapControlCommuCheck(BOOL x)	// ˆ—ƒ^ƒCƒ~ƒ“ƒOiTRUE‚È‚ç‰Ÿ‚µ‚½j
 			}
 			else
 			{
-				#pragma region ver0.00393§ìƒRƒƒ“ƒg‰»ƒR[ƒh
-				//if (ClickFlagCheckF(ClickX, ClickY, draw_map_character_icon_x[i], draw_map_character_icon_y[i], size_ui_map_icon.x, size_ui_map_icon.y, FALSE, cfgm_commu_check[i]) == TRUE)
-#pragma endregion
-				#pragma region ver0.0081§ìƒRƒƒ“ƒg‰»ƒR[ƒh
-//if (ClickFlagCheckF(ClickX, ClickY, draw_map_character_icon_x[i], draw_map_character_icon_y[i], size_ui_map_icon2.x, size_ui_map_icon2.y, FALSE, cfgm_commu_check[i]) == TRUE && map_move_commu_check == FALSE)
-#pragma endregion
-				#pragma region ver0.00904§ìƒRƒƒ“ƒg‰»ƒR[ƒh
-//if (ClickFlagCheckF(ClickX, ClickY, draw_map_coordinate_hukidasi_x[i], draw_map_coordinate_hukidasi_y[i], image_icon_map_character[0].GetSizeX(), image_icon_map_character[0].GetSizeY(), FALSE, cfgm_commu_check[i]) == TRUE && map_move_commu_check == FALSE)
-#pragma endregion
 				if (ClickFlagCheckF(ClickX, ClickY, draw_map_coordinate_hukidasi_x[i], draw_map_coordinate_hukidasi_y[i], image_icon_map_character[Y].GetSizeX(), image_icon_map_character[0].GetSizeY(), FALSE, cfgm_commu_check[i]) == TRUE && map_move_commu_check == FALSE)
 				{
 					map_move_commu_check = TRUE;

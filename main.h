@@ -36,24 +36,12 @@
 #define WINDOW_SIZE_X 1920						// ゲームウィンドウのオリジナルサイズ横幅
 #define WINDOW_SIZE_Y 1080						// ゲームウィンドウのオリジナルサイズ縦幅
 #define	SAVE_DATA_NUMBER 60						// セーブデータ個数（オートセーブは除く）
-#pragma region ver0.00399制作時コメント化コード
-//#define COMMU_NUMBER 11							// コミュの総数
-#pragma endregion
-#pragma region ver0.00703制作時コメント化コード
-//#define COMMU_NUMBER 17							// コミュの総数
-#pragma endregion
-#pragma region ver0.00704制作時コメント化コード
-//#define COMMU_NUMBER 22						// コミュの総数
-#pragma endregion
 #define COMMU_NUMBER_MAX 256					// 作成できるコミュの最大数
 #define COMMU_MAP_LIMIT 10						// マップ画面で扱われるコミュの上限
 #define CS_COMMU_LIMIT 10						// コミュセレクト画面で扱われるコミュ選択肢の上限
 
 #define MOJI_SIZE 24	// 文字のサイズ
 // 仮想テキストバッファの横サイズ縦サイズ
-#pragma region ver0.0034制作時コメント化コード
-//#define STRBUF_WIDTH 48
-#pragma endregion
 #define STRBUF_WIDTH 50	// 元々は48だったがシャニリコ鯖に『一行最大25文字』と書かれていたので、そちらに合わせるように修正
 #define STRBUF_HEIGHT 20
 
@@ -132,40 +120,6 @@ enum class CommuType
 // セーブデータを保存するために必要な構造体（どうしても最後列以外の場所に要素を増やしたいなら書き込み用の構造体を別個に用意する？）
 struct SystemData
 {
-	//SaveFileID id;					// セーブデータＩＤ
-	//char config_player_name[256];	// プレイヤー名
-	//double score_have_gyouza;		// 所持餃子
-	//double score_gyouza_make;		// 生産餃子
-	//int score_play_flame;			// 経過時間（フレーム）
-	//int score_play_minute;			// 経過時間（分）
-	//int score_play_time;			// 経過時間
-	//int score_building_level[20];	// 施設レベル
-	//BOOL score_ug_buy[700];			// アップグレード購入フラグ
-	//BOOL score_mission_clear[600];	// ミッション達成フラグ
-	//int	score_jewel_click;			// ジュエルクリック回数
-	//int score_support_level[25];	// サポートアイドルレベル
-	//int score_support_love[25];		// サポートアイドル親愛度
-	//int score_support_training[25];	// サポートアイドル☆
-	//int score_support_rare[25];		// サポートアイドルレアグレード
-	//// 0.001以降
-	//double score_click_make;		// クリック生産餃子
-	//// 0.003以降
-	//BOOL config_building_variation;	// オプションメニュー・『施設デザイン』の状態
-	//// 0.004以降
-	//BOOL config_production_gyouza;	// オプションメニュー・『自動生産餃子』の状態
-	//BOOL config_click_gyouza;		// オプションメニュー・『クリック生産餃子』の状態
-	//// 0.0041以降
-	//int score_fpc_count;			// フライパンクリック回数
-	//// 0.005以降
-	//double score_gyouza_forfeit;	// 消滅した餃子
-	//int score_restart_count;		// 総リスタート回数
-	//int score_play_af;				// 総経過時間（フレーム）
-	//int score_play_am;				// 総経過時間（分）
-	//int score_play_at;				// 総経過時間
-	//int	score_jewel_click_all;		// ジュエルクリック総回数
-	//float score_memorial_level;		// （現在の）メモリアルレベル
-	//float score_memorial_piece;		// 所持メモリアルピース
-
 	BOOL full_screen;					// フルスクリーンのフラグ
 	BOOL screen_resolution;				// 解像度のフラグ（TRUEなら1080px）
 	int vol_bgm;						// ＢＧＭ音量
@@ -179,39 +133,6 @@ private:
 	BOOL edit_character_load[9];		// エディットモードでの個別読み込みフラグ（もしかしたら後々立ち絵の人物が追加されるかもしれないので多く設定している）
 };
 extern SystemData system_data;
-#pragma region ver0.0044制作時コメント化コード
-// 読み込み時と違う内容を保存する時の構造体
-//struct ScoreDataAfter
-//{
-//	SaveFileID id;					// セーブデータＩＤ
-//	char config_player_name[256];	// プレイヤー名
-//	double score_have_gyouza;		// 所持餃子
-//	double score_gyouza_make;		// 生産餃子
-//	int score_play_flame;			// 経過時間（フレーム）
-//	int score_play_minute;			// 経過時間（分）
-//	int score_play_time;			// 経過時間
-//	int score_building_level[20];	// 施設レベル
-//	BOOL score_ug_buy[700];			// アップグレード購入フラグ
-//	BOOL score_mission_clear[600];	// ミッション達成フラグ
-//	int	score_jewel_click;			// ジュエルクリック回数
-//	int score_support_level[25];	// サポートアイドルレベル
-//	int score_support_love[25];		// サポートアイドル親愛度
-//	int score_support_training[25];	// サポートアイドル☆
-//	int score_support_rare[25];		// サポートアイドルレアグレード
-//	// 0.001以降
-//	double score_click_make;		// クリック生産餃子
-//	// 0.003以降
-//	BOOL config_building_variation;	// オプションメニュー・『施設デザイン』の状態
-//	// 0.004以降
-//	BOOL config_production_gyouza;	// オプションメニュー・『自動生産餃子』の状態
-//	BOOL config_click_gyouza;	// オプションメニュー・『クリック生産餃子』の状態
-//	// 0.0041以降
-//	int score_fpc_count;			// フライパンクリック回数
-//	// 0.005以降
-//	double score_gyouza_forfeit;	// 消滅した餃子
-//};
-//extern ScoreDataAfter score_data_after;
-#pragma endregion
 // コミュのステータス（コミュの種類の配列変数は上部にある『CommuType』enumクラス）
 struct CommuData
 {
@@ -244,9 +165,6 @@ struct CommuData
 private:
 	static MapUpperType g_mapuppertype;
 };
-#pragma region ver0.00704制作時コメント化コード
-//extern CommuData commu_data[COMMU_NUMBER], commu_data_map[COMMU_MAP_LIMIT], commu_data_map_choice;
-#pragma endregion
 extern CommuData commu_data[COMMU_NUMBER_MAX], commu_data_map[COMMU_MAP_LIMIT], commu_data_map_choice;
 // コミュ閲覧モードで表示されるコミュの情報
 class CSDisplayCommuState
@@ -353,17 +271,6 @@ extern BOOL g_downkey_prev[2];	// 直前の下キーの状態
 extern BOOL g_leftkey_prev[2];	// 直前の左キーの状態
 extern BOOL g_rightkey_prev[2];	// 直前の右キーの状態
 extern BOOL g_enterkey_prev[2];	// 直前のエンターキーの状態
-/*
-extern BOOL g_akey_prev[2];		// 直前のＡボタンの状態
-extern BOOL g_bkey_prev[2];		// 直前のＢボタンの状態
-extern BOOL g_ckey_prev[2];		// 直前のＣボタンの状態
-extern BOOL g_xkey_prev[2];		// 直前のＸボタンの状態
-extern BOOL g_ykey_prev[2];		// 直前のＹボタンの状態
-extern BOOL g_zkey_prev[2];		// 直前のＺボタンの状態
-extern BOOL g_lkey_prev[2];		// 直前のＬボタンの状態
-extern BOOL g_rkey_prev[2];		// 直前のＲボタンの状態
-extern BOOL g_startkey_prev[2];	// 直前のスタートボタンの状態
-*/
 extern BOOL quit_game;			// ゲームを終了させるか判別するフラグ
 //extern BOOL mode_title;			// 現在タイトル画面にいるか判別するフラグ
 extern BOOL flag_full_hd_ok;	// フルＨＤによるプレイが可能か判別する
@@ -425,17 +332,6 @@ BOOL IsDOWNKeyTrigger(int key, int y);	// 下キー
 BOOL IsLEFTKeyTrigger(int key, int y);	// 左キー
 BOOL IsRIGHTKeyTrigger(int key, int y);	// 右キー
 BOOL IsENTERKeyTrigger(int key, int y);	// エンターキー
-/*
-BOOL IsAKeyTrigger(int key, int y);
-BOOL IsBKeyTrigger(int key, int y);		// Bボタン
-BOOL IsCKeyTrigger(int key, int y);		// Cボタン
-BOOL IsXKeyTrigger(int key, int y);		// Xボタン
-BOOL IsYKeyTrigger(int key, int y);		// Yボタン
-BOOL IsZKeyTrigger(int key, int y);		// Zボタン
-BOOL IsLKeyTrigger(int key, int y);		// Lボタン
-BOOL IsRKeyTrigger(int key, int y);		// Rボタン
-BOOL IsSTARTKeyTrigger(int key, int y);	// スタートボタン
-*/
 BOOL ClickFlagCheck(int Cx, int Cy, int Jx, int Jy, int breadth, int length, BOOL z, BOOL a);											// クリックされたタイミングや状況に応じたフラグを返す
 BOOL ClickFlagCheck2(int Cx, int Cy, int Jx, int Jy, int breadth, int length, BOOL z, BOOL a);											// クリックされたタイミングや状況に応じたフラグを返す（float変数『bairitu』をかける）
 BOOL ClickFlagCheckF2(int Cx, int Cy, float Jx, float Jy, float breadth, float length, BOOL z, BOOL a, ClickFlagCheckType type);	// クリックされたタイミングや状況に応じたフラグを返す（列挙定数に応じて条件のフラグが追加される）

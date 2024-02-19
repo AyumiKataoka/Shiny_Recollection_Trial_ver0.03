@@ -3,10 +3,6 @@
 // なぜかsaveloadファイルのコードに使われていたのでそのまま
 BOOL cft_exit_main_commu = FALSE;		// コミュ画面に移動
 BOOL cft_quit_game = FALSE;				// ゲームを終了
-#pragma region ver0.00706制作時コメント化コード
-//BOOL cft_exit_load = FALSE;				// ロード画面に移動
-//BOOL cft_config_main_commu = FALSE;		// コンフィグ画面に移動
-#pragma endregion
 BOOL cft_sound_room_main_commu = FALSE;	// サウンドルーム画面に移動
 BOOL cft_commu_list = FALSE;				// コミュリスト画面に移動
 //BOOL cft_commu_edit = FALSE;			// コミュエディット画面に移動
@@ -25,9 +21,6 @@ float coordinat_title_choice_exit_y = 0;	// 選択肢『EXIT』y座標
 void GameTitleNext()
 {
 	g_gamestate = GAME_TITLE;
-	#pragma region ver0.00706制作時コメント化コード
-	//MusicPlay(BN_TITLE);			// タイトルＢＧＭを再生する
-#pragma endregion
 	if (ImgDataHJTitle::GetCountFrame() > 0) { MusicPlay(BN_TITLE); }	// タイトルＢＧＭを再生する
 	SEPlay(-2);															// ループ効果音を停止する
 	flag_next_start = FALSE;											// ニューゲーム選択時フラグをリセットする
@@ -52,24 +45,10 @@ void GameTitleControl()
 			if (LogType == MOUSE_INPUT_LOG_DOWN)
 			{
 				BOOL x = FALSE;	// 以降の処理から抜け出す変数
-				#pragma region ver0.0026a制作時コメント化コード
-				//if (ClickFlagCheck2(ClickX, ClickY, TITLE_MENU_MESSAGE_X, EXIT_MESSAGE_Y, GetDrawStringWidthToHandle("EXIT", 4, g_font3), FONT_SIZE_ORIGINAL, TRUE, FALSE) == TRUE){ cft_quit_game = TRUE; }
-				//if (ClickFlagCheck2(ClickX, ClickY, TITLE_MENU_MESSAGE_X, START_MESSEAGE_Y, GetDrawStringWidthToHandle("START", 5, g_font3), FONT_SIZE_ORIGINAL, TRUE, FALSE) == TRUE){ cft_exit_main_commu = TRUE; }
-				//if (ClickFlagCheck2(ClickX, ClickY, TITLE_MENU_MESSAGE_X, CONFIG_MESSEAGE_Y, GetDrawStringWidthToHandle("CONFIG", 6, g_font3), FONT_SIZE_ORIGINAL, TRUE, FALSE) == TRUE){ cft_config_main_commu = TRUE; }
-#pragma endregion
-				#pragma region ver0.00706制作時コメント化コード
-				//if (ClickFlagCheckF(ClickX, ClickY, TITLE_MENU_MESSAGE_X, coordinat_title_choice_exit_y, (float)GetDrawStringWidthToHandle("EXIT", 4, g_font3), FONT_SIZE_ORIGINAL, TRUE, FALSE) == TRUE) { cft_quit_game = TRUE; }
-				//if (ClickFlagCheck2(ClickX, ClickY, TITLE_MENU_MESSAGE_X, START_MESSEAGE_Y, GetDrawStringWidthToHandle("START", 5, g_font3), FONT_SIZE_ORIGINAL, TRUE, FALSE) == TRUE) { cft_exit_main_commu = TRUE; }
-				//if (ClickFlagCheckF(ClickX, ClickY, TITLE_MENU_MESSAGE_X, coordinat_title_choice_load_y, (float)GetDrawStringWidthToHandle("LOAD", 4, g_font3), FONT_SIZE_ORIGINAL, TRUE, FALSE) == TRUE) { cft_exit_load = TRUE; }
-#pragma endregion
 				if (image_title_menu[static_cast<int>(ImgDataHJTitle::TYPE::START)][0].JudgementClickCheck() == TRUE) {}
 				else if (image_title_menu[static_cast<int>(ImgDataHJTitle::TYPE::EXIT)][0].JudgementClickCheck() == TRUE && mode_debug == TRUE) {}
 				else if (image_title_menu[static_cast<int>(ImgDataHJTitle::TYPE::LOAD)][0].JudgementClickCheck() == TRUE && mode_debug == TRUE) {}
 				else if (image_title_menu[static_cast<int>(ImgDataHJTitle::TYPE::OPTION)][0].JudgementClickCheck() == TRUE && mode_debug == TRUE) {}
-				#pragma region ver0.00706制作時コメント化コード
-				//if (ClickFlagCheckF(ClickX, ClickY, coordinat_title_choice_right, START_MESSEAGE_Y * bairitu, (float)GetDrawStringWidthToHandle("SOUNDROOM", 9, g_font3), FONT_SIZE_ORIGINAL * bairitu, TRUE, FALSE) == TRUE) { cft_sound_room_main_commu = TRUE; }
-				//if (ClickFlagCheckF(ClickX, ClickY, TITLE_MENU_MESSAGE_X, coordinat_title_choice_config_y, (float)GetDrawStringWidthToHandle("CONFIG", 6, g_font3), FONT_SIZE_ORIGINAL, TRUE, FALSE) == TRUE) { cft_config_main_commu = TRUE; }
-#pragma endregion
 				else if (ClickFlagCheckF(ClickX, ClickY, coordinat_title_choice_right, START_MESSEAGE_Y * bairitu, (float)GetDrawStringWidthToHandle("SOUNDROOM", 9, g_font3), FONT_SIZE_ORIGINAL * bairitu, TRUE, FALSE) == TRUE) { cft_sound_room_main_commu = TRUE; }
 				else if (ClickFlagCheckF(ClickX, ClickY, coordinat_title_choice_right, coordinat_title_choice_load_y, size_icon_commu_list.x, size_icon_commu_list.y, TRUE, FALSE) == TRUE) { cft_commu_list = TRUE; }
 				//else if (ClickFlagCheckF(ClickX, ClickY, coordinat_title_choice_right, coordinat_title_choice_config_y, size_icon_commu_list.x, size_icon_commu_list.y, TRUE, FALSE) == TRUE) { cft_commu_edit = TRUE; }	// 画像幅がコミュリストのものを使っている
@@ -80,30 +59,9 @@ void GameTitleControl()
 			{
 				BOOL x = FALSE;	// 以降の処理から抜け出す変数
 
-				#pragma region ver0.0026a制作時コメント化コード
-				//// ゲーム終了（テスト）
-				//if (ClickFlagCheck2(ClickX, ClickY, TITLE_MENU_MESSAGE_X, EXIT_MESSAGE_Y, GetDrawStringWidthToHandle("EXIT", 4, g_font3), FONT_SIZE_ORIGINAL, FALSE, cft_quit_game) == TRUE){ quit_game = TRUE; }
-				//// コミュ画面へ移動
-				//if (ClickFlagCheck2(ClickX, ClickY, TITLE_MENU_MESSAGE_X, START_MESSEAGE_Y, GetDrawStringWidthToHandle("START", 5, g_font3), FONT_SIZE_ORIGINAL, FALSE, cft_exit_main_commu) == TRUE)
-				//{
-				//	GameMainCommunicationNext(0);
-				//}
-
-				//if (ClickFlagCheck2(ClickX, ClickY, TITLE_MENU_MESSAGE_X, CONFIG_MESSEAGE_Y, GetDrawStringWidthToHandle("CONFIG", 6, g_font3), FONT_SIZE_ORIGINAL, FALSE, cft_config_main_commu) == TRUE){ g_gamestate = GAME_CONFIG; }
-#pragma endregion
-				#pragma region ver0.00706制作時コメント化コード
-				//if (ClickFlagCheckF(ClickX, ClickY, TITLE_MENU_MESSAGE_X, coordinat_title_choice_exit_y, (float)GetDrawStringWidthToHandle("EXIT", 4, g_font3), FONT_SIZE_ORIGINAL, FALSE, cft_quit_game) == TRUE) { quit_game = TRUE; }
-#pragma endregion
 				// コミュ画面へ移動
-				#pragma region ver0.00706制作時コメント化コード
-				//if (ClickFlagCheck2(ClickX, ClickY, TITLE_MENU_MESSAGE_X, START_MESSEAGE_Y, GetDrawStringWidthToHandle("START", 5, g_font3), FONT_SIZE_ORIGINAL, FALSE, cft_exit_main_commu) == TRUE)
-#pragma endregion
 				if (image_title_menu[static_cast<int>(ImgDataHJTitle::TYPE::START)][0].JudgementReleaseCheck() == TRUE)
 				{
-					#pragma region ver0.0038制作時コメント化コード
-					//GameMainCommunicationNext(0);
-					//commu_play_time = 0;	// プレイ時間を初期化
-#pragma endregion
 					flag_next_start = TRUE;															// ニューゲーム処理状態のフラグを立てる
 					SEPlay(static_cast<int>(SEData::IDName::START));
 					MusicPlay(-1);																	// ＢＧＭ停止タイミングテスト
@@ -114,23 +72,6 @@ void GameTitleControl()
 				}
 				else if (image_title_menu[static_cast<int>(ImgDataHJTitle::TYPE::EXIT)][0].JudgementReleaseCheck() == TRUE) { quit_game = TRUE; }
 				// ロード画面へ移動
-				#pragma region ver0.00706制作時コメント化コード
-//				if (ClickFlagCheckF(ClickX, ClickY, TITLE_MENU_MESSAGE_X, coordinat_title_choice_load_y, (float)GetDrawStringWidthToHandle("LOAD", 4, g_font3), FONT_SIZE_ORIGINAL, FALSE, cft_exit_load) == TRUE)
-//				{ 
-//					GameSaveLoadNext(FALSE, SL_BEFORE_TITLE); 
-//					SEPlay(SN_STARTSCEAN_NOTE);
-//				}
-//				if (ClickFlagCheckF(ClickX, ClickY, TITLE_MENU_MESSAGE_X, coordinat_title_choice_config_y, (float)GetDrawStringWidthToHandle("CONFIG", 6, g_font3), FONT_SIZE_ORIGINAL, FALSE, cft_config_main_commu) == TRUE)
-//				{ 
-//					#pragma region ver0.0043制作時コメント化コード
-//					//g_gamestate = GAME_CONFIG;
-//#pragma endregion
-//					GameConfigNext(FALSE);
-//					SEPlay(SN_STARTSCEAN_NOTE);
-//				}
-				//// サウンドルームへ移動
-				//if (ClickFlagCheckF(ClickX, ClickY, coordinat_title_choice_right, START_MESSEAGE_Y * bairitu, (float)GetDrawStringWidthToHandle("SOUNDROOM", 9, g_font3), FONT_SIZE_ORIGINAL * bairitu, FALSE, cft_sound_room_main_commu) == TRUE) { g_gamestate = GAME_SOUNDROOM; }
-#pragma endregion
 				else if (image_title_menu[static_cast<int>(ImgDataHJTitle::TYPE::LOAD)][0].JudgementReleaseCheck() == TRUE)
 				{
 					GameSaveLoadNext(FALSE, SL_BEFORE_TITLE);
@@ -170,12 +111,6 @@ void GameTitleControl()
 					SEPlay(-2);	// ループ効果音を停止する
 				}
 				// 全てのフラグを戻す
-				#pragma region ver0.00706制作時コメント化コード
-				//cft_quit_game = FALSE;			// ゲームを終了
-				//cft_exit_main_commu = FALSE;	// コミュ画面に移動
-				//cft_exit_load = FALSE;			// ロード画面に移動
-				//cft_config_main_commu = FALSE;	// コンフィグ画面に移動
-#pragma endregion
 				cft_commu_list = FALSE;					// コミュリスト画面に移動する
 				//cft_commu_edit = FALSE;			// コミュエディット画面に移動
 				ImgDataHJTitle::SetFlagCount(FALSE);	// タイトル画面経過フレーム数を即最大にする
@@ -204,13 +139,6 @@ void GameTitleControl()
 	{
 		if (CheckHitKey(KEY_INPUT_LSHIFT) == TRUE || CheckHitKey(KEY_INPUT_RSHIFT) == TRUE)
 		{
-			//if (CheckHitKey(KEY_INPUT_1) == TRUE) { CharacterImage::SetLoadEdit(0, TRUE); }
-			//if (CheckHitKey(KEY_INPUT_2) == TRUE) { CharacterImage::SetLoadEdit(1, TRUE); }
-			//if (CheckHitKey(KEY_INPUT_3) == TRUE) { CharacterImage::SetLoadEdit(2, TRUE); }
-			//if (CheckHitKey(KEY_INPUT_4) == TRUE) { CharacterImage::SetLoadEdit(3, TRUE); }
-			//if (CheckHitKey(KEY_INPUT_5) == TRUE) { CharacterImage::SetLoadEdit(4, TRUE); }
-			//if (CheckHitKey(KEY_INPUT_6) == TRUE) { CharacterImage::SetLoadEdit(5, TRUE); }
-			//if (CheckHitKey(KEY_INPUT_7) == TRUE) { CharacterImage::SetLoadEdit(6, TRUE); }
 			for (int i = 0; i < CharacterImage::GetCharacterMember(); i++)
 			{
 				if (CheckHitKey(KEY_INPUT_1 + i) == TRUE){CharacterImage::SetLoadEdit(i, TRUE);}
@@ -234,12 +162,6 @@ void GameTitleFlame()
 		next_start_frame_count++;
 		if (next_start_frame_count >= TITLE_MOVE_START_MAX_FLAME)
 		{
-			#pragma region ver0.00396制作時コメント化コード
-			//GameMainCommunicationNext(0);
-#pragma endregion
-			#pragma region ver0.00607制作時コメント化コード
-			//GameMainCommunicationNext(0, FALSE);
-#pragma endregion
 			// 体験版のオンオフで最初のコミュ内容が変わる
 			if (GlobalStaticVariable::GetModeTrial() == FALSE) { GameMainCommunicationNext(0, FALSE, 0); }
 			else
@@ -269,16 +191,6 @@ void DrawGameTitle()
 {
 	// 関連画像
 	ImgDataHJTitle::DrawTitleImage();
-	#pragma region ver0.00706制作時コメント化コード
-//	DrawStringFToHandle(TITLE_MENU_MESSAGE_X * bairitu, START_MESSEAGE_Y * bairitu, "START", DrawTitleStringColor(TITLE_MENU_MESSAGE_X * bairitu, START_MESSEAGE_Y * bairitu, GetDrawStringWidthToHandle("START", 5, g_font3), FONT_SIZE_ORIGINAL * bairitu), g_font3);
-//	DrawStringFToHandle(coordinat_title_choice_left, coordinat_title_choice_load_y, "LOAD", DrawTitleStringColor(coordinat_title_choice_left, coordinat_title_choice_load_y, GetDrawStringWidthToHandle("LOAD", 4, g_font3), FONT_SIZE_ORIGINAL * bairitu), g_font3);
-//	#pragma region ver0.0026a制作時コメント化コード
-//	//DrawStringFToHandle(TITLE_MENU_MESSAGE_X * bairitu, CONFIG_MESSEAGE_Y * bairitu, "CONFIG", DrawTitleStringColor(TITLE_MENU_MESSAGE_X * bairitu, CONFIG_MESSEAGE_Y * bairitu, GetDrawStringWidthToHandle("CONFIG", 6, g_font3), FONT_SIZE_ORIGINAL * bairitu), g_font3);
-//	//DrawStringFToHandle(TITLE_MENU_MESSAGE_X * bairitu, EXIT_MESSAGE_Y * bairitu, "EXIT", DrawTitleStringColor(TITLE_MENU_MESSAGE_X * bairitu, EXIT_MESSAGE_Y * bairitu, GetDrawStringWidthToHandle("EXIT", 4, g_font3), FONT_SIZE_ORIGINAL * bairitu), g_font3);
-//#pragma endregion
-//	DrawStringFToHandle(TITLE_MENU_MESSAGE_X * bairitu, coordinat_title_choice_config_y, "CONFIG", DrawTitleStringColor(TITLE_MENU_MESSAGE_X * bairitu, coordinat_title_choice_config_y, GetDrawStringWidthToHandle("CONFIG", 6, g_font3), FONT_SIZE_ORIGINAL * bairitu), g_font3);
-//	DrawStringFToHandle(TITLE_MENU_MESSAGE_X * bairitu, coordinat_title_choice_exit_y, "EXIT", DrawTitleStringColor(TITLE_MENU_MESSAGE_X * bairitu, coordinat_title_choice_exit_y, GetDrawStringWidthToHandle("EXIT", 4, g_font3), FONT_SIZE_ORIGINAL * bairitu), g_font3);
-#pragma endregion
 	if (mode_debug == TRUE)
 	{
 		// サウンドテスト（デバッグ）

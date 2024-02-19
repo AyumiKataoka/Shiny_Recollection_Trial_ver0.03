@@ -4,9 +4,6 @@
 #include <DxLib.h>
 #include "main.h"
 
-#pragma region ver0.00708制作時コメント化コード
-//#define TIPS_NUMBER 3				// tipsの総数
-#pragma endregion
 #define COMMU_CHARACTER_NUMBER 5	// 個別コミュが存在するキャラの総数
 #define GAME_ALL_WEAK 2				// ４月３週目から数えて、必要な週の数（現在は体験版なので２）
 // 移動先マップの状態
@@ -35,9 +32,6 @@ struct TipsData
 private:
 	static int	number;	// 個数
 };
-#pragma region ver0.00708制作時コメント化コード
-//extern TipsData tips_data[TIPS_NUMBER];
-#pragma endregion
 extern TipsData tips_data[TipsData::LOAD_LIMIT];
 // マップ関係で主に使われる疑似グローバル変数、定数
 class GlobalStaticMap
@@ -58,9 +52,6 @@ extern BOOL map_commu_upper[3][2];	// マップ画面にコミュアイコンが出現するか
 extern BOOL cfgm_move_left;						// 左マップへ移動
 extern BOOL cfgm_move_right;					// 右マップへ移動
 */
-#pragma region ver0.0038制作時コメント化コード
-//extern BOOL cfgm_commu_check;		// 選択コミュ閲覧画面を表示する
-#pragma endregion
 extern BOOL cfgm_commu_check_ok;				// 選択コミュへ移行する
 extern BOOL cfgm_commu_check_no;				// 選択コミュ閲覧画面を解除する
 
@@ -73,10 +64,6 @@ extern float draw_map_plus_x;				// マップＵＩに加算するx座標値
 //extern float map_arrow_left_x;				// 左側に行く矢印のx座標値
 //extern float map_arrow_right_x;				// 右側に行く矢印のx座標値
 extern float draw_map_space;				// 各マップ間の隙間
-#pragma region ver0.0038制作時コメント化コード
-//extern float draw_map_character_icon_x;		// キャラアイコンx座標始点
-//extern float draw_map_character_icon_y;		// キャラアイコンy座標始点
-#pragma endregion
 extern float draw_map_commu_choice_x[2];						// コミュ移動選択肢x座標始点
 extern float draw_map_commu_choice_y;							// コミュ移動選択肢y座標始点
 

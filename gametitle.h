@@ -14,10 +14,6 @@
 // なぜかsaveloadファイルのコードに使われていたのでそのまま
 extern BOOL cft_exit_main_commu;		// コミュ画面に移動
 extern BOOL cft_quit_game;				// ゲームを終了
-#pragma region ver0.00706制作時コメント化コード
-//extern BOOL cft_exit_load;				// ロード画面に移動
-//extern BOOL cft_config_main_commu;		// コンフィグ画面に移動
-#pragma endregion
 extern BOOL cft_sound_room_main_commu;	// サウンドルーム画面に移動
 extern BOOL cft_commu_list;				// コミュリスト画面に移動
 //extern BOOL cft_commu_edit;				// コミュエディット画面に移動

@@ -443,43 +443,6 @@ void GameCommuEditControl()
 		// キャラクター選択時の処理
 		if (g_edittype >= EDIT_CHARACTER_LEFT && g_edittype <= EDIT_CHARACTER_RIGHT)
 		{
-			//int x = g_edittype - EDIT_CHARACTER_LEFT;
-			//// HM[j][i].character[x]の1000の位を消して、入力された数×1000を追加する
-			//if (g_editcharactertype == EDIT_CHARACTER_BODY)
-			//{
-			//	if (Is0KeyTrigger() == TRUE)
-			//	{ 
-			//		commu_state_edit[edit_line].CharacterIDChange(x, -1000);
-			//		g_edittype = EDIT_DEFAULT;
-			//	}
-			//	else if (Is1KeyTrigger() == TRUE) { GameCommuEditCharacter(x, 4, 1); }
-			//	else if (Is2KeyTrigger() == TRUE) { GameCommuEditCharacter(x, 4, 2); }
-			//	else if (Is3KeyTrigger() == TRUE) { GameCommuEditCharacter(x, 4, 3); }
-			//	else if (Is4KeyTrigger() == TRUE) { GameCommuEditCharacter(x, 4, 4); }
-			//	else if (Is5KeyTrigger() == TRUE) { GameCommuEditCharacter(x, 4, 5); }
-			//	else if (Is6KeyTrigger() == TRUE) { GameCommuEditCharacter(x, 4, 6); }
-			//	else if (Is7KeyTrigger() == TRUE) { GameCommuEditCharacter(x, 4, 7); }
-			//	else if (CheckHitKey(KEY_INPUT_D) == TRUE) 
-			//	{ 
-			//		commu_state_edit[edit_line].CharacterIDChange(x, 0);
-			//		g_edittype = EDIT_DEFAULT;
-			//	}
-			//}
-			//// ポーズ、衣装、表情用
-			//else
-			//{
-			//	if (Is0KeyTrigger() == TRUE) { GameCommuEditCharacter(x, g_editcharactertype + 1, 0); }
-			//	else if (Is1KeyTrigger() == TRUE) { GameCommuEditCharacter(x, g_editcharactertype + 1, 1); }
-			//	else if (Is2KeyTrigger() == TRUE) { GameCommuEditCharacter(x, g_editcharactertype + 1, 2); }
-			//	else if (Is3KeyTrigger() == TRUE) { GameCommuEditCharacter(x, g_editcharactertype + 1, 3); }
-			//	else if (Is4KeyTrigger() == TRUE) { GameCommuEditCharacter(x, g_editcharactertype + 1, 4); }
-			//	else if (Is5KeyTrigger() == TRUE) { GameCommuEditCharacter(x, g_editcharactertype + 1, 5); }
-			//	else if (Is6KeyTrigger() == TRUE) { GameCommuEditCharacter(x, g_editcharactertype + 1, 6); }
-			//	else if (Is7KeyTrigger() == TRUE) { GameCommuEditCharacter(x, g_editcharactertype + 1, 7); }
-			//	else if (Is8KeyTrigger() == TRUE) { GameCommuEditCharacter(x, g_editcharactertype + 1, 8); }
-			//	else if (Is9KeyTrigger() == TRUE) { GameCommuEditCharacter(x, g_editcharactertype + 1, 9); }
-			//}
-
 			// 削除用立ち絵ＩＤを代入する
 			if (Is0KeyTrigger() == TRUE)
 			{
@@ -498,24 +461,6 @@ void GameCommuEditControl()
 		// 『キャラ変更タイプ』選択時の処理
 		if(edit_row == EDIT_CHARACTER_CHANGE_TYPE)
 		{
-			#pragma region ver0.007制作時コメント化コード
-			//if (CheckHitKey(KEY_INPUT_0) == TRUE)
-			//{ 
-			//	if (CheckHitKey(KEY_INPUT_LSHIFT) == TRUE || CheckHitKey(KEY_INPUT_RSHIFT) == TRUE)
-			//	{
-			//		for (int i = edit_line; i <= COMMU_LINE_MAX; i++) { commu_state_edit[i].CCCHANGE(0); }
-			//	}
-			//	else { commu_state_edit[edit_line].CCCHANGE(0); }
-			//}
-			//else if (CheckHitKey(KEY_INPUT_1) == TRUE)
-			//{
-			//	if (CheckHitKey(KEY_INPUT_LSHIFT) == TRUE || CheckHitKey(KEY_INPUT_RSHIFT) == TRUE)
-			//	{
-			//		for(int i = edit_line; i <= COMMU_LINE_MAX; i++){ commu_state_edit[i].CCCHANGE(1); }
-			//	}
-			//	else{ commu_state_edit[edit_line].CCCHANGE(1); }
-			//}
-#pragma endregion
 			if (CheckHitKey(KEY_INPUT_0) == TRUE) { GameCommuEditCharacterChange(0); }
 			else if (CheckHitKey(KEY_INPUT_1) == TRUE) { GameCommuEditCharacterChange(1); }
 			else if (CheckHitKey(KEY_INPUT_2) == TRUE) { GameCommuEditCharacterChange(2); }
@@ -768,9 +713,6 @@ void GameCommuEditCharacterChange(int x)	// キャラ変更タイプＩＤ
 // 背景変数代入の共通処理
 void GameCommuEditBackground(int x)	// 背景
 {
-	#pragma region ver0.00704制作時コメント化コード
-	//if (x <= BACKGROUND_NUMBER)
-#pragma endregion
 	if (x <= bgimage[0].GetNumber())
 	{
 		commu_state_edit[edit_line].BackgroundChange(x);
@@ -787,9 +729,6 @@ void GameCommuEditBGM(int x)	// ＢＧＭ
 void GameCommuEditSE(int x)	// ＳＥ
 {
 	// 存在するＳＥのＩＤならＳＥを編集してEDIT_DEFAULT状態にする
-	#pragma region ver0.00707制作時コメント化コード
-	//if (x <= SE_NUMBER)
-#pragma endregion
 	if (x <= SEData::GetNumber())
 	{
 		commu_state_edit[edit_line].SEChange(x);
@@ -981,18 +920,11 @@ void DrawGameCommuEdit()
 			}
 			break;
 		case EDIT_BACKGROUND:
-			#pragma region ver0.00704制作時コメント化コード
-			//if (edit_row_background == 0) { sprintf_s(c, 256, "ページ1/%d\n←→キー：ページ切り替え\n0：背景を削除\nB：キャンセル\nD：削除", (BACKGROUND_NUMBER - 1) / 10 + 2); }
-#pragma endregion
 			if (edit_row_background == 0) { sprintf_s(c, 256, "ページ1/%d\n←→キー：ページ切り替え\n0：背景を削除\nB：キャンセル\nD：削除", (bgimage[0].GetNumber() - 1) / 10 + 2); }
 			else
 			{
 				int x = (edit_row_background - 1) * 10;
 				// 40番目の背景名は存在しないが、不具合を確認できず、プレイヤーが使うモードでもないので放置中
-				#pragma region ver0.00704制作時コメント化コード
-				//sprintf_s(c, 256, "ページ%d/%d\n←→キー：ページ切り替え\n0：%s\n1：%s\n2：%s\n3：%s\n4：%s\n5：%s\n6：%s\n7：%s\n8：%s\n9：%s\nB：キャンセル\nD：削除", edit_row_background + 1, (BACKGROUND_NUMBER - 1) / 10 + 2, bgimage[x + 0].GetName(), bgimage[x + 1].GetName(), bgimage[x + 2].GetName(), bgimage[x + 3].GetName(), bgimage[x + 4].GetName(), bgimage[x + 5].GetName(), bgimage[x + 6].GetName(), bgimage[x + 7].GetName(), bgimage[x + 8].GetName(), bgimage[x + 9].GetName());
-#pragma endregion
-				//sprintf_s(c, 256, "ページ%d/%d\n←→キー：ページ切り替え\n0：%s\n1：%s\n2：%s\n3：%s\n4：%s\n5：%s\n6：%s\n7：%s\n8：%s\n9：%s\nB：キャンセル\nD：削除", edit_row_background + 1, (bgimage[0].GetNumber() - 1) / 10 + 2, bgimage[x + 0].GetName(), bgimage[x + 1].GetName(), bgimage[x + 2].GetName(), bgimage[x + 3].GetName(), bgimage[x + 4].GetName(), bgimage[x + 5].GetName(), bgimage[x + 6].GetName(), bgimage[x + 7].GetName(), bgimage[x + 8].GetName(), bgimage[x + 9].GetName());
 				sprintf_s(c, 512, "ページ%d/%d\n←→キー：ページ切り替え\n0：%s\n1：%s\n2：%s\n3：%s\n4：%s\n5：%s\n6：%s\n7：%s\n8：%s\n9：%s\nB：キャンセル\nD：削除", edit_row_background + 1, (bgimage[0].GetNumber() - 1) / 10 + 2, bgimage[x + 0].GetName(), bgimage[x + 1].GetName(), bgimage[x + 2].GetName(), bgimage[x + 3].GetName(), bgimage[x + 4].GetName(), bgimage[x + 5].GetName(), bgimage[x + 6].GetName(), bgimage[x + 7].GetName(), bgimage[x + 8].GetName(), bgimage[x + 9].GetName());
 			}
 			break;
@@ -1011,16 +943,9 @@ void DrawGameCommuEdit()
 			for (int i = 0; i < 10; i++)
 			{
 				int x = (edit_row_se - 1) * 10 + i;	// 比較用
-				#pragma region ver0.00707制作時コメント化コード
-				//if (x >= 0 && x < SE_NUMBER) { sprintf_s(c_x[i], 256, se[(edit_row_se - 1) * 10 + i].GetName()); }
-#pragma endregion
 				if (x >= 0 && x < SEData::GetNumber()) { sprintf_s(c_x[i], 256, se[(edit_row_se - 1) * 10 + i].GetName()); }
 			}
 			// 文字列と文字列をくっつける
-			#pragma region ver0.00707制作時コメント化コード
-			//if (edit_row_se == 0) { sprintf_s(c, 256, "ページ1/%d\n←→キー：ページ切り替え\n0：SE停止", SE_NUMBER / 10 + 2); }
-			//else { sprintf_s(c, 256, "ページ%d/%d\n←→キー：ページ切り替え\n0：%s\n1：%s\n2：%s\n3：%s\n4：%s\n5：%s\n6：%s\n7：%s\n8：%s\n9：%s\nB：キャンセル\nD：削除\n", edit_row_se + 1, SE_NUMBER / 10 + 2, c_x[0], c_x[1], c_x[2], c_x[3], c_x[4], c_x[5], c_x[6], c_x[7], c_x[8], c_x[9]); }
-#pragma endregion
 			if (edit_row_se == 0) { sprintf_s(c, 256, "ページ1/%d\n←→キー：ページ切り替え\n0：SE停止", SEData::GetNumber() / 10 + 2); }
 			else { sprintf_s(c, 256, "ページ%d/%d\n←→キー：ページ切り替え\n0：%s\n1：%s\n2：%s\n3：%s\n4：%s\n5：%s\n6：%s\n7：%s\n8：%s\n9：%s\nB：キャンセル\nD：削除\n", edit_row_se + 1, SEData::GetNumber() / 10 + 2, c_x[0], c_x[1], c_x[2], c_x[3], c_x[4], c_x[5], c_x[6], c_x[7], c_x[8], c_x[9]); }
 			break;
@@ -1116,19 +1041,7 @@ void DrawGameCommuEdit()
 			if (edit_line + i >= 2 && edit_line + i <= COMMU_LINE_MAX)
 			{
 				DrawFormatStringFToHandle(bairitu * 99, screen_size_y + i * bairitu * 99 - bairitu * 198, GetColor(255, 255, 255), g_font3, "%d：",
-					//		%16s・%d・%s%s%s%s%64s：%d：%d：%d", 
 					edit_line + i
-					//		//commu_state_edit[edit_line + i].command == "" ? "　　　" : commu_state_edit[edit_line + i].command,
-					//		commu_state_edit[edit_line + i].command,
-					//		commu_state_edit[edit_line + i].move_commu_number,
-					//		commu_state_edit[edit_line + i].name,
-					//		strcmp(commu_state_edit[edit_line + i].name, "") != 0 && strcmp(commu_state_edit[edit_line + i].name2, "") != 0 ? "・" : "",
-					//		commu_state_edit[edit_line + i].name2,
-					//		c_mouse,
-					//		commu_state_edit[edit_line + i].line,
-					//		commu_state_edit[edit_line + i].character[0],
-					//		commu_state_edit[edit_line + i].character[1],
-					//		commu_state_edit[edit_line + i].character[2]
 				);
 				// 現在指定中のedit_rowに応じて表示するものを変える
 				for (int j = -1; j < 2; j++)
@@ -1167,11 +1080,6 @@ void DrawGameCommuEdit()
 							else { sprintf_s(c_edit, 256, ""); }
 							break;
 						case EDIT_SELECT_BGM_CHANGE_TYPE:				sprintf_s(c_edit, 256, c_bgmct);																								break;
-							//case EDIT_SELECT_SE:
-							//	if (commu_state_edit[edit_line + i].se == -1) { sprintf_s(c_edit, 256, se_string[0].name); }
-							//	else if (commu_state_edit[edit_line + i].se > 0) { sprintf_s(c_edit, 256, se_string[commu_state_edit[edit_line + i].se - 0].name); }
-							//	else { sprintf_s(c_edit, 256, ""); }
-							//	break;
 						case EDIT_SELECT_SE:	sprintf_s(c_edit, 256, "%s", GetSEString(commu_state_edit[edit_line + i].se));																				break;
 						default:																																										break;
 						}

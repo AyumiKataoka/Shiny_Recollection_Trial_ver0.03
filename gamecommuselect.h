@@ -17,9 +17,6 @@ extern CommuUpperState g_commuupperstate;
 
 // 同じ範囲でマウスを押し、離されたら○○するフラグ（cfcs=click_flag_commu_select）
 extern BOOL cfcs_move_title;											// タイトル画面へ移動
-#pragma region ver0.00399制作時コメント化コード
-//extern BOOL cfcs_commu_type_change[2];									// 表示するコミュの種類の切り替えを
-#pragma endregion
 extern BOOL cfcs_commu_type_change[COMMU_SELECT_C_TYPE_NUMBER];			// 表示するコミュの種類の切り替えを
 extern BOOL cfcs_commu_character_change[COMMU_SELECT_CHARACTER_NUMBER];	// 表示するコミュのキャラの切り替えを
 
@@ -27,9 +24,6 @@ extern int commu_select_display;	// 表示させられるコミュの個数
 
 extern float commu_select_coordinate_title_x;										// 『TITLE』アイコン左端x座標
 extern float commu_select_coordinate_title_y;										// 『TITLE』アイコン上端y座標
-#pragma region ver0.00399制作時コメント化コード
-//extern float commu_select_coordinate_c_type_x[2];									// コミュ種類選択肢左端x座標
-#pragma endregion
 extern float commu_select_coordinate_c_type_x[COMMU_SELECT_C_TYPE_NUMBER];			// コミュ種類選択肢左端x座標
 extern float commu_select_coordinate_c_type_y;										// コミュ種類選択肢上端y座標
 extern float commu_select_coordinate_alternative_x;									// コミュ選択肢左端x座標（Y座標はmain.h）

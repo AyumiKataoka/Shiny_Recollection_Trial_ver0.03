@@ -55,40 +55,6 @@ void TextLog::Draw()
 		do
 		{
 			char Moji = 0;
-			#pragma region ver0.021§ìƒRƒƒ“ƒg‰»ƒR[ƒh
-			//// •¶š‚Ì•`‰æ
-			//Moji = text_log[i].line[CP_A];
-			//switch (Moji)
-			//{
-			//case '@':	// ‰üs•¶š
-			//	// ‰üsˆ—‚¨‚æ‚ÑQÆ•¶šˆÊ’u‚ğˆê‚Â‚·‚·‚ß‚é
-			//	CursorY_A++;
-			//	CursorX_A = 0;
-			//	CP_A++;
-			//	row++;	// •`‰æÀ•WQÆ‚Ég‚í‚ê‚és”‚ğƒJƒEƒ“ƒg‚·‚é
-			//	break;
-			//default:	// ‚»‚Ì‘¼‚Ì•¶š
-			//	// ‚P•¶š‚ÌƒoƒCƒg”‚ğæ“¾
-			//	int Bytes = GetCharBytes(DX_CHARCODEFORMAT_SHIFTJIS, &HM[commu_number][cell_number].line[CP_A]);
-			//	// ‚P•¶šƒeƒLƒXƒgƒoƒbƒtƒ@‚É‘ã“ü
-			//	for (int moji_i = 0; moji_i < Bytes; moji_i++) { StringBuf[CursorY_A][CursorX_A + moji_i] = text_log[i].line[CP_A + moji_i]; }
-			//	// QÆ•¶šˆÊ’u‚ğ‚P•¶š‚ÌƒoƒCƒg”•ªi‚ß‚é
-			//	CP_A += Bytes;
-			//	// ƒJ[ƒ\ƒ‹‚ğˆê•¶š‚ÌƒoƒCƒg”•ªi‚ß‚é
-			//	CursorX_A += Bytes;
-			//	// ƒeƒLƒXƒgƒoƒbƒtƒ@‰¡•‚©‚ç‚Í‚İo‚½‚ç‰üs‚·‚é
-			//	if (CursorX_A >= STRBUF_ALTENATIVE_WIDTH)
-			//	{
-			//		CursorY_A++;
-			//		CursorX_A = 0;
-			//	}
-			//	break;
-			//}
-			//// QÆ•¶š—ñ‚ÌI’[‚Ü‚Ås‚Á‚Ä‚¢‚½‚çQÆ•¶š—ñ‚ği‚ß‚é
-			//if (text_log[i].line[CP_A] == '\0') { end = TRUE; }
-
-			//y++;
-#pragma endregion
 			// •¶š‚Ì•`‰æ
 			Moji = text_log[i + (page - 1) * PAGES_LINE_NUMBER].line[CP_A];
 			switch (Moji)
@@ -138,14 +104,8 @@ void TextLog::Draw()
 		/* ƒeƒLƒXƒgƒEƒBƒ“ƒhƒE ---------*/
 		int a = 0;
 		// ‘äŒ‚ª•\¦‚µI‚í‚Á‚Ä‚¢‚ÄAƒ`ƒFƒbƒNs‚Ì‘äŒ‚Åwtext_window_colorxƒRƒ}ƒ“ƒh‚ğg‚Á‚Ä‚¢‚é‚È‚ç
-		#pragma region ver0.031§ìƒRƒƒ“ƒg‰»ƒR[ƒh
-		//if (((page - 1) * PAGES_LINE_NUMBER + i < next_input_id) && std::strcmp(HM[commu_number][i + (page - 1) * PAGES_LINE_NUMBER].GetCommand(), "text_window_color") == 0)
-#pragma endregion
 		if (((page - 1) * PAGES_LINE_NUMBER + i < next_input_id) && std::strcmp(HM[commu_number][text_log[i + (page - 1) * PAGES_LINE_NUMBER].line_number].GetCommand(), "text_window_color") == 0)
 		{
-			#pragma region ver0.031§ìƒRƒƒ“ƒg‰»ƒR[ƒh
-			//switch (HM[commu_number][i + (page - 1) * PAGES_LINE_NUMBER].GetCommandNumber())
-#pragma endregion
 			switch (HM[commu_number][text_log[i + (page - 1) * PAGES_LINE_NUMBER].line_number].GetCommandNumber())
 			{
 			case 1: a = 4;	break;
@@ -177,11 +137,6 @@ void TextLog::Draw()
 			for (int j = 0; j < row; j++)
 			{
 				DrawFormatStringFToHandle(180 * bairitu, (i * z + j * 45 + 240) * bairitu, GetColor(0, 0, 0), g_font_commu_line, StringBuf[j]);
-				//DebugLog(LogOutputType::LOG_MESSAGE);
-				// ƒoƒbƒNƒƒO—p
-				//char c[256];
-				//sprintf_s(c, 256, "%s\n", StringBuf[j]);
-				//LogFileAdd(c);
 			}
 		}
 		/*---------------*/
@@ -227,9 +182,6 @@ BOOL commu_mode_text_off = FALSE;	// ƒeƒLƒXƒgƒtƒ@ƒCƒ‹ŠÜ‚ß‚½‘S‚Ä‚Ì‚t‚h‚ğ”ñ•\¦‚É‚
 BOOL commu_before_cs = FALSE;		// ƒRƒ~ƒ…‚Ì‰{——‚ğn‚ß‚é‘O‚ÍƒRƒ~ƒ…ƒZƒŒƒNƒgƒ‚[ƒh‚¾‚Á‚½‚©”»•Ê‚·‚é
 // “¯‚¶”ÍˆÍ‚Åƒ}ƒEƒX‚ğ‰Ÿ‚µA—£‚³‚ê‚½‚ç››‚·‚éƒtƒ‰ƒOicft=click_flag_titlej
 BOOL cfgmc_move_title = FALSE;		// ƒ^ƒCƒgƒ‹‰æ–Ê‚ÖˆÚ“®
-#pragma region ver0.007§ìƒRƒƒ“ƒg‰»ƒR[ƒh
-//BOOL cfgmc_altenative[3];			// ‘I‘ğˆ‚ğ‘I‘ğ
-#pragma endregion
 BOOL cfgmc_cell_count = FALSE;		// ƒRƒ~ƒ…‚Ìî•ñ‚ğŸ‚Ì‚à‚Ì‚É‚·‚é
 BOOL cfgmc_change_auto = FALSE;		// ƒI[ƒgƒ‚[ƒhØ‚è‘Ö‚¦‚ğ
 BOOL cfgmc_change_skip = FALSE;		// ƒXƒLƒbƒvƒ‚[ƒhØ‚è‘Ö‚¦‚ğ
@@ -257,9 +209,6 @@ int commu_character_blink_limit[3];			// ‚Ü‚Î‚½‚«‚ğ‚µI‚¦‚é‚Ü‚Å‚Ìc‚èƒtƒŒ[ƒ€”
 int commu_character_talk_limit[3];			// ŒûƒpƒN‚ğ‚µI‚¦‚é‚Ü‚Å‚Ìc‚èƒtƒŒ[ƒ€”
 int commu_character_before[3];				// Ø‚è‘Ö‚¦‘O‚ÌƒLƒƒƒ‰ƒNƒ^[
 int commu_character_after[3];				// Ø‚è‘Ö‚¦Œã‚ÌƒLƒƒƒ‰ƒNƒ^[
-#pragma region ver0.00294§ìƒRƒƒ“ƒg‰»ƒR[ƒh
-//int commu_character_visibility_count = 0;	// ƒLƒƒƒ‰ƒNƒ^[•s“§–¾“xØ‚è‘Ö‚¦‚ªŠ®—¹‚·‚é‚Ü‚Å‚ÌƒtƒŒ[ƒ€”
-#pragma endregion
 int commu_character_visibility_count[COMMU_CHARACTER_MAX];	// ƒLƒƒƒ‰ƒNƒ^[•s“§–¾“xØ‚è‘Ö‚¦‚ªŠ®—¹‚·‚é‚Ü‚Å‚ÌƒtƒŒ[ƒ€”
 int commu_background;						// ”wŒi
 int commu_background_before;				// Ø‚è‘Ö‚¦‘O‚Ì”wŒi
@@ -276,13 +225,6 @@ int Bytes;
 /* ---------------------------------*/
 
 float commu_play_time = 0;					// ƒvƒŒƒCŠÔi•bj
-#pragma region ver0.007§ìƒRƒƒ“ƒg‰»ƒR[ƒh
-//float commu_altenative_x[3];				// ‘I‘ğˆxÀ•W
-#pragma endregion
-#pragma region ver0.00704§ìƒRƒƒ“ƒg‰»ƒR[ƒh
-//float commu_altenative_y_upper = 0;			// ã‘¤‘I‘ğˆyÀ•W
-//float commu_altenative_y_under = 0;			// ‰º‘¤‘I‘ğˆyÀ•W
-#pragma endregion
 float commu_altenative_string_center_x[3];	// ‘I‘ğˆ•¶š—ñ’†SxÀ•W
 float commu_coordinate_icon_auto_x = 0;		// wautoxƒAƒCƒRƒ“xÀ•W
 float commu_coordinate_icon_auto_y = 0;		// wautoxƒAƒCƒRƒ“yÀ•W
@@ -294,9 +236,6 @@ float commu_coordinate_icon_menu_y = 0;		// wMENUxƒAƒCƒRƒ“ã’[yÀ•W
 float commu_coordinate_icon_tf_x = 0;		// wTEXT OFFxƒAƒCƒRƒ“¶’[xÀ•W
 
 // ƒRƒ~ƒ…‰æ–ÊˆÚsˆ—
-#pragma region ver0.00396§ìƒRƒƒ“ƒg‰»ƒR[ƒh
-//void GameMainCommunicationNext(int x)	// QÆ‚³‚ê‚éƒRƒ~ƒ…ID
-#pragma endregion
 void GameMainCommunicationNext(int x, BOOL y, int z)	// QÆ‚³‚ê‚éƒRƒ~ƒ…ID, ƒRƒ~ƒ…ƒZƒŒƒNƒg‰æ–Ê‚©‚ç—ˆ‚½‚©,ƒZƒ‹”Ô†
 {
 	g_gamestate = GAME_MAIN_COMMUNICATION;
@@ -313,9 +252,6 @@ void GameMainCommunicationNext(int x, BOOL y, int z)	// QÆ‚³‚ê‚éƒRƒ~ƒ…ID, ƒRƒ~
 	Count = 0;
 	// “Ç‚İ‚İƒZƒ‹s”‰Šú‰»
 	//cell_number = 0;
-	#pragma region ver0.00607§ìƒRƒƒ“ƒg‰»ƒR[ƒh
-	//cell_number = -1;	// •Ê‚Ìˆ—‚Å‚·‚®w0x‚É‚È‚é‚Ì‚ÅAƒYƒŒ–h~
-#pragma endregion
 	cell_number = z - 1;	// •Ê‚Ìˆ—‚Å‚·‚®w0x‚É‚È‚é‚Ì‚ÅAƒYƒŒ–h~
 
 	commu_number = x;		// Œ»İQÆƒRƒ~ƒ…ID‚ğ•ÏX
@@ -324,9 +260,6 @@ void GameMainCommunicationNext(int x, BOOL y, int z)	// QÆ‚³‚ê‚éƒRƒ~ƒ…ID, ƒRƒ~
 	CharacterImage::SetFlagAll(FALSE);
 	CharacterImage::LoadFlagCheck();
 	if (mode_debug == FALSE) { CharacterImage::DeleteAll(); }	// ƒfƒoƒbƒOƒ‚[ƒh‚È‚çˆêXÁ‚³‚È‚¢
-	#pragma region ver0.0091§ìƒRƒƒ“ƒg‰»ƒR[ƒh
-	//CharacterImage::Load();
-#pragma endregion
 	if (CharacterImage::Load() == FALSE) { quit_game = TRUE; }
 	// ‚a‚f‚l“Ç‚İ‚İ
 	BGMData::SetLoadAll(FALSE);									// “Ç‚İ‚İ‘O‚ÌƒŠƒZƒbƒgˆ—
@@ -350,12 +283,6 @@ void GameMainCommunicationNext(int x, BOOL y, int z)	// QÆ‚³‚ê‚éƒRƒ~ƒ…ID, ƒRƒ~
 	// ‘I‘ğˆ‚ÌƒWƒƒƒ“ƒvæ—š—ğ
 	for (int i = 0; i < COMMU_LINE_MAX; i++) { state::SetAlternativeMoveNumber(i, 0); }	
 
-	#pragma region ver0.0033§ìƒRƒƒ“ƒg‰»ƒR[ƒh
-	//commu_mode_distance = FALSE;							// •\¦‚³‚ê‚Ä‚¢‚éƒLƒƒƒ‰‚ª‚Ql‚ÌÛA‹Ï“™‚É•À‚×‚é‚©
-#pragma endregion
-	#pragma region ver0.00704§ìƒRƒƒ“ƒg‰»ƒR[ƒh
-	//g_commuauto = COMMU_AUTO_NORMAL;						// ƒRƒ~ƒ…©“®isó‘Ô
-#pragma endregion
 	if (g_commuauto == COMMU_AUTO_SKIP) { g_commuauto = COMMU_AUTO_NORMAL; }	// ƒRƒ~ƒ…©“®isó‘Ô
 	// ƒ`ƒ…[ƒgƒŠƒAƒ‹ƒ‚[ƒh‚É•K—v‚È—v‘f‚ğƒŠƒZƒbƒg‚·‚é
 	ImgDataBGTutorial::Reset();
@@ -384,27 +311,12 @@ void GameMainCommunicationControl()
 			if (LogType == MOUSE_INPUT_LOG_DOWN)
 			{
 				BOOL x = FALSE;	// ˆÈ~‚Ìˆ—‚©‚ç”²‚¯o‚·•Ï”
-				#pragma region ver0.0081§ìƒRƒƒ“ƒg‰»ƒR[ƒh
-//				if (ClickFlagCheckF(ClickX, ClickY, screen_size_x - GetDrawStringWidthToHandle("TITLE", 5, g_font3) - bairitu * 100, bairitu * COMMU_MESSEAGE_TITLE_Y, (float)GetDrawStringWidthToHandle("TITLE", 5, g_font3), bairitu * FONT_SIZE_ORIGINAL, TRUE, FALSE) == TRUE){ cfgmc_move_title = TRUE; }
-//				#pragma region ver0.007§ìƒRƒƒ“ƒg‰»ƒR[ƒh
-//				//else if ((ClickFlagCheckF(ClickX, ClickY, commu_altenative_x[0], commu_altenative_y_upper, bairitu * size_commu_altenative.x, bairitu * size_commu_altenative.y, TRUE, FALSE) == TRUE && g_commustatus == COMMU_STATUS_ALTENATIVE) == TRUE){ cfgmc_altenative[0] = TRUE; }
-//				//else if ((ClickFlagCheckF(ClickX, ClickY, commu_altenative_x[1], commu_altenative_y_under, bairitu * size_commu_altenative.x, bairitu * size_commu_altenative.y, TRUE, FALSE) == TRUE && g_commustatus == COMMU_STATUS_ALTENATIVE) == TRUE){ cfgmc_altenative[1] = TRUE; }
-//				//else if ((ClickFlagCheckF(ClickX, ClickY, commu_altenative_x[2], commu_altenative_y_under, bairitu * size_commu_altenative.x, bairitu * size_commu_altenative.y, TRUE, FALSE) == TRUE && g_commustatus == COMMU_STATUS_ALTENATIVE) == TRUE){ cfgmc_altenative[2] = TRUE; }
-//#pragma endregion
-//				else if (hjimage_alternative[0].JudgementClickCheck() == TRUE && g_commustatus == COMMU_STATUS_ALTENATIVE) {}
-#pragma endregion
 				// ƒoƒbƒNƒƒO•\¦‚ÍŠî–{“I‚È‘€ì‚ª‚Å‚«‚È‚¢
 				if (TextLog::GetMode() == FALSE)
 				{
 					if (hjimage_alternative[0].JudgementClickCheck() == TRUE && g_commustatus == COMMU_STATUS_ALTENATIVE) {}
 					else if (hjimage_alternative[1].JudgementClickCheck() == TRUE && g_commustatus == COMMU_STATUS_ALTENATIVE) {}
 					else if (hjimage_alternative[2].JudgementClickCheck() == TRUE && g_commustatus == COMMU_STATUS_ALTENATIVE) {}
-					#pragma region ver0.0028§ìƒRƒƒ“ƒg‰»ƒR[ƒh
-					//else if (ClickFlagCheckF(ClickX, ClickY, commu_coordinate_icon_auto_x, commu_coordinate_icon_auto_y, size_icon_auto.x, size_icon_auto.y, TRUE, FALSE) == TRUE){ cfgmc_change_auto = TRUE; }
-					//else if (ClickFlagCheckF(ClickX, ClickY, commu_coordinate_icon_auto_x, commu_coordinate_icon_skip_y, size_icon_auto.x, size_icon_auto.y, TRUE, FALSE) == TRUE){ cfgmc_change_skip = TRUE; }
-					//else if (ClickFlagCheckF(ClickX, ClickY, commu_coordinate_icon_auto_x, commu_coordinate_icon_save_y, size_icon_auto.x, size_icon_auto.y, TRUE, FALSE) == TRUE) { cfgmc_exit_save = TRUE; }
-					//else if (ClickFlagCheckF(ClickX, ClickY, commu_coordinate_icon_auto_x, commu_coordinate_icon_load_y, size_icon_auto.x, size_icon_auto.y, TRUE, FALSE) == TRUE) { cfgmc_exit_load = TRUE; }
-#pragma endregion
 					else if (ClickFlagCheckF2(ClickX, ClickY, commu_coordinate_icon_auto_x, commu_coordinate_icon_auto_y, size_icon_auto.x, size_icon_auto.y, TRUE, FALSE, CFC_COMMU_MENU) == TRUE) { cfgmc_change_auto = TRUE; }
 					else if (ClickFlagCheckF2(ClickX, ClickY, commu_coordinate_icon_auto_x, commu_coordinate_icon_skip_y, size_icon_auto.x, size_icon_auto.y, TRUE, FALSE, CFC_COMMU_MENU) == TRUE) { cfgmc_change_skip = TRUE; }
 					else if (ClickFlagCheckF2(ClickX, ClickY, commu_coordinate_icon_auto_x, commu_coordinate_icon_save_y, size_icon_auto.x, size_icon_auto.y, TRUE, FALSE, CFC_COMMU_MENU) == TRUE) { cfgmc_exit_save = TRUE; }
@@ -429,57 +341,12 @@ void GameMainCommunicationControl()
 			else if (LogType != MOUSE_INPUT_LOG_DOWN)
 			{
 				BOOL x = FALSE;	// ˆÈ~‚Ìˆ—‚©‚ç”²‚¯o‚·•Ï”
-				#pragma region ver0.0081§ìƒRƒƒ“ƒg‰»ƒR[ƒh
-//				// ƒ^ƒCƒgƒ‹‰æ–Ê‚ÖˆÚ“®
-//				if (ClickFlagCheckF(ClickX, ClickY, screen_size_x - GetDrawStringWidthToHandle("TITLE", 5, g_font3) - bairitu * 100, bairitu * COMMU_MESSEAGE_TITLE_Y, (float)GetDrawStringWidthToHandle("TITLE", 5, g_font3), bairitu * FONT_SIZE_ORIGINAL, FALSE, cfgmc_move_title) == TRUE){ GameTitleNext(); }
-//				// ‘I‘ğˆ‚É‘Î‰‚µ‚½s‚ÉƒWƒƒƒ“ƒv‚·‚éiwƒWƒƒƒ“ƒvæ‚Ìs|‚Pxs–Ú‚Ü‚Å”ò‚ñ‚¾ŒãAGameMainCommunicationNextLineŠÖ”‚ğŒÄ‚Ño‚·j
-//				// i‘I‘ğˆ‚ğ‘I‚ñ‚¾‚çƒeƒLƒXƒgƒIƒt‹@”\‚ª‰ğœ‚³‚ê‚é‚æ‚¤‚É‚·‚éHj
-//				#pragma region ver0.007§ìƒRƒƒ“ƒg‰»ƒR[ƒh
-//				//else if ((ClickFlagCheckF(ClickX, ClickY, commu_altenative_x[0], commu_altenative_y_upper, bairitu * size_commu_altenative.x, bairitu * size_commu_altenative.y, FALSE, cfgmc_altenative[0]) == TRUE && g_commustatus == COMMU_STATUS_ALTENATIVE) == TRUE){ GameMainCommunicationAltenative(0); }
-//				//else if ((ClickFlagCheckF(ClickX, ClickY, commu_altenative_x[1], commu_altenative_y_under, bairitu * size_commu_altenative.x, bairitu * size_commu_altenative.y, FALSE, cfgmc_altenative[1]) == TRUE && g_commustatus == COMMU_STATUS_ALTENATIVE) == TRUE){ GameMainCommunicationAltenative(1); }
-//				//else if ((ClickFlagCheckF(ClickX, ClickY, commu_altenative_x[2], commu_altenative_y_under, bairitu * size_commu_altenative.x, bairitu * size_commu_altenative.y, FALSE, cfgmc_altenative[2]) == TRUE && g_commustatus == COMMU_STATUS_ALTENATIVE) == TRUE){ GameMainCommunicationAltenative(2); }
-//#pragma endregion
-//				else if (hjimage_alternative[0].JudgementReleaseCheck() == TRUE && g_commustatus == COMMU_STATUS_ALTENATIVE) { GameMainCommunicationAltenative(0); }
-#pragma endregion
 				// ƒoƒbƒNƒƒO•\¦‚ÍŠî–{“I‚È‘€ì‚ª‚Å‚«‚È‚¢
 				if (TextLog::GetMode() == FALSE)
 				{
 					if (hjimage_alternative[0].JudgementReleaseCheck() == TRUE && g_commustatus == COMMU_STATUS_ALTENATIVE) { GameMainCommunicationAltenative(0); }
 					else if (hjimage_alternative[1].JudgementReleaseCheck() == TRUE && g_commustatus == COMMU_STATUS_ALTENATIVE) { GameMainCommunicationAltenative(1); }
 					else if (hjimage_alternative[2].JudgementReleaseCheck() == TRUE && g_commustatus == COMMU_STATUS_ALTENATIVE) { GameMainCommunicationAltenative(2); }
-					#pragma region ver0.0028§ìƒRƒƒ“ƒg‰»ƒR[ƒh
-					// ƒI[ƒgƒ‚[ƒh‚ğØ‚è‘Ö‚¦
-	//				else if (ClickFlagCheckF(ClickX, ClickY, commu_coordinate_icon_auto_x, commu_coordinate_icon_auto_y, size_icon_auto.x, size_icon_auto.y, FALSE, cfgmc_change_auto) == TRUE)
-	//				{ 
-	//					// ’ÊíAƒXƒLƒbƒvó‘Ô‚È‚ç
-	//					if (g_commuauto != COMMU_AUTO_ON)
-	//					{
-	//						#pragma region ver0.0024§ìƒRƒƒ“ƒg‰»ƒR[ƒh
-	//						//g_commuauto = COMMU_AUTO_ON;
-	//						//commu_auto_count;
-	//#pragma endregion
-	//						GameMainCommunicationAuto();
-	//					}
-	//					// ƒI[ƒgƒ‚[ƒh‚È‚ç’Êí‚É–ß‚·
-	//					else{ g_commuauto = COMMU_AUTO_NORMAL; }
-	//					// ‚r‚d‚ğ–Â‚ç‚·
-	//					SEPlay(SN_ALTERNATIVE);
-	//				}
-	//				// ƒXƒLƒbƒvƒ‚[ƒhØ‚è‘Ö‚¦
-	//				else if (ClickFlagCheckF(ClickX, ClickY, commu_coordinate_icon_auto_x, commu_coordinate_icon_skip_y, size_icon_auto.x, size_icon_auto.y, FALSE, cfgmc_change_skip) == TRUE)
-	//				{
-	//					// ’ÊíAƒI[ƒgó‘Ô‚È‚çƒXƒLƒbƒvƒ‚[ƒh‚É‚·‚é
-	//					if (g_commuauto != COMMU_AUTO_SKIP){ g_commuauto = COMMU_AUTO_SKIP; }
-	//					// ƒXƒLƒbƒvƒ‚[ƒh‚È‚ç’Êí‚É–ß‚·
-	//					else{ g_commuauto = COMMU_AUTO_NORMAL; }
-	//					// ‚r‚d‚ğ–Â‚ç‚·
-	//					SEPlay(SN_ALTERNATIVE);
-	//				}
-	//				// ƒZ[ƒuƒ‚[ƒh‚ÖˆÚs
-	//				else if (ClickFlagCheckF(ClickX, ClickY, commu_coordinate_icon_auto_x, commu_coordinate_icon_save_y, size_icon_auto.x, size_icon_auto.y, FALSE, cfgmc_exit_save) == TRUE) { GameSaveLoadNext(TRUE, SL_BEFORE_COMMU); }
-	//				// ƒ[ƒhƒ‚[ƒh‚ÖˆÚs
-	//				else if (ClickFlagCheckF(ClickX, ClickY, commu_coordinate_icon_auto_x, commu_coordinate_icon_load_y, size_icon_auto.x, size_icon_auto.y, FALSE, cfgmc_exit_load) == TRUE) { GameSaveLoadNext(FALSE, SL_BEFORE_COMMU); }
-#pragma endregion
 					// ƒI[ƒgƒ‚[ƒh‚ğØ‚è‘Ö‚¦
 					else if (ClickFlagCheckF(ClickX, ClickY, commu_coordinate_icon_auto_x, commu_coordinate_icon_auto_y, size_icon_auto.x, size_icon_auto.y, FALSE, cfgmc_change_auto) == TRUE && commu_mode_menu == TRUE)
 					{
@@ -545,10 +412,6 @@ void GameMainCommunicationControl()
 						// ƒeƒLƒXƒgƒIƒtƒ‚[ƒh‚È‚ç‚»‚ê‚ğ‰ğœ‚·‚é
 						if (commu_mode_text_off == TRUE) { commu_mode_text_off = FALSE; }
 						// •¶‚ª•`‰æ‚³‚ê‚«‚Á‚Ä‚¢‚È‚¯‚ê‚Î‘S‚Ä•`‰æ‚µAŠù‚É‚³‚ê‚Ä‚¢‚é‚È‚çŸ‚Ìs‚Ös‚­
-						#pragma region ver0.0028§ìƒRƒƒ“ƒg‰»ƒR[ƒh
-//GameMainCommunicationNextLine();
-//if (EndFlag == 0){ GameMainCommunicationMoji(TRUE); }
-#pragma endregion
 						else if (EndFlag == 0) { GameMainCommunicationMoji(TRUE); }
 						else { GameMainCommunicationNextLine(); }
 					}
@@ -575,9 +438,6 @@ void GameMainCommunicationControl()
 				}
 				// ‘S‚Ä‚Ìƒtƒ‰ƒO‚ğ–ß‚·
 				cfgmc_move_title = FALSE;												// ƒ^ƒCƒgƒ‹‰æ–Ê‚ÖˆÚ“®
-				#pragma region ver0.007§ìƒRƒƒ“ƒg‰»ƒR[ƒh
-				//for (int i = 0; i < 3; i++){ cfgmc_altenative[i] = FALSE; }	// ‘I‘ğˆ‚ğ‘I‘ğ
-#pragma endregion
 				for (int i = 0; i < 3; i++) { hjimage_alternative[i].CJChange(FALSE); }	// ‘I‘ğˆ‚ğ‘I‘ğ
 				cfgmc_cell_count = FALSE;				// ƒRƒ~ƒ…‚Ìî•ñ‚ğŸ‚Ì‚à‚Ì‚É‚·‚é
 				cfgmc_change_auto = FALSE;				// ƒI[ƒgƒ‚[ƒhØ‚è‘Ö‚¦
@@ -605,9 +465,6 @@ void GameMainCommunicationFlame()
 {
 	commu_bgm_flame++;	// ‚a‚f‚l–¼•`‰æ—pŒo‰ßƒtƒŒ[ƒ€”‚ğƒJƒEƒ“ƒg‚·‚é
 	// wauto_sexƒ‚[ƒh‚È‚ç‚r‚d‚ª–Â‚èI‚¦‚½‚©ƒ`ƒFƒbƒN‚µA–Â‚èI‚í‚Á‚Ä‚¢‚é‚È‚çŸ‚Ìs‚Éi‚Şi‚P‚È‚çÄ¶A-1‚È‚çƒGƒ‰[j
-	#pragma region ver0.00607§ìƒRƒƒ“ƒg‰»ƒR[ƒh
-	//if (g_commustatus == COMMU_STATUS_SE && CheckSoundMem(g_sndhandles.SE[HM[commu_number][cell_number].se - 1]) == 0)
-#pragma endregion
 	if (g_commustatus == COMMU_STATUS_SE && CheckSoundMem(se[HM[commu_number][cell_number].se - 1].GetHandle()) == 0)
 	{
 		g_commustatus = COMMU_STATUS_NORMAL;
@@ -627,23 +484,6 @@ void GameMainCommunicationFlame()
 		}
 	}
 	// oŒ»‚µ‚Ä‚¢‚éƒLƒƒƒ‰‚ÉAu‚«‚ÉŠÖ‚·‚éˆ—‚ğs‚¤
-	#pragma region ver0.00294§ìƒRƒƒ“ƒg‰»ƒR[ƒh
-//	if (commu_character[1] > 0)
-//	{
-//		#pragma region ver0.00291§ìƒRƒƒ“ƒg‰»ƒR[ƒh
-//		// u‚«‚ğ‚µI‚¦‚Ä‚¢‚éó‘Ô‚È‚çc‚èŠÔ‚ğÄƒZƒbƒg‚·‚é
-//		//if (commu_character_blink_limit[1]-- <= 0){ commu_character_blink_limit[1] = 180; }
-//#pragma endregion
-//		// u‚«‚ğ‚µI‚¦‚Ä‚¢‚éó‘Ô‚È‚çc‚èŠÔ‚ğÄƒZƒbƒg‚·‚é
-//		commu_character_blink_limit[1]-- ;
-//		if (g_commu_character_face[1] == CCF_CLOSE_EYE || g_commu_character_face[1] == CCF_CLOSE_EYE_SMILE)
-//		{
-//			if (commu_character_blink_limit[1] > COMMU_EYE_ANIMATION_FLAME * 3) { commu_character_blink_limit[1] = COMMU_EYE_ANIMATION_FLAME * 3; }
-//			else if (commu_character_blink_limit[1] < COMMU_EYE_ANIMATION_FLAME + 1) { commu_character_blink_limit[1] = COMMU_EYE_ANIMATION_FLAME + 1; }
-//		}
-//		else if(commu_character_blink_limit[1] <= 0){ commu_character_blink_limit[1] = 180; }
-//	}
-#pragma endregion
 	for (int i = 0; i < COMMU_CHARACTER_MAX; i++)
 	{
 		if (commu_character[i] > 0)
@@ -659,9 +499,6 @@ void GameMainCommunicationFlame()
 		}
 	}
 	// İ’è‚É‰‚¶‚ÄA‘äŒ‚ğ•`‰æ‚·‚éÛ‚É•K—v‚Èƒ|ƒCƒ“ƒg‚ğ‰ÁZ‚·‚é
-	#pragma region ver0.0021§ìƒRƒƒ“ƒg‰»ƒR[ƒh
-	//if (g_commumessagespeed == COMMU_MESSAGE_SPEED_SLOW){ commu_message_point += COMMU_COUNT_SLOW; }
-#pragma endregion
 	if (g_commuauto == COMMU_AUTO_SKIP){ commu_message_point += COMMU_COUNT_FAST * 4; }
 	else if (g_commumessagespeed == COMMU_MESSAGE_SPEED_SLOW){ commu_message_point += COMMU_COUNT_SLOW; }
 	else if (g_commumessagespeed == COMMU_MESSAGE_SPEED_NORMAL){ commu_message_point += COMMU_COUNT_NORMAL; }
@@ -674,9 +511,6 @@ void GameMainCommunicationFlame()
 	for (int i = 0; i < 3; i++)
 	{
 		const char* x = "";
-		#pragma region ver0.0029§ìƒRƒƒ“ƒg‰»ƒR[ƒh
-		//switch (commu_character[i] / 10 - 1)
-#pragma endregion
 		switch (commu_character[i] / 1000 - 1)
 		{
 		case 0: x = "‚ß‚®‚é";	break;
@@ -696,12 +530,6 @@ void GameMainCommunicationFlame()
 			else if (commu_character_talk_limit[i] == COMMU_MOUSE_ANIMATION_FLAME * 2){ commu_character_talk_limit[i]++; }
 		}
 		// y•`‰æ‚³‚ê‚Ä‚¢‚éƒLƒƒƒ‰ƒNƒ^[‚Æ‘äŒå‚ªˆê’v‚µ‚Ä‚¢‚éA‘äŒŒûƒpƒNƒ^ƒCƒv‚ªw•Â‚¶‚éAŠJ‚«‚Á‚Ï‚È‚µxˆÈŠO‚Å‚ ‚éz–‚ª‹¤’ÊğŒ
-		#pragma region ver0.0029§ìƒRƒƒ“ƒg‰»ƒR[ƒh
-		//else if (commu_character[i] / 10 == 1 && strcmp(HM[commu_number][cell_number].name, "‚ß‚®‚é") == 0 && HM[commu_number][cell_number].line_mouse != -1)
-#pragma endregion
-		#pragma region ver0.00605§ìƒRƒƒ“ƒg‰»ƒR[ƒh
-		//else if (/*commu_character[i] / 10 == 1 &&*/ strcmp(HM[commu_number][cell_number].name, x) == 0 && HM[commu_number][cell_number].line_mouse != -1)
-#pragma endregion
 		else if ((strcmp(HM[commu_number][cell_number].name, x) == 0 && HM[commu_number][cell_number].line_mouse != -1) || HM[commu_number][cell_number].line_mouse == 3)
 		{
 			if (EndFlag == 0)
@@ -718,17 +546,6 @@ void GameMainCommunicationFlame()
 		}
 	}
 	// ƒLƒƒƒ‰ƒNƒ^[•ÏX‚ÉŠÖ‚í‚é•Ï”‚ÌƒJƒEƒ“ƒg‚ğŒ¸‚ç‚µA0‚É‚È‚Á‚½‚çŸ‚Ìs‚Öi‚Ş
-	#pragma region ver0.00294§ìƒRƒƒ“ƒg‰»ƒR[ƒh
-	//if (commu_character_visibility_count > 0)
-	//{
-	//	commu_character_visibility_count--;
-	//	if (commu_character_visibility_count <= 0)
-	//	{
-	//		commu_mode_background = FALSE;
-	//		GameMainCommunicationNextLine();
-	//	}
-	//}
-#pragma endregion
 	BOOL flag_x = FALSE;	// •¡”‚ÌƒLƒƒƒ‰‚ğ•Ï‚¦‚éê‡A’µ‚Ôs”‚ª‚QˆÈã‚É‚È‚Á‚Ä‚µ‚Ü‚¤‚½‚ßAƒtƒ‰ƒO§‚É‚µ‚Ä‚¢‚é
 	for (int i = 0; i < COMMU_CHARACTER_MAX; i++)
 	{
@@ -760,9 +577,6 @@ void GameMainCommunicationFlame()
 		if (g_commuauto == COMMU_AUTO_ON)
 		{
 			commu_auto_count++;
-			#pragma region ver0.021§ìƒRƒƒ“ƒg‰»ƒR[ƒh
-			//if (commu_auto_count > 40)
-#pragma endregion
 			if (commu_auto_count > 80)
 			{
 				commu_auto_count = 1;
@@ -786,20 +600,10 @@ void GameMainCommunicationFlame()
 	//float x = hjimage_alternative[0].size_x * bairitu / 2;																	// ‰æ‘œ‚Ì’†S‚©‚ç¶’[‚Ì‚¸‚ê
 	float x = hjimage_alternative[0].size_x / 2;																	// ‰æ‘œ‚Ì’†S‚©‚ç¶’[‚Ì‚¸‚ê
 	float y = bairitu * (150 + abs(22.5f - (progress_frame % 45)));																								// ‘I‘ğˆyÀ•Wx“_
-	#pragma region ver0.00704§ìƒRƒƒ“ƒg‰»ƒR[ƒh
-//commu_altenative_y_under = y + bairitu * hjimage_alternative[0].size_y * 2 / 3;	//i ”{—¦‚Ì‚¦‚¢‚«‚å‚¤‚ğ‚Q‚«‚¤‚¯‚Ä‚éHj‰º‘I‘ğˆyÀ•W
-	//commu_altenative_y_under = y + hjimage_alternative[0].size_y * 2 / 3;	//i ”{—¦‚Ì‚¦‚¢‚«‚å‚¤‚ğ‚Q‚«‚¤‚¯‚Ä‚éHj‰º‘I‘ğˆyÀ•W
-	//commu_altenative_y_upper = g_altenativenumber == ALTENATIVE_NUMBER_2 ? commu_altenative_y_under : y;					// ã‘¤‘I‘ğˆyÀ•Wi‚Q‘ğA‰º‘¤‚Æ“¯‚¶yÀ•W‚É‚È‚éj
-#pragma endregion
 	AlternativeCoordinate::SetYUnder(y + hjimage_alternative[0].size_y * 2 / 3);
 	AlternativeCoordinate::SetYUpper(g_altenativenumber == ALTENATIVE_NUMBER_2 ? AlternativeCoordinate::GetYUnder() : y);
 	//float z = bairitu * (hjimage_alternative[0].size_x + 54);																		// ‚R‘ğA¶A‰E‘I‘ğˆ’†SxÀ•W‚ÌA’†‰›‚©‚ç‚Ì‚¸‚ê
 	float z = hjimage_alternative[0].size_x + bairitu * 54;																		// ‚R‘ğA¶A‰E‘I‘ğˆ’†SxÀ•W‚ÌA’†‰›‚©‚ç‚Ì‚¸‚ê
-	#pragma region ver0.00704§ìƒRƒƒ“ƒg‰»ƒR[ƒh
-	//hjimage_alternative[2].CoordinateSetting(screen_size_x / 2 - x + z, commu_altenative_y_under);
-	//hjimage_alternative[1].CoordinateSetting(g_altenativenumber == ALTENATIVE_NUMBER_2 ? hjimage_alternative[2].GetCoordinateX() : screen_size_x / 2 - x - z, commu_altenative_y_under);
-	//hjimage_alternative[0].CoordinateSetting(g_altenativenumber == ALTENATIVE_NUMBER_2 ? screen_size_x / 2 - x - z : screen_size_x / 2 - x, commu_altenative_y_upper);
-#pragma endregion
 	hjimage_alternative[2].CoordinateSetting(screen_size_x / 2 - x + z, AlternativeCoordinate::GetYUnder());
 	hjimage_alternative[1].CoordinateSetting(g_altenativenumber == ALTENATIVE_NUMBER_2 ? hjimage_alternative[2].GetCoordinateX() : screen_size_x / 2 - x - z, AlternativeCoordinate::GetYUnder());
 	hjimage_alternative[0].CoordinateSetting(g_altenativenumber == ALTENATIVE_NUMBER_2 ? screen_size_x / 2 - x - z : screen_size_x / 2 - x, AlternativeCoordinate::GetYUpper());
@@ -836,30 +640,6 @@ void GameMainCommunicationNextLine()
 		commu_frame_auto_count = HM[commu_number][cell_number].move_commu_number;
 	}
 	// ŸsƒZƒ‹ƒRƒ}ƒ“ƒh‚ªwendx‚È‚çƒRƒ~ƒ…‚ğI—¹‚³‚¹‚é
-	#pragma region ver0.00706§ìƒRƒƒ“ƒg‰»ƒR[ƒh
-//	else if (strcmp(HM[commu_number][cell_number].command, "end") == 0)
-//	{ 
-//		// ƒRƒ~ƒ…ƒZƒŒƒNƒg‚É‚æ‚é‰{——‚Ìê‡AƒRƒ~ƒ…ƒZƒŒƒNƒg‰æ–Ê‚É–ß‚é
-//		#pragma region ver0.00396§ìƒRƒƒ“ƒg‰»ƒR[ƒh
-//		//GameMapNext();
-//#pragma endregion
-//		//commu_before_cs == FALSE ? GameMapNext() : GameCommuSelectNext();
-//		if (commu_before_cs == FALSE)
-//		{
-//			switch (commu_number)
-//			{
-//			case COMMU_TYPE_OP:	GameMainCommunicationNext(COMMU_TYPE_TUTORIAL, FALSE, 0);	break;
-//			case COMMU_TYPE_TUTORIAL:
-//				GameMainCommunicationNext(COMMU_TYPE_TUTORIAL, FALSE, 0);
-//				break;
-//			case COMMU_TYPE_MEGURU0:
-//				CommuData::SetGMapUpperType(CommuData::MapUpperType::RINZE0);
-//			default:			GameMapNext();												break;
-//			}			
-//		}
-//		else { GameCommuSelectNext(); }
-//	}
-#pragma endregion
 	else if (strcmp(HM[commu_number][cell_number].command, "end") == 0)
 	{ 
 		GameMainCommunicationEnd();
@@ -869,9 +649,6 @@ void GameMainCommunicationNextLine()
 	else if (strcmp(HM[commu_number][cell_number].command, "move_commu") == 0)
 	{ 
 		// ƒRƒ~ƒ…ƒZƒŒƒNƒg‚É‚æ‚é‰{——‚Ìê‡AƒRƒ~ƒ…ƒZƒŒƒNƒg‰æ–Ê‚É–ß‚é
-		#pragma region ver0.00607§ìƒRƒƒ“ƒg‰»ƒR[ƒh
-		//commu_before_cs == FALSE ? GameMainCommunicationNext(HM[commu_number][cell_number].move_commu_number, FALSE) : GameCommuSelectNext();
-#pragma endregion
 		commu_before_cs == FALSE ? GameMainCommunicationNext(HM[commu_number][cell_number].move_commu_number, FALSE, 0) : GameCommuSelectNext();
 	}
 	// ŸsƒZƒ‹ƒRƒ}ƒ“ƒh‚ªwaltenativex‚È‚ç‘I‘ğˆ‚ğ‘I‚×‚éó‘Ô‚É‚·‚é
@@ -883,9 +660,6 @@ void GameMainCommunicationNextLine()
 		for (int i = 0; i < g_altenativenumber + 2; i++)
 		{
 			commu_altenative_string_line[i] = 1;																	// ‘I‘ğˆ•¶š‚Ìs”‚ğ‰Šú‰»‚·‚é
-			#pragma region ver0.00704§ìƒRƒƒ“ƒg‰»ƒR[ƒh
-			//for (int j = 0; j < STRBUF_ALTENATIVE_HEIGHT; j++) { sprintf_s(StringBufAltenative[i][j], 64, ""); }	// •¶š—ñ‰Šú‰»
-#pragma endregion
 			// •¶š—ñ‰Šú‰»
 			for (int j = 0; j < STRBUF_ALTENATIVE_HEIGHT; j++)
 			{
@@ -900,65 +674,15 @@ void GameMainCommunicationNextLine()
 	// ƒLƒƒƒ‰—§‚¿ŠG•ÏXƒ`ƒFƒbƒN
 	for (int i = 0; i < 3; i++)
 	{
-		#pragma region ver0.0072§ìƒRƒƒ“ƒg‰»ƒR[ƒh
-		//if (HM[commu_number][cell_number].character[i] != 0)
-#pragma endregion
 		if (HM[commu_number][cell_number].character[i] != 0)
 		{
 			// “Áê•\î‚ğƒŠƒZƒbƒg‚·‚é
 			g_commu_character_face[i] = CCF_NORMAL;
 
-			#pragma region ver0.0021§ìƒRƒƒ“ƒg‰»ƒR[ƒh
-			// iƒLƒƒƒ‰ƒNƒ^[Ø‚è‘Ö‚¦•û–@‚ª•s“§–¾“x“ü‚ê‘Ö‚¦‚È‚çj’¼‘Oi’¼Œãj‚ÌƒLƒƒƒ‰ƒNƒ^[‰æ‘œ‚ğ‡¬‚·‚é
-			//if (HM[commu_number][cell_number].character_change == 0)
-#pragma endregion
 			// iƒLƒƒƒ‰ƒNƒ^[Ø‚è‘Ö‚¦•û–@‚ª•s“§–¾“x“ü‚ê‘Ö‚¦‚ÅAƒXƒLƒbƒvƒ‚[ƒh‚Å‚È‚¯‚ê‚Îj’¼‘Oi’¼Œãj‚ÌƒLƒƒƒ‰ƒNƒ^[‰æ‘œ‚ğ‡¬‚·‚é
-			#pragma region ver0.007§ìƒRƒƒ“ƒg‰»ƒR[ƒh
-			//if (HM[commu_number][cell_number].character_change == 0 && g_commuauto != COMMU_AUTO_SKIP)
-#pragma endregion
 			if (HM[commu_number][cell_number].character_change != CCC_INSTANT && g_commuauto != COMMU_AUTO_SKIP)
 			{
 				commu_character_talk_limit[i] = 0;	// “§–¾“x“ü‚ê‘Ö‚¦ƒLƒƒƒ‰•ÏX‚ÌÛAŒû‚ªŠJ‚«‚Á‚Ï‚È‚µ‚É‚È‚éƒoƒO‚ğ’¼‚·ˆ—
-				#pragma region ver0.0029§ìƒRƒƒ“ƒg‰»ƒR[ƒh
-				//if (commu_character[i] >= 2)
-				//{
-				//	LoadGameImageCharacterBody(commu_character[i] % 10, &commu_character_before[i]);
-				//	GraphBlend(commu_character_before[i], g_imghandles.character_face[commu_character[i] / 10 - 1][commu_character[i] % 10][0][(commu_character_blink_limit[i] >= 1 && commu_character_blink_limit[i] <= 3) ? commu_character_blink_limit[i] % 2 : 2], 255, DX_GRAPH_BLEND_NORMAL);
-				//	GraphBlend(commu_character_before[i], g_imghandles.character_face[commu_character[i] / 10 - 1][commu_character[i] % 10][0][DrawGameMainCommunicationMouseAnimation()], 255, DX_GRAPH_BLEND_NORMAL);
-				//	GraphBlend(commu_character_before[i], g_imghandles.character_eyebrow[commu_character[i] / 10 - 1][commu_character[i] % 10][0][2], 255, DX_GRAPH_BLEND_NORMAL);
-				//}
-				//else{ DeleteGraph(commu_character_before[i]); }
-				//// ’¼Œã‚ÌƒLƒƒƒ‰ƒNƒ^[
-				//if (HM[commu_number][cell_number].character[i] + 1 >= 2)
-				//{
-				//	int x = HM[commu_number][cell_number].character[i];
-				//	LoadGameImageCharacterBody(x % 10, &commu_character_after[i]);
-				//	GraphBlend(commu_character_after[i], g_imghandles.character_face[x / 10 - 1][x % 10][0][(commu_character_blink_limit[i] >= 1 && commu_character_blink_limit[i] <= 3) ? commu_character_blink_limit[i] % 2 : 2], 255, DX_GRAPH_BLEND_NORMAL);
-				//	GraphBlend(commu_character_after[i], g_imghandles.character_face[x / 10 - 1][x % 10][0][DrawGameMainCommunicationMouseAnimation()], 255, DX_GRAPH_BLEND_NORMAL);
-				//	GraphBlend(commu_character_after[i], g_imghandles.character_eyebrow[x / 10 - 1][x % 10][0][2], 255, DX_GRAPH_BLEND_NORMAL);
-				//}
-				//else{ DeleteGraph(commu_character_after[i]); }
-#pragma endregion
-				#pragma region ver0.00291§ìƒRƒƒ“ƒg‰»ƒR[ƒh
-				// iˆß‘•‚Í‚ß‚®‚é‚È‚ç‚Q—öà‚Í‚S‚Å‰¼À‘•j
-				//if (commu_character[i] >= 2)	// Œ»İ‚Í–â‘è‚È‚¢‚ªw2x‚Å‚¢‚¢‚Ì‚©‚Í•s–¾
-				//{
-				//	LoadGameImageCharacterBody(commu_character[i] / 100 % 10, &commu_character_before[i], load_name[commu_character[i] / 1000 - 1], commu_character[i] / 10 % 10);
-				//	GraphBlend(commu_character_before[i], g_imghandles.character_face[commu_character[i] / 1000 - 1][commu_character[i] / 100 % 10][commu_character[i] / 10 % 10][commu_character[i] % 10][(commu_character_blink_limit[i] >= 1 && commu_character_blink_limit[i] <= 3) ? commu_character_blink_limit[i] % 2 : 2], 255, DX_GRAPH_BLEND_NORMAL);
-				//	GraphBlend(commu_character_before[i], g_imghandles.character_face[commu_character[i] / 1000 - 1][commu_character[i] / 100 % 10][commu_character[i] / 10 % 10][commu_character[i] % 10][DrawGameMainCommunicationMouseAnimation(i)], 255, DX_GRAPH_BLEND_NORMAL);
-				//	GraphBlend(commu_character_before[i], g_imghandles.character_eyebrow[commu_character[i] / 1000 - 1][commu_character[i] / 100 % 10][commu_character[i] / 10 % 10][commu_character[i] % 10][2], 255, DX_GRAPH_BLEND_NORMAL);
-				//}
-				//else { DeleteGraph(commu_character_before[i]); }
-				//// ’¼Œã‚ÌƒLƒƒƒ‰ƒNƒ^[i•‘•‚ª‚»‚Ìê‚µ‚Ì‚¬‚Ìˆ—‚É‚È‚Á‚Ä‚¢‚é‰Â”\«‚ª‚ ‚éHj
-				//if (HM[commu_number][cell_number].character[i] + 1 >= 2)
-				//{
-				//	int x = HM[commu_number][cell_number].character[i];
-				//	LoadGameImageCharacterBody(x / 100 % 10, &commu_character_after[i], load_name[x / 1000 - 1], x / 10 % 10);
-				//	GraphBlend(commu_character_after[i], g_imghandles.character_face[x / 1000 - 1][x / 100 % 10][x / 10 % 10][x % 10][(commu_character_blink_limit[i] >= 1 && commu_character_blink_limit[i] <= 3) ? commu_character_blink_limit[i] % 2 : 2], 255, DX_GRAPH_BLEND_NORMAL);
-				//	GraphBlend(commu_character_after[i], g_imghandles.character_face[x / 1000 - 1][x / 100 % 10][x / 10 % 10][x % 10][DrawGameMainCommunicationMouseAnimation(i)], 255, DX_GRAPH_BLEND_NORMAL);
-				//	GraphBlend(commu_character_after[i], g_imghandles.character_eyebrow[x / 1000 - 1][x / 100 % 10][x / 10 % 10][x % 10][2], 255, DX_GRAPH_BLEND_NORMAL);
-				//}
-#pragma endregion
 				if (commu_character[i] >= 2)	// Œ»İ‚Í–â‘è‚È‚¢‚ªw2x‚Å‚¢‚¢‚Ì‚©‚Í•s–¾
 				{
 					LoadGameImageCharacterBody(commu_character[i] / 100 % 10, &commu_character_before[i], load_name[commu_character[i] / 1000 - 1], commu_character[i] / 10 % 10);
@@ -973,9 +697,6 @@ void GameMainCommunicationNextLine()
 				{
 					int x = HM[commu_number][cell_number].character[i];
 					LoadGameImageCharacterBody(x / 100 % 10, &commu_character_after[i], load_name[x / 1000 - 1], x / 10 % 10);
-					#pragma region ver0.0039§ìƒRƒƒ“ƒg‰»ƒR[ƒh
-					//GraphBlend(commu_character_after[i], g_imghandles.character_face[x / 1000 - 1][x / 100 % 10][x / 10 % 10][x % 10][(commu_character_blink_limit[i] >= 1 && commu_character_blink_limit[i] <= 3) ? commu_character_blink_limit[i] % 2 : 2], 255, DX_GRAPH_BLEND_NORMAL);
-#pragma endregion
 					// –Ú
 					int y = (commu_character_blink_limit[i] >= 1 && commu_character_blink_limit[i] <= 3) ? commu_character_blink_limit[i] % 2 : 2;
 					if (HM[commu_number][cell_number].character_face_etc[i] == 1) { y = 0; }
@@ -985,18 +706,12 @@ void GameMainCommunicationNextLine()
 					GraphBlend(commu_character_after[i], g_imghandles.character_face[x / 1000 - 1][x / 100 % 10][x / 10 % 10][x % 10][DrawGameMainCommunicationMouseAnimation(i)], 255, DX_GRAPH_BLEND_NORMAL);
 
 					// ”û–Ñi•Â‚¶–ÚorÎŠç•Â‚¶–Ú‚È‚ç0‚É‚·‚éj
-					#pragma region ver0.0039§ìƒRƒƒ“ƒg‰»ƒR[ƒh
-					//GraphBlend(commu_character_after[i], g_imghandles.character_eyebrow[x / 1000 - 1][x / 100 % 10][x / 10 % 10][x % 10][2], 255, DX_GRAPH_BLEND_NORMAL);
-#pragma endregion
 					GraphBlend(commu_character_after[i], g_imghandles.character_eyebrow[x / 1000 - 1][x / 100 % 10][x / 10 % 10][x % 10][HM[commu_number][cell_number].character_face_etc[i] >= 1 ? 0 : 2], 255, DX_GRAPH_BLEND_NORMAL);
 				}
 				else { DeleteGraph(commu_character_after[i]); }
 			}
 
 			commu_character[i] = HM[commu_number][cell_number].character[i];
-			#pragma region ver0.007§ìƒRƒƒ“ƒg‰»ƒR[ƒh
-			//if (HM[commu_number][cell_number].character_change == 0)
-#pragma endregion
 			if (HM[commu_number][cell_number].character_change != CCC_INSTANT)
 			{
 				//	“§–¾“x“ü‚ê‘Ö‚¦—p‚ÌƒtƒŒ[ƒ€”
@@ -1004,12 +719,6 @@ void GameMainCommunicationNextLine()
 
 				commu_mode_background = TRUE;	// ƒLƒƒƒ‰ƒNƒ^[“ü‚ê‘Ö‚¦ˆ—‚ªI‚í‚é‚Ü‚Å‘€ì‚Å‚«‚È‚¢‚æ‚¤‚É‚·‚é
 				// ƒLƒƒƒ‰Ø‚è‘Ö‚¦‚É•K—v‚ÈƒtƒŒ[ƒ€”‚ğƒZƒbƒg‚·‚éiƒXƒLƒbƒvƒ‚[ƒh‚È‚çc‚è‚P‚e‚É‚·‚éj
-				#pragma region ver0.00294§ìƒRƒƒ“ƒg‰»ƒR[ƒh
-				//commu_character_visibility_count = g_commuauto != COMMU_AUTO_SKIP ? COMMU_CHARACTER_CHANGE_MAX + 1 : 1;
-#pragma endregion
-				#pragma region ver0.007§ìƒRƒƒ“ƒg‰»ƒR[ƒh
-				//commu_character_visibility_count[i] = g_commuauto != COMMU_AUTO_SKIP ? COMMU_CHARACTER_CHANGE_MAX + 1 : 1;
-#pragma endregion
 				commu_character_visibility_count[i] = g_commuauto != COMMU_AUTO_SKIP ? x + 1 : 1;
 			}
 		}
@@ -1068,12 +777,6 @@ void GameMainCommunicationNextLine()
 		}
 	}
 	// ‚r‚dÄ¶ƒ`ƒFƒbƒNiSKIPƒ‚[ƒh‚È‚çÄ¶‚µ‚È‚¢j
-	#pragma region ver0.00393§ìƒRƒƒ“ƒg‰»ƒR[ƒh
-	//if (HM[commu_number][cell_number].se != 0){ SEPlay(HM[commu_number][cell_number].se - 1); }
-#pragma endregion
-	#pragma region ver0.017§ìƒRƒƒ“ƒg‰»ƒR[ƒh
-	//if (HM[commu_number][cell_number].se != 0 && g_commuauto != COMMU_AUTO_SKIP) { SEPlay(HM[commu_number][cell_number].se - 1); }
-#pragma endregion
 	if (HM[commu_number][cell_number].se != 0 && (g_commuauto != COMMU_AUTO_SKIP || HM[commu_number][cell_number].se == -1)) { SEPlay(HM[commu_number][cell_number].se - 1); }
 
 	sprintf_s(String[0], 256, "%sE", HM[commu_number][cell_number].line);	// •¶š‚ğ‘ã“ü
@@ -1151,9 +854,6 @@ void GameMainCommunicationEnd()
 				MusicPlay(-2);
 				break;
 			default:
-				#pragma region ver0.00904§ìƒRƒƒ“ƒg‰»ƒR[ƒh
-				//if (game_week_number == 17) { GameMainCommunicationNext(COMMU_TYPE_FRIEND, FALSE, 0); }
-#pragma endregion
 				if (game_week_number == 17)
 				{
 					// ƒRƒ~ƒ…‚ğ‹’®‚µ‚½ƒ^ƒCƒ~ƒ“ƒO‚ª‚TŒ‚QT‚È‚ç‚ß‚®‚éƒtƒŒƒ“ƒh‚b‚fƒRƒ~ƒ…‚¾‚¯‘I‘ğ‚Å‚«‚é
@@ -1214,29 +914,10 @@ void GameMainCommunicationAltenative(int x)	// ‘I‘ğˆ‚h‚c
 // ƒRƒ~ƒ…‰æ–Ê‚Åg‚¤‘I‘ğˆŠÖŒWiandƒAƒCƒRƒ“j‚ÌÀ•W‚ğiÄj’è‹`‚·‚éˆ—
 void GameMainCommunicationCoordinateSetting()
 {
-	#pragma region ver0.007§ìƒRƒƒ“ƒg‰»ƒR[ƒh
-
-	//float x = size_commu_altenative.x * bairitu / 2;																		// ‰æ‘œ‚Ì’†S‚©‚ç¶’[‚Ì‚¸‚ê
-	//float y = bairitu * 150;																								// ‘I‘ğˆyÀ•Wx“_
-	//commu_altenative_y_under = y + bairitu * size_commu_altenative.y * 2 / 3;												// ‰º‘I‘ğˆyÀ•W
-	//commu_altenative_y_upper = g_altenativenumber == ALTENATIVE_NUMBER_2 ? commu_altenative_y_under : y;					// ã‘¤‘I‘ğˆyÀ•Wi‚Q‘ğA‰º‘¤‚Æ“¯‚¶yÀ•W‚É‚È‚éj
-	//float z = bairitu * (size_commu_altenative.x + 54);																		// ‚R‘ğA¶A‰E‘I‘ğˆ’†SxÀ•W‚ÌA’†‰›‚©‚ç‚Ì‚¸‚ê
-	//commu_altenative_x[2] = screen_size_x / 2 - x + z;																		// ‘I‘ğˆ‚RxÀ•W
-	//commu_altenative_x[1] = g_altenativenumber == ALTENATIVE_NUMBER_2 ? commu_altenative_x[2] : screen_size_x / 2 - x - z;	// ‘I‘ğˆ‚QxÀ•W
-	//commu_altenative_x[0] = g_altenativenumber == ALTENATIVE_NUMBER_2 ? screen_size_x / 2 - x - z : screen_size_x / 2 - x;	// ‘I‘ğˆ‚PxÀ•W
-	//// ‘I‘ğˆ•¶š—ñ’†SxÀ•W
-	//float a = (float)(screen_size_x / 2);
-	//commu_altenative_string_center_x[0] = g_altenativenumber == ALTENATIVE_NUMBER_2 ? a - z : (float)(screen_size_x / 2);
-	//commu_altenative_string_center_x[2] = a + z;
-	//commu_altenative_string_center_x[1] = g_altenativenumber == ALTENATIVE_NUMBER_2 ? commu_altenative_string_center_x[2] : a - z;
-#pragma endregion
 	// wautoxƒAƒCƒRƒ“iÀ•W‚Í‰¼j
 	commu_coordinate_icon_auto_x = screen_size_x - bairitu * 48 - size_icon_auto.x;
 	commu_coordinate_icon_auto_y = screen_size_y - bairitu * 375 - size_icon_auto.y;
 	// wSKIPxƒAƒCƒRƒ“iÀ•W‚Í‰¼j
-	#pragma region ver0.0028§ìƒRƒƒ“ƒg‰»ƒR[ƒh
-	//commu_coordinate_icon_skip_y = screen_size_y - bairitu * 240 + size_icon_auto.y / 2;
-#pragma endregion
 	commu_coordinate_icon_skip_y = commu_coordinate_icon_auto_y + size_icon_auto.y * 1.5f;
 	// wSAVExƒAƒCƒRƒ“iÀ•W‚Í‰¼j
 	commu_coordinate_icon_save_y = commu_coordinate_icon_skip_y + size_icon_auto.y * 1.5f;
@@ -1329,9 +1010,6 @@ void GameMainCommunicationMoji(BOOL x)	// u‚É‘S‚Ä‚Ì•¶‚ğ•\¦‚³‚¹‚éƒtƒ‰ƒO
 						// ƒJ[ƒ\ƒ‹‚ğˆê•¶š‚ÌƒoƒCƒg”•ªi‚ß‚é
 						CursorX += Bytes;
 						// ƒeƒLƒXƒgƒoƒbƒtƒ@‰¡•‚©‚ç‚Í‚İo‚½‚ç‰üs‚·‚é
-#pragma region ver0.0034§ìƒRƒƒ“ƒg‰»ƒR[ƒh
-//if (CursorX >= STRBUF_WIDTH){ Kaigyou2(); }
-#pragma endregion
 						if (CursorX > STRBUF_WIDTH) { Kaigyou2(); }
 
 						break;
@@ -1407,13 +1085,7 @@ void GameMainCommunicationMojiAltenative(int x)	// w’è‚³‚ê‚½‘I‘ğˆ
 void DrawGameMainCommunication()
 {
 	/* ”wŒi ---------*/
-	#pragma region ver0.0022§ìƒRƒƒ“ƒg‰»ƒR[ƒh
-	//DrawExtendGraphF(0, 0, WINDOW_SIZE_X * bairitu, WINDOW_SIZE_Y * bairitu, commu_background, TRUE);
-#pragma endregion
 	// ƒ}ƒbƒvà–¾––±ºiŒ»İ”wŒi‚Ìu“ü‚ê‘Ö‚¦‹@”\‚ª‚È‚¢‚Ì‚Åè“ü—Íj
-	#pragma region ver0.00904§ìƒRƒƒ“ƒg‰»ƒR[ƒh
-	//if (commu_number == COMMU_TYPE_TUTORIAL) 
-#pragma endregion
 	if (commu_number == static_cast<int>(CommuType::TUTORIAL))
 	{
 		int x = cell_number + 2;
@@ -1424,9 +1096,6 @@ void DrawGameMainCommunication()
 	DrawExtendGraphF(0, 0, WINDOW_SIZE_X * bairitu, WINDOW_SIZE_Y * bairitu, (g_backgroundchange != BACKGROUND_CHANGE_VISIBILITY && commu_background_visibility_count > COMMU_BACKGROUND_FLAME_MAX / 2) ? commu_background_before : commu_background, TRUE);
 
 	ImgDataBGTutorial::DIMCheck(cell_number + 2);
-	#pragma region ver0.00904§ìƒRƒƒ“ƒg‰»ƒR[ƒh
-	//if(commu_number == COMMU_TYPE_TUTORIAL)
-#pragma endregion
 	if (commu_number == static_cast<int>(CommuType::TUTORIAL))
 	{
 		int x = cell_number + 2;
@@ -1434,27 +1103,6 @@ void DrawGameMainCommunication()
 		if (ImgDataBGTutorial::GetDrawImageNumber() > 0) { tutorial_image[ImgDataBGTutorial::GetDrawImageNumber()].DrawImageTutorial(ImgDataBGTutorial::GetScreenY()); }
 	}
 	/*---------------*/
-	#pragma region ver0.0022§ìƒRƒƒ“ƒg‰»ƒR[ƒh
-	//if (g_backgroundchange == BACKGROUND_CHANGE_VISIBILITY)
-	//{
-	//	SetDrawBlendMode(DX_BLENDMODE_ALPHA, commu_background_visibility_count * 255 / COMMU_BACKGROUND_FLAME_MAX);
-	//	DrawExtendGraphF(0, 0, WINDOW_SIZE_X * bairitu, WINDOW_SIZE_Y * bairitu, commu_background_before, TRUE);
-	//}
-	//else
-	//{
-	//	int background_color = g_backgroundchange == BACKGROUND_CHANGE_BLACKOUT ? GetColor(0, 0, 0) : GetColor(255, 255, 255);
-	//	if (commu_background_visibility_count > COMMU_BACKGROUND_FLAME_MAX / 2){ DrawExtendGraphF(0, 0, WINDOW_SIZE_X * bairitu, WINDOW_SIZE_Y * bairitu, commu_background_before, TRUE); }	// ƒuƒ‰ƒbƒNiƒzƒƒCƒgjƒAƒEƒg‚µ‚«‚é‚Ü‚Å’¼‘O‚Ì”wŒi‚ğ‰f‚·
-	//	int x = (COMMU_BACKGROUND_FLAME_MAX / 2 - commu_background_visibility_count) * (COMMU_BACKGROUND_FLAME_MAX / 2 - commu_background_visibility_count < 0 ? -1 : 1);
-	//	SetDrawBlendMode(DX_BLENDMODE_ALPHA, (COMMU_BACKGROUND_FLAME_MAX / 2 - x) * 255 / (COMMU_BACKGROUND_FLAME_MAX / 2));
-	//	DrawBox(0, 0, screen_size_x, screen_size_y, background_color, TRUE);
-	//}
-	//SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0);
-#pragma endregion
-
-	#pragma region ver0.0021§ìƒRƒƒ“ƒg‰»ƒR[ƒh
-	// w’è‚Ì•Ï”‚ª60ˆÈã‚É‚È‚Á‚½‚ç•¶š‚ğ‘‚«o‚·
-	//if (commu_message_point >= 60)
-#pragma endregion
 	// w’è‚Ì•Ï”‚ª60ˆÈã‚É‚È‚Á‚Ä‚¢‚éŒÀ‚è•¶š‚ğ‘‚«o‚·
 	while (commu_message_point >= 60)
 	{
@@ -1470,9 +1118,6 @@ void DrawGameMainCommunication()
 		if (commu_character[i] > 0){ draw_character_now++; }
 	}
 
-	#pragma region ver0.007§ìƒRƒƒ“ƒg‰»ƒR[ƒh
-	//for (int i = 0; i < COMMU_CHARACTER_MAX; i++)
-#pragma endregion
 	for (int j = 0; j < COMMU_CHARACTER_MAX; j++)
 	{
 		// ^‚ñ’†‚ÌƒLƒƒƒ‰‚ğÅ‘O–Ê‚É’u‚­‚½‚ß‚Ì•Ï”
@@ -1480,9 +1125,6 @@ void DrawGameMainCommunication()
 		if (j == 1) { i = 2; }
 		else if (j == 2) { i = 1; }
 
-		#pragma region ver0.00604§ìƒRƒƒ“ƒg‰»ƒR[ƒh
-		//float x = (i * 630 - 630.0f) * bairitu;	// ƒLƒƒƒ‰‚Ì”z’uêŠ‚É‚æ‚Á‚Ä•Ï‚í‚éxÀ•W
-#pragma endregion
 		float x = (i * COMMU_CHARACTER_SPACE - COMMU_CHARACTER_SPACE) * bairitu;	// ƒLƒƒƒ‰‚Ì”z’uêŠ‚É‚æ‚Á‚Ä•Ï‚í‚éxÀ•W
 		// ƒLƒƒƒ‰‚ª‚Ql•ƒLƒƒƒ‰ŠÔ‹Ï“™‚ªƒIƒ“‚È‚ç‹­§“I‚ÉÀ•W‚ğ•Ï‚¦‚é
 		if (draw_character_now == 2 && commu_mode_distance == TRUE)
@@ -1490,29 +1132,11 @@ void DrawGameMainCommunication()
 			x = (same_distance_left == FALSE ? -1 : 1) * 360.0f * bairitu;
 			if (same_distance_left == FALSE){ same_distance_left = TRUE; }
 		}	
-		#pragma region ver0.0021§ìƒRƒƒ“ƒg‰»ƒR[ƒh
-		//if (commu_character_visibility_count >= 1)
-#pragma endregion
-		#pragma region ver0.00294§ìƒRƒƒ“ƒg‰»ƒR[ƒh
-		//if (commu_character_visibility_count >= 1 && g_commuauto != COMMU_AUTO_SKIP)	// ƒXƒLƒbƒvƒ‚[ƒh‚Ìê‡Aƒ‰ƒO‰ñ”ğ‚Ì‚½‚ß“ü‚ê‘Ö‚¦—p‚Ì‰æ‘œ‚ğì¬‚µ‚È‚¢‚æ‚¤‚É‚µ‚Ä‚¢‚é‚Ì‚Å‚±‚Ìˆ—‚ğ”ò‚Î‚·
-		//{
-		//	SetDrawBlendMode(DX_BLENDMODE_ALPHA, commu_character_visibility_count * 255 / COMMU_CHARACTER_CHANGE_MAX);
-		//	DrawExtendGraphF(x, 0, x + WINDOW_SIZE_X * bairitu, WINDOW_SIZE_Y * bairitu, commu_character_before[i], TRUE);
-		//	SetDrawBlendMode(DX_BLENDMODE_ALPHA, (COMMU_CHARACTER_CHANGE_MAX - commu_character_visibility_count) * 255 / COMMU_CHARACTER_CHANGE_MAX);
-		//	DrawExtendGraphF(x, 0, x + WINDOW_SIZE_X * bairitu, WINDOW_SIZE_Y * bairitu, commu_character_after[i], TRUE);
-		//	SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0);
-		//}
-#pragma endregion
 		if (commu_character_visibility_count[i] >= 1 && g_commuauto != COMMU_AUTO_SKIP)	// ƒXƒLƒbƒvƒ‚[ƒh‚Ìê‡Aƒ‰ƒO‰ñ”ğ‚Ì‚½‚ß“ü‚ê‘Ö‚¦—p‚Ì‰æ‘œ‚ğì¬‚µ‚È‚¢‚æ‚¤‚É‚µ‚Ä‚¢‚é‚Ì‚Å‚±‚Ìˆ—‚ğ”ò‚Î‚·
 		{
 			// “§–¾“x“ü‚ê‘Ö‚¦ŠJn‚ÌƒtƒŒ[ƒ€”
 			int y = (HM[commu_number][cell_number].GetCC() == CCC_TRANSPARENCY_NORMAL) ? COMMU_CHARACTER_CHANGE_MAX : COMMU_CHARACTER_CHANGE_MAX_FAST;
 
-			#pragma region ver0.007§ìƒRƒƒ“ƒg‰»ƒR[ƒh
-			//SetDrawBlendMode(DX_BLENDMODE_ALPHA, commu_character_visibility_count[i] * 255 / COMMU_CHARACTER_CHANGE_MAX);
-			//DrawExtendGraphF(x, 0, x + WINDOW_SIZE_X * bairitu, WINDOW_SIZE_Y * bairitu, commu_character_before[i], TRUE);
-			//SetDrawBlendMode(DX_BLENDMODE_ALPHA, (COMMU_CHARACTER_CHANGE_MAX - commu_character_visibility_count[i]) * 255 / COMMU_CHARACTER_CHANGE_MAX);
-#pragma endregion
 			// 255‚É‹ß‚¢‚Ù‚Ç•`‰æ‚µ‚æ‚¤‚Æ‚µ‚Ä‚¢‚é‚à‚Ì‚ª”Z‚­•`‰æ‚³‚ê‚é
 			SetDrawBlendMode(DX_BLENDMODE_ALPHA, commu_character_visibility_count[i] * 255 / y);
 			DrawExtendGraphF(x, 0, x + WINDOW_SIZE_X * bairitu, WINDOW_SIZE_Y * bairitu, commu_character_before[i], TRUE);
@@ -1522,20 +1146,7 @@ void DrawGameMainCommunication()
 		}
 		else if (commu_character[i] >= 1)
 		{
-			#pragma region ver0.0029§ìƒRƒƒ“ƒg‰»ƒR[ƒh
-			//DrawExtendGraphF(x, 0, x + WINDOW_SIZE_X * bairitu, WINDOW_SIZE_Y * bairitu, g_imghandles.character_body[commu_character[i] / 10 - 1][commu_character[i] % 10][0], TRUE);
-			//DrawExtendGraphF(x, 0, x + WINDOW_SIZE_X * bairitu, WINDOW_SIZE_Y * bairitu, g_imghandles.character_face[commu_character[i] / 10 - 1][commu_character[i] % 10][0][(commu_character_blink_limit[i] >= 1 && commu_character_blink_limit[i] <= COMMU_EYE_ANIMATION_FLAME * 3) ? (commu_character_blink_limit[i] + COMMU_EYE_ANIMATION_FLAME - 1) / COMMU_EYE_ANIMATION_FLAME % 2 : 2], TRUE);
-			//// ”û–ÑiƒeƒXƒgj
-			//DrawExtendGraphF(x, 0, x + WINDOW_SIZE_X * bairitu, WINDOW_SIZE_Y * bairitu, g_imghandles.character_eyebrow[commu_character[i] / 10 - 1][commu_character[i] % 10][0][(commu_character_blink_limit[i] >= 1 && commu_character_blink_limit[i] <= COMMU_EYE_ANIMATION_FLAME * 3) ? (commu_character_blink_limit[i] + COMMU_EYE_ANIMATION_FLAME - 1) / COMMU_EYE_ANIMATION_FLAME % 2 : 2], TRUE);
-
-			//DrawExtendGraphF(x, 0, x + WINDOW_SIZE_X * bairitu, WINDOW_SIZE_Y * bairitu, g_imghandles.character_face[commu_character[i] / 10 - 1][commu_character[i] % 10][0][DrawGameMainCommunicationMouseAnimation()], TRUE);
-#pragma endregion
 			DrawExtendGraphF(x, 0, x + WINDOW_SIZE_X * bairitu, WINDOW_SIZE_Y * bairitu, g_imghandles.character_body[commu_character[i] / 1000 - 1][commu_character[i] / 100 % 10][commu_character[i] / 10 % 10], TRUE);
-			#pragma region ver0.00291§ìƒRƒƒ“ƒg‰»ƒR[ƒh
-			////																																																							 ‚Ü‚Î‚½‚«‚ğ‚µI‚¦‚é‚Ü‚Å‚ÌƒtƒŒ[ƒ€”‚ª1ˆÈãŠ‚ÂA18i6~3jˆÈ‰º‚È‚çA										 c‚èƒtƒŒ[ƒ€”‚É5‚ğ‘«‚µ‚½”’l‚ğ6‚ÅŠ„‚Á‚½ŒãA2‚ÅŠ„‚Á‚½Û‚Ì—]‚è‚ğ•Ô‚·Aˆá‚Á‚Ä‚¢‚ê‚Î2‚ğ•Ô‚·iƒtƒŒ[ƒ€”19ˆÈã‚È‚çŠJ‚«‚Á‚Ï‚È‚µj	
-			//DrawExtendGraphF(x, 0, x + WINDOW_SIZE_X * bairitu, WINDOW_SIZE_Y * bairitu, g_imghandles.character_face[commu_character[i] / 1000 - 1][commu_character[i] / 100 % 10][commu_character[i] / 10 % 10][commu_character[i] % 10][(commu_character_blink_limit[i] >= 1 && commu_character_blink_limit[i] <= COMMU_EYE_ANIMATION_FLAME * 3) ? (commu_character_blink_limit[i] + COMMU_EYE_ANIMATION_FLAME - 1) / COMMU_EYE_ANIMATION_FLAME % 2 : 2], TRUE);
-
-#pragma endregion
 			int y = (commu_character_blink_limit[i] >= 1 && commu_character_blink_limit[i] <= COMMU_EYE_ANIMATION_FLAME * 3) ? (commu_character_blink_limit[i] + COMMU_EYE_ANIMATION_FLAME - 1) / COMMU_EYE_ANIMATION_FLAME % 2 : 2;	// –Úƒp[ƒc‚Ég‚¤•Ï”i‚Ü‚Î‚½‚«‚ğ‚µI‚¦‚é‚Ü‚Å‚ÌƒtƒŒ[ƒ€”‚ª1ˆÈãŠ‚ÂA18i6~3jˆÈ‰º‚È‚çAc‚èƒtƒŒ[ƒ€”‚É5‚ğ‘«‚µ‚½”’l‚ğ6‚ÅŠ„‚Á‚½ŒãA2‚ÅŠ„‚Á‚½Û‚Ì—]‚è‚ğ•Ô‚·Aˆá‚Á‚Ä‚¢‚ê‚Î2‚ğ•Ô‚·iƒtƒŒ[ƒ€”19ˆÈã‚È‚çŠJ‚«‚Á‚Ï‚È‚µjj
 			if (g_commu_character_face[i] == CCF_CLOSE_EYE_SMILE && y == 0) { y = 3; }																																					// “Áê•\î‚ªwÎŠç•Â‚¶–Úx‚È‚ç’Êí‚Ì•Â‚¶–Ú‚Ì‚É·‚µ‘Ö‚¦‚é
 			for (int k = 0; k < 3; k++)
@@ -1578,33 +1189,16 @@ void DrawGameMainCommunication()
 		DrawBox(0, 0, screen_size_x, screen_size_y, GetColor(0, 0, 0), TRUE);
 		SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0);
 
-		#pragma region ver0.007§ìƒRƒƒ“ƒg‰»ƒR[ƒh
-		//DrawExtendGraphF(commu_altenative_x[0], commu_altenative_y_upper, commu_altenative_x[0] + size_commu_altenative.x * bairitu, commu_altenative_y_upper + size_commu_altenative.y * bairitu, g_imghandles.altenative[0], TRUE);
-		//DrawExtendGraphF(commu_altenative_x[1], commu_altenative_y_under, commu_altenative_x[1] + size_commu_altenative.x * bairitu, commu_altenative_y_under + size_commu_altenative.y * bairitu, g_imghandles.altenative[1], TRUE);
-		//if (g_altenativenumber == ALTENATIVE_NUMBER_3){ DrawExtendGraphF(commu_altenative_x[2], commu_altenative_y_under, commu_altenative_x[2] + size_commu_altenative.x * bairitu, commu_altenative_y_under + size_commu_altenative.y * bairitu, g_imghandles.altenative[2], TRUE); }
-#pragma endregion		
 		for (int i = 0; i < g_altenativenumber + 2; i++)
 		{
 			hjimage_alternative[i].DrawImage();
 			// ‘I‘ğˆ•¶š—ñ‚ğ‚Ps–ˆ‚É’†‰›‘µ‚¦‚µ‚½ã‚Å•`‰æ‚·‚é
-			#pragma region ver0.007§ìƒRƒƒ“ƒg‰»ƒR[ƒh
-//for (int j = 0; j < commu_altenative_string_line[i]; j++){ DrawFormatStringFToHandle(commu_altenative_string_center_x[i] - GetDrawFormatStringWidthToHandle(g_font3, StringBufAltenative[i][j]) / 2, (i == 0 ? commu_altenative_y_upper : commu_altenative_y_under) + bairitu * size_commu_altenative.y / 2 - bairitu * FONT_SIZE_ORIGINAL / 2 - (commu_altenative_string_line[i] - 1) * FONT_SIZE_ORIGINAL / 2 + j * FONT_SIZE_ORIGINAL, GetColor(0, 0, 0), g_font3, StringBufAltenative[i][j]); }
-#pragma endregion
-			#pragma region ver0.00704§ìƒRƒƒ“ƒg‰»ƒR[ƒh
-			//for (int j = 0; j < commu_altenative_string_line[i]; j++) { DrawFormatStringFToHandle(commu_altenative_string_center_x[i] - GetDrawFormatStringWidthToHandle(g_font_commu_line, StringBufAltenative[i][j]) / 2, (i == 0 ? commu_altenative_y_upper : commu_altenative_y_under) + bairitu * hjimage_alternative[0].size_y / 2 - bairitu * FONT_SIZE_ORIGINAL_COMMU_LINE / 2 - (commu_altenative_string_line[i] - 1) * FONT_SIZE_ORIGINAL_COMMU_LINE / 2 + j * FONT_SIZE_ORIGINAL_COMMU_LINE, GetColor(0, 0, 0), g_font_commu_line, StringBufAltenative[i][j]); }
-#pragma endregion
 			//																																																				Šî–{YÀ•WA																			‘I‘ğˆ‚Ì’†S‚ÉŠñ‚¹‚é”’l						ƒtƒHƒ“ƒgƒTƒCƒY•ª‚¸‚ç‚·”’l																																						
 			for (int j = 0; j < commu_altenative_string_line[i]; j++) { DrawFormatStringFToHandle(commu_altenative_string_center_x[i] - GetDrawFormatStringWidthToHandle(g_font_commu_line, StringBufAltenative[i][j]) / 2, (i == 0 ? AlternativeCoordinate::GetYUpper() : AlternativeCoordinate::GetYUnder()) + /*bairitu **/ hjimage_alternative[0].size_y / 2 - FONT_SIZE_ORIGINAL_COMMU_LINE / 2 * bairitu - (commu_altenative_string_line[i] - 1) * FONT_SIZE_ORIGINAL_COMMU_LINE / 2 * bairitu + j * FONT_SIZE_ORIGINAL_COMMU_LINE * bairitu, GetColor(0, 0, 0), g_font_commu_line, StringBufAltenative[i][j]); }
 		}
 	}
 	if (commu_mode_text_off == FALSE && TextLog::GetMode() == FALSE)
 	{
-		#pragma region ver0.0042§ìƒRƒƒ“ƒg‰»ƒR[ƒh
-		// ƒeƒLƒXƒgƒEƒBƒ“ƒhƒEi“§–¾“xƒeƒXƒg’†j
-		//SetDrawBlendMode(DX_BLENDMODE_ALPHA, 90 * 255 / 100);
-		//DrawExtendGraphF(0, 0, WINDOW_SIZE_X * bairitu, WINDOW_SIZE_Y * bairitu, g_imghandles.text_window, TRUE);
-		//SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0);
-#pragma endregion
 		/* ƒeƒLƒXƒgƒEƒBƒ“ƒhƒE ---------*/
 		int x[2] = {0, 0};
 		for (int i = 0; i < 2; i++)
@@ -1641,13 +1235,6 @@ void DrawGameMainCommunication()
 		else { DrawTextWindow(1); }								// –¼‘O‚ª‚È‚¢’n‚Ì•¶‚Ì‚È‚Ç‚Í…F
 		/*-----------------------------*/
 		// ‘äŒåA‘äŒi‘I‘ğˆoŒ»‚Í‚P‚Â‘O‚Ì‘äŒ‚É‚È‚éj
-		#pragma region ver0.0111§ìƒRƒƒ“ƒg‰»ƒR[ƒh
-		//DrawFormatStringFToHandle(bairitu * 270, bairitu * 726, GetColor(20, 20, 20), g_font_commu_name, "%s", HM[commu_number][cell_number + (g_commustatus != COMMU_STATUS_ALTENATIVE ? 0 : -1)].name);
-		////DrawFormatStringFToHandle(bairitu * 270, bairitu * 726, GetColor(20, 20, 20), g_font_commu_name, "%s", HM[commu_number][cell_number + (g_commustatus != COMMU_STATUS_ALTENATIVE ? 0 : -1)].name);
-		////if (HM[commu_number][cell_number].name2 != NULL){ DrawFormatStringFToHandle(bairitu * 240 + GetDrawFormatStringWidthToHandle(g_font3, HM[commu_number][cell_number].name), bairitu * 720, GetColor(0, 0, 0), g_font3, "E%s", HM[commu_number][cell_number].name2); }
-		////if (HM[commu_number][cell_number].name2[0] != NULL){ DrawFormatStringFToHandle(bairitu * 240 + GetDrawFormatStringWidthToHandle(g_font3, HM[commu_number][cell_number].name), bairitu * 720, GetColor(0, 0, 0), g_font3, "E%s", HM[commu_number][cell_number].name2); }	// ‚±‚¤‚¢‚¤Š´‚¶‚Å‚È‚¢‚Æ‚¤‚Ü‚­‚¢‚©‚È‚¢
-		//if (HM[commu_number][cell_number + (g_commustatus != COMMU_STATUS_ALTENATIVE ? 0 : -1)].name2[0] != NULL){ DrawFormatStringFToHandle(bairitu * 270 + GetDrawFormatStringWidthToHandle(g_font_commu_name, "%s",HM[commu_number][cell_number + (g_commustatus != COMMU_STATUS_ALTENATIVE ? 0 : -1)].name), bairitu * 726, GetColor(0, 0, 0), g_font_commu_name, "E%s", HM[commu_number][cell_number + (g_commustatus != COMMU_STATUS_ALTENATIVE ? 0 : -1)].name2); }	// ‚±‚¤‚¢‚¤Š´‚¶‚Å‚È‚¢‚Æ‚¤‚Ü‚­‚¢‚©‚È‚¢
-#pragma endregion
 		if (commu_number >= 0)
 		{
 			DrawFormatStringFToHandle(bairitu * 270, bairitu * 726, GetColor(20, 20, 20), g_font_commu_name, "%s", HM[commu_number][cell_number + (g_commustatus != COMMU_STATUS_ALTENATIVE ? 0 : -1)].name);
@@ -1666,11 +1253,6 @@ void DrawGameMainCommunication()
 	// “§‚©‚µ‚t‚h
 	else if(commu_mode_text_off == TRUE)
 	{
-		#pragma region ver0.0072§ìƒRƒƒ“ƒg‰»ƒR[ƒh
-		//SetDrawBlendMode(DX_BLENDMODE_ALPHA, 128);
-		//bgimage_sukashi.DrawImage();
-		//SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0);
-#pragma endregion
 		bgimage_sukashi.DrawImage();
 	}
 	// ‚a‚f‚l–¼i”ñ•`‰æó‘Ôj
@@ -1711,10 +1293,6 @@ void DrawGameMainCommunication()
 void DrawTextWindow(int x)	// ƒEƒBƒ“ƒhƒE‚ÌF
 {
 	SetDrawBlendMode(DX_BLENDMODE_ALPHA, (100 - text_window_clear_percentage) * 255 / 100);
-	#pragma region ver0.00605§ìƒRƒƒ“ƒg‰»ƒR[ƒh
-	//DrawExtendGraphF(0, 0, WINDOW_SIZE_X * bairitu, WINDOW_SIZE_Y * bairitu, image_text_window[0][0].Handle, TRUE);
-	//DrawExtendGraphF(0, 0, WINDOW_SIZE_X * bairitu, WINDOW_SIZE_Y * bairitu, image_text_window[1][0].Handle, TRUE);
-#pragma endregion
 	DrawExtendGraphF(0, 0, WINDOW_SIZE_X * bairitu, WINDOW_SIZE_Y * bairitu, image_text_window[0][x].Handle, TRUE);
 	DrawExtendGraphF(0, 0, WINDOW_SIZE_X * bairitu, WINDOW_SIZE_Y * bairitu, image_text_window[1][x].Handle, TRUE);
 	SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0);

@@ -426,9 +426,6 @@ void SaveDataImage::Blend(int x, BOOL y)	// コミュ背景でなく全体マップを描画する
 	// のＩＤは後々配列定数に変える予定なのでまだ修正しない）
 	int h;
 	if (y == FALSE)
-	#pragma region ver0.016制作時コメント化コード
-		//{h = commu_background;}
-#pragma endregion
 	{
 		if (GlobalStaticSaveLoad::GetSamuneBackgroundID() > 0)
 		{
@@ -457,9 +454,6 @@ void SaveDataImage::Blend(int x, BOOL y)	// コミュ背景でなく全体マップを描画する
 		int z = GlobalStaticVariable::GetModeTrial() == FALSE ? ui_map_month[game_week_number - 12].GetHandle() : bgimage_non_month.GetHandle();	
 
 		GraphBlend(h, g_imghandles.ui_tips, 255, DX_GRAPH_BLEND_NORMAL);	// tipsＵＩをブレンド
-		#pragma region ver0.021制作時コメント化コード
-		//GraphBlend(h, ui_map_month[game_week_number - 12].GetHandle(), 255, DX_GRAPH_BLEND_NORMAL);	// フレームをブレンド
-#pragma endregion
 		GraphBlend(h, z, 255, DX_GRAPH_BLEND_NORMAL);	// フレームをブレンド
 		// ここを後でなおす（選択しているマップに応じて描画）
 		GraphBlend(h, g_imghandles.ui_map[0], 255, DX_GRAPH_BLEND_NORMAL);	// マップをブレンド

@@ -89,9 +89,6 @@ extern BOOL commu_mode_text_off;	// ƒeƒLƒXƒgƒtƒ@ƒCƒ‹ŠÜ‚ß‚½‘S‚Ä‚Ì‚t‚h‚ğ”ñ•\¦‚É‚·
 extern BOOL commu_before_cs;		// ƒRƒ~ƒ…‚Ì‰{——‚ğn‚ß‚é‘O‚ÍƒRƒ~ƒ…ƒZƒŒƒNƒgƒ‚[ƒh‚¾‚Á‚½‚©”»•Ê‚·‚é
 // “¯‚¶”ÍˆÍ‚Åƒ}ƒEƒX‚ğ‰Ÿ‚µA—£‚³‚ê‚½‚ç››‚·‚éƒtƒ‰ƒOicfgmc=click_flag_game_main_communicationj
 extern BOOL cfgmc_move_title;		// ƒ^ƒCƒgƒ‹‰æ–Ê‚ÖˆÚ“®
-#pragma region ver0.007§ìƒRƒƒ“ƒg‰»ƒR[ƒh
-//extern BOOL cfgmc_altenative[3];	// ‘I‘ğˆ‚ğ‘I‘ğ
-#pragma endregion
 extern BOOL cfgmc_cell_count;		// ƒRƒ~ƒ…‚Ìî•ñ‚ğŸ‚Ì‚à‚Ì‚É
 extern BOOL cfgmc_change_auto;		// ƒI[ƒgƒ‚[ƒhØ‚è‘Ö‚¦‚ğ
 extern BOOL cfgmc_change_skip;		// ƒXƒLƒbƒvƒ‚[ƒhØ‚è‘Ö‚¦‚ğ
@@ -115,9 +112,6 @@ extern int commu_character_blink_limit[3];							// ‚Ü‚Î‚½‚«‚ğ‚µI‚¦‚é‚Ü‚Å‚Ìc‚è
 extern int commu_character_talk_limit[3];							// ŒûƒpƒN‚ğ‚µI‚¦‚é‚Ü‚Å‚Ìc‚èƒtƒŒ[ƒ€”
 extern int commu_character_before[3];								// Ø‚è‘Ö‚¦‘O‚ÌƒLƒƒƒ‰ƒNƒ^[
 extern int commu_character_after[3];								// Ø‚è‘Ö‚¦Œã‚ÌƒLƒƒƒ‰ƒNƒ^[
-#pragma region ver0.00294§ìƒRƒƒ“ƒg‰»ƒR[ƒh
-//extern int commu_character_visibility_count;	// ƒLƒƒƒ‰ƒNƒ^[•s“§–¾“xØ‚è‘Ö‚¦‚ªŠ®—¹‚·‚é‚Ü‚Å‚ÌƒtƒŒ[ƒ€”
-#pragma endregion
 extern int commu_character_visibility_count[COMMU_CHARACTER_MAX];	// ƒLƒƒƒ‰ƒNƒ^[•s“§–¾“xØ‚è‘Ö‚¦‚ªŠ®—¹‚·‚é‚Ü‚Å‚ÌƒtƒŒ[ƒ€”
 extern int commu_background;										// ”wŒi
 extern int commu_background_before;									// Ø‚è‘Ö‚¦‘O‚Ì”wŒi
@@ -130,13 +124,6 @@ extern int commu_frame_auto_count;									// wframe_autox‚ÅŸs‚É©“®‚Ås‚­‚½
 extern int text_window_clear_percentage;							// ƒeƒLƒXƒgƒEƒBƒ“ƒhƒE“§‰ß“x
 
 extern float commu_play_time;						// ƒvƒŒƒCŠÔi•bj
-#pragma region ver0.007§ìƒRƒƒ“ƒg‰»ƒR[ƒh
-//extern float commu_altenative_x[3];					// ‘I‘ğˆxÀ•W
-#pragma endregion
-#pragma region ver0.00704§ìƒRƒƒ“ƒg‰»ƒR[ƒh
-//extern float commu_altenative_y_upper;				// ã‘¤‘I‘ğˆyÀ•W
-//extern float commu_altenative_y_under;				// ‰º‘¤‘I‘ğˆyÀ•W
-#pragma endregion
 extern float commu_altenative_string_center_x[3];	// ‘I‘ğˆ•¶š—ñ’†SxÀ•W
 extern float commu_coordinate_icon_auto_x;			// wautoxƒAƒCƒRƒ“xÀ•W
 extern float commu_coordinate_icon_auto_y;			// wautoxƒAƒCƒRƒ“yÀ•W
@@ -147,12 +134,6 @@ extern float commu_coordinate_icon_option_y;		// wOPTIONxƒAƒCƒRƒ“ã’[yÀ•W
 extern float commu_coordinate_icon_menu_y;			// wMENUxƒAƒCƒRƒ“ã’[yÀ•W
 extern float commu_coordinate_icon_tf_x;			// wTEXT OFFxƒAƒCƒRƒ“¶’[xÀ•W
 
-#pragma region ver0.00396§ìƒRƒƒ“ƒg‰»ƒR[ƒh
-//void GameMainCommunicationNext(int x);				// ƒRƒ~ƒ…‰æ–ÊˆÚsˆ—
-#pragma endregion
-#pragma region ver0.00607§ìƒRƒƒ“ƒg‰»ƒR[ƒh
-//void GameMainCommunicationNext(int x, BOOL y);		// ƒRƒ~ƒ…‰æ–ÊˆÚsˆ—
-#pragma endregion
 void GameMainCommunicationNext(int x, BOOL y, int z);	// ƒRƒ~ƒ…‰æ–ÊˆÚsˆ—
 void GameMainCommunication();							// GameMainCommunicationó‘Ô‚ÌƒƒCƒ“ˆ—
 void GameMainCommunicationControl();					// ƒRƒ~ƒ…‰æ–Ê‘€ìˆ—
@@ -167,8 +148,5 @@ void GameMainCommunicationMojiAltenative(int x);		// ƒRƒ~ƒ…‰æ–Ê‚Å‘I‘ğˆ—p•¶š‚ğ•
 void DrawGameMainCommunication();						// ƒRƒ~ƒ…‰æ–Ê‚Ì•`‰æˆ—
 void DrawTextWindow(int x);								// ƒeƒLƒXƒgƒEƒBƒ“ƒhƒE‚ğ•`‰æ‚·‚é
 
-#pragma region ver0.0029§ìƒRƒƒ“ƒg‰»ƒR[ƒh
-//int DrawGameMainCommunicationMouseAnimation();		// •`‰æ‚·‚éŒûƒpƒN‚Ì‰æ‘œ‚ğ”»•Ê‚·‚é
-#pragma endregion
 int DrawGameMainCommunicationMouseAnimation(int i);		// •`‰æ‚·‚éŒûƒpƒN‚Ì‰æ‘œ‚ğ”»•Ê‚·‚é
 #endif

@@ -23,9 +23,6 @@ void GameMusic()
 		{
 			g_bgmstate[i].vol = 0;
 			g_bgmstate[i].state = BGM_STANDBY;
-			#pragma region ver0.017制作時コメント化コード
-			//StopSoundMem(g_sndhandles.BGM[i]);
-#pragma endregion
 			StopSoundMem(bgm[i].GetHandle());
 		}
 		else if (g_bgmstate[i].vol >= BGM_VOLUME_ONLY_MAX)
@@ -54,32 +51,13 @@ void MusicPlay(int x)
 		{ 
 			g_bgmstate[i].vol = 0;
 			g_bgmstate[i].state = BGM_STANDBY;
-			#pragma region ver0.017制作時コメント化コード
-			//StopSoundMem(g_sndhandles.BGM[i]);
-#pragma endregion
 			StopSoundMem(bgm[i].GetHandle());
 		}
 	}	
 
-	#pragma region ver0.0072制作時コメント化コード
-	//if (x >= 0)
-#pragma endregion
 	if (x >= 0 && x < GlobalStaticMusic::GetBGMNumber())
 	{
 		// 停止する曲と再生する曲が同じ場合、一度曲を即停止させる
-		#pragma region ver0.017制作時コメント化コード
-		//if (g_bgmstate[x].vol > 0)
-		//{
-		//	StopSoundMem(g_sndhandles.BGM[x]);
-		//	g_bgmstate[x].vol = 0;
-		//}
-		//PlaySoundMem(g_sndhandles.BGM[x], DX_PLAYTYPE_LOOP);
-		// （将伍案）コンフィグを終了してもＢＧＭが再び再生されないようにする
-		//if (g_bgmstate[x].vol == 0)
-		//{
-		//	PlaySoundMem(g_sndhandles.BGM[x], DX_PLAYTYPE_LOOP);
-		//}
-#pragma endregion
 		if (g_bgmstate[x].vol > 0)
 		{
 			StopSoundMem(bgm[x].GetHandle());
@@ -101,21 +79,6 @@ void SEPlay(int x)
 {
 	switch (x)
 	{
-	#pragma region ver0.00607制作時コメント化コード
-	//case -2:			for (int i = 0; i < SE_NUMBER; i++){ StopSoundMem(g_sndhandles.SE[i]); };	break;	// 全（ループ）ＳＥ停止
-	//	// ループ再生
-	//case SN_BASKETBALL_DRIBBLE:
-	//case SN_FOOT_STEP_LOOP:
-	//case SN_KEYBOARD_TYPING:
-	//case SN_PHONE_CALL:
-	//	PlaySoundMem(g_sndhandles.SE[x], DX_PLAYTYPE_LOOP);
-	//	break;
-
-	//default:			PlaySoundMem(g_sndhandles.SE[x], DX_PLAYTYPE_BACK);							break;
-#pragma endregion
-	#pragma region ver0.00707制作時コメント化コード
-	//case -2:			for (int i = 0; i < SE_NUMBER; i++) { StopSoundMem(se[i].GetHandle()); };	break;	// 全（ループ）ＳＥ停止
-#pragma endregion
 	case -2:			for (int i = 0; i < SEData::GetNumber(); i++) { StopSoundMem(se[i].GetHandle()); };	break;	// 全（ループ）ＳＥ停止
 	default:			se[x].Play();																break;
 	}
@@ -137,8 +100,5 @@ void ChangeBGMVolume()
 void ChangeSEVolume()
 {
 	int x = 255 * se_volume / 100;	// 音量変更関数に使う数値に変換する
-	#pragma region ver0.00607制作時コメント化コード
-	//for (int i = 0; i < SE_NUMBER; i++){ ChangeVolumeSoundMem(x, g_sndhandles.SE[i]); }
-#pragma endregion
 	for (int i = 0; i < SEData::GetNumber(); i++) { ChangeVolumeSoundMem(x, se[i].GetHandle()); }
 }

@@ -1,16 +1,10 @@
 #include "gameconfig.h"
 
-#pragma region ver0.0026制作時コメント化コード
-//char* config_message_message_speed[3] = {"ゆっくり", "ふつう", "はやい"};	// 設定モードで描画される『文字スピード』選択の文字の種類
-#pragma endregion
 char* config_message_message_speed[3] = { (char*)"ゆっくり", (char*)"ふつう", (char*)"はやい" };	// 設定モードで描画される『文字スピード』選択の文字の種類
 
 BOOL config_before_mc = FALSE;	// タイトルではなくメインコミュから設定モードに来たか
 // 同じ範囲でマウスを押し、離されたら○○するフラグ（cfc=click_flag_config）
 BOOL cfc_move_title = FALSE;// タイトル画面へ移動
-#pragma region ver0.0042制作時コメント化コード
-//BOOL cfc_window_mode_change = FALSE;	// ウィンドウ、フルスクリーンを切り替える
-#pragma endregion
 BOOL cfc_window_mode_change[2];			// ウィンドウ、フルスクリーンを切り替える
 BOOL cfc_screen_change_720p = FALSE;	// ウィンドウ解像度を720pxにする
 BOOL cfc_screen_change_1080p = FALSE;	// ウィンドウ解像度を1080pxにする
@@ -59,114 +53,12 @@ void GameConfigControl()
 	// マウスのボタンが押されたり離されたりしたかどうかの情報を取得する
 	if (GetMouseInputLog2(&Button, &ClickX, &ClickY, &LogType, TRUE) == 0)
 	{
-		#pragma region ver0.0042制作時コメント化コード
-//		// 左ボタンが押されていたら
-//		if ((Button & MOUSE_INPUT_LEFT) != 0)
-//		{
-//			if (LogType == MOUSE_INPUT_LOG_DOWN)
-//			{
-//				BOOL x = FALSE;	// 以降の処理から抜け出す変数
-//				if (ClickFlagCheckF(ClickX, ClickY, screen_size_x - GetDrawStringWidthToHandle("TITLE", 5, g_font3) - bairitu * 100, bairitu * CONFIG_MESSEAGE_TITLE_Y, (float)GetDrawStringWidthToHandle("TITLE", 5, g_font3), bairitu * FONT_SIZE_ORIGINAL, TRUE, FALSE) == TRUE){ cfc_move_title = TRUE; }
-//				if (ClickFlagCheckF(ClickX, ClickY, config_coordinate_full_screen_switch_x, config_coordinate_full_screen_switch_y, (float)GetDrawStringWidthToHandle("□", 2, g_font3), bairitu * FONT_SIZE_ORIGINAL, TRUE, FALSE) == TRUE){ cfc_window_mode_change = TRUE; }
-//				#pragma region ver0.0041制作時コメント化コード
-//				//if (ClickFlagCheckF(ClickX, ClickY, config_coordinate_full_screen_switch_x, config_coordinate_screen_resolution_switch_y, (float)GetDrawStringWidthToHandle("□", 2, g_font3), bairitu * FONT_SIZE_ORIGINAL, TRUE, FALSE) == TRUE){ cfc_screen_change_720p = TRUE; }
-//				//if (ClickFlagCheckF(ClickX, ClickY, config_coordinate_screen_resolution_switch_1920_x, config_coordinate_screen_resolution_switch_y, (float)GetDrawStringWidthToHandle("□", 2, g_font3), bairitu * FONT_SIZE_ORIGINAL, TRUE, FALSE) == TRUE){ cfc_screen_change_1080p = TRUE; }
-//#pragma endregion
-//				if (ClickFlagCheckF(ClickX, ClickY, config_retu2_x, config_bgm_message_y, (float)GetDrawStringWidthToHandle("←", 2, g_font3), bairitu * FONT_SIZE_ORIGINAL, TRUE, FALSE) == TRUE){ cfc_bgm_down = TRUE; }
-//				if (ClickFlagCheckF(ClickX, ClickY, config_bgm_volume_up_x, config_bgm_message_y, (float)GetDrawStringWidthToHandle("→", 2, g_font3), bairitu * FONT_SIZE_ORIGINAL, TRUE, FALSE) == TRUE){ cfc_bgm_up = TRUE; }
-//				if (ClickFlagCheckF(ClickX, ClickY, config_retu2_x, config_se_message_y, (float)GetDrawStringWidthToHandle("←", 2, g_font3), bairitu * FONT_SIZE_ORIGINAL, TRUE, FALSE) == TRUE){ cfc_se_down = TRUE; }
-//				if (ClickFlagCheckF(ClickX, ClickY, config_bgm_volume_up_x, config_se_message_y, (float)GetDrawStringWidthToHandle("→", 2, g_font3), bairitu * FONT_SIZE_ORIGINAL, TRUE, FALSE) == TRUE){ cfc_se_up = TRUE; }
-//				if (ClickFlagCheckF(ClickX, ClickY, config_retu2_x, config_message_speed_y, (float)GetDrawStringWidthToHandle("←", 2, g_font3), bairitu * FONT_SIZE_ORIGINAL, TRUE, FALSE) == TRUE){ cfc_message_slow = TRUE; }
-//				if (ClickFlagCheckF(ClickX, ClickY, config_bgm_volume_up_x, config_message_speed_y, (float)GetDrawStringWidthToHandle("→", 2, g_font3), bairitu * FONT_SIZE_ORIGINAL, TRUE, FALSE) == TRUE){ cfc_message_fast = TRUE; }
-//				if (ClickFlagCheckF(ClickX, ClickY, config_coordinate_screen_resolution_switch_1920_x, config_coordinate_screen_resolution_switch_y, image_dialog[0].size_x, image_dialog[0].size_y, TRUE, FALSE) == TRUE) { cfc_dialog_change = TRUE; }
-//			}
-//			else if (LogType != MOUSE_INPUT_LOG_DOWN)
-//			{
-//				BOOL x = FALSE;	// 以降の処理から抜け出す変数
-//				// タイトル画面へ移動
-//				if (ClickFlagCheckF(ClickX, ClickY, screen_size_x - GetDrawStringWidthToHandle("TITLE", 5, g_font3) - bairitu * 100, bairitu * CONFIG_MESSEAGE_TITLE_Y, (float)GetDrawStringWidthToHandle("TITLE", 5, g_font3), bairitu * FONT_SIZE_ORIGINAL, FALSE, cfc_move_title) == TRUE){ GameTitleNext(); }
-//				// ウィンドウ、フルスクリーンを切り替える
-//				if (ClickFlagCheckF(ClickX, ClickY, config_coordinate_full_screen_switch_x, config_coordinate_full_screen_switch_y, (float)GetDrawStringWidthToHandle("□", 2, g_font3), bairitu * FONT_SIZE_ORIGINAL, FALSE, cfc_window_mode_change) == TRUE)
-//				{ 
-//					// 今現在ウィンドウならフルスクに、フルスクならウィンドウにする
-//					ChangeWindowMode(flag_mode_window = GetWindowModeFlag() == TRUE ? FALSE : TRUE);
-//					SetMouseDispFlag(TRUE);									// マウスを表示状態にする
-//				}
-//
-//				#pragma region ver0.0041制作時コメント化コード
-//				//if (ClickFlagCheckF(ClickX, ClickY, config_coordinate_full_screen_switch_x, config_coordinate_screen_resolution_switch_y, (float)GetDrawStringWidthToHandle("□", 2, g_font3), bairitu * FONT_SIZE_ORIGINAL, FALSE, cfc_screen_change_720p) == TRUE)
-//				//{ 
-//				//	flag_full_hd_now = FALSE;
-//				//	ScreenResolutionChange();
-//				//}
-//
-//				//if (ClickFlagCheckF(ClickX, ClickY, config_coordinate_screen_resolution_switch_1920_x, config_coordinate_screen_resolution_switch_y, (float)GetDrawStringWidthToHandle("□", 2, g_font3), bairitu * FONT_SIZE_ORIGINAL, FALSE, cfc_screen_change_1080p) == TRUE)
-//				//{
-//				//	if(flag_full_hd_ok == TRUE)	// フルＨＤ描画が可能なら
-//				//	{
-//				//		flag_full_hd_now = TRUE;
-//				//		ScreenResolutionChange();
-//				//	}
-//				//}
-//#pragma endregion
-//				// 音量を下げる
-//				if (ClickFlagCheckF(ClickX, ClickY, config_retu2_x, config_bgm_message_y, (float)GetDrawStringWidthToHandle("←", 2, g_font3), bairitu * FONT_SIZE_ORIGINAL, FALSE, cfc_bgm_down) == TRUE)
-//				{ 
-//					bgm_volume -= 5; 
-//					ChangeBGMVolume();
-//				}
-//				// 音量を上げる
-//				if (ClickFlagCheckF(ClickX, ClickY, config_bgm_volume_up_x, config_bgm_message_y, (float)GetDrawStringWidthToHandle("→", 2, g_font3), bairitu * FONT_SIZE_ORIGINAL, FALSE, cfc_bgm_up) == TRUE)
-//				{ 
-//					bgm_volume += 5;
-//					ChangeBGMVolume();
-//				}
-//				// ＳＥ音量を下げる
-//				if (ClickFlagCheckF(ClickX, ClickY, config_retu2_x, config_se_message_y, (float)GetDrawStringWidthToHandle("←", 2, g_font3), bairitu * FONT_SIZE_ORIGINAL, FALSE, cfc_se_down) == TRUE)
-//				{ 
-//					se_volume -= 5;
-//					ChangeSEVolume();
-//				}
-//				// ＳＥ音量を上げる
-//				if (ClickFlagCheckF(ClickX, ClickY, config_bgm_volume_up_x, config_se_message_y, (float)GetDrawStringWidthToHandle("←", 2, g_font3), bairitu * FONT_SIZE_ORIGINAL, FALSE, cfc_se_up) == TRUE)
-//				{ 
-//					se_volume += 5;
-//					ChangeSEVolume();
-//				}
-//				// 音量変動によって下（上）限値を過ぎた場合、修正する
-//				if (bgm_volume < 0){ bgm_volume = 0; }
-//				else if (bgm_volume > 100){ bgm_volume = 100; }
-//				if (se_volume < 0){ se_volume = 0; }
-//				else if (se_volume > 100){ se_volume = 100; }
-//				// メッセージ速度を変更する
-//				if (ClickFlagCheckF(ClickX, ClickY, config_retu2_x, config_message_speed_y, (float)GetDrawStringWidthToHandle("←", 2, g_font3), bairitu * FONT_SIZE_ORIGINAL, FALSE, cfc_message_slow) == TRUE){ GameConfigMessageSpeedChange(FALSE); }
-//				if (ClickFlagCheckF(ClickX, ClickY, config_bgm_volume_up_x, config_message_speed_y, (float)GetDrawStringWidthToHandle("→", 2, g_font3), bairitu * FONT_SIZE_ORIGINAL, FALSE, cfc_message_fast) == TRUE){ GameConfigMessageSpeedChange(TRUE); }
-//				// ダイアログボックス表示フラグを切り替える
-//				if (ClickFlagCheckF(ClickX, ClickY, config_coordinate_screen_resolution_switch_1920_x, config_coordinate_screen_resolution_switch_y, image_dialog[0].size_x, image_dialog[0].size_y, FALSE, cfc_dialog_change) == TRUE) { FlagChange(&flag_dialog_appear); }
-//				// 全てのフラグを戻す
-//				cfc_move_title = FALSE;				// タイトル画面へ移動
-//				cfc_window_mode_change = FALSE;		// ウィンドウ、フルスクリーンを切り替える
-//				cfc_screen_change_720p = FALSE;		// ウィンドウ解像度を720pxにする
-//				cfc_screen_change_1080p = FALSE;	// ウィンドウ解像度を1080pxにする
-//				cfc_bgm_down = FALSE;				// ＢＧＭ音量を下げる
-//				cfc_bgm_up = FALSE;					// ＢＧＭ音量を上げる
-//				cfc_se_down = FALSE;				// ＳＥ音量を下げる
-//				cfc_se_up = FALSE;					// ＳＥ音量を上げる
-//				cfc_message_slow = FALSE;			// メッセージ速度を遅くする
-//				cfc_message_fast = FALSE;			// メッセージ速度を速くする
-//				cfc_dialog_change = FALSE;			// ダイアログボックス表示フラグを切り替える
-//			}
-//		}
-#pragma endregion
 		// 左ボタンが押されていたら
 		if ((Button & MOUSE_INPUT_LEFT) != 0)
 		{
 			if (LogType == MOUSE_INPUT_LOG_DOWN)
 			{
 				BOOL x = FALSE;	// 以降の処理から抜け出す変数
-				#pragma region ver0.0043制作時コメント化コード
-				//if (ClickFlagCheckF(ClickX, ClickY, screen_size_x - GetDrawStringWidthToHandle("TITLE", 5, g_font3) - bairitu * 100, bairitu * CONFIG_MESSEAGE_TITLE_Y, (float)GetDrawStringWidthToHandle("TITLE", 5, g_font3), bairitu * FONT_SIZE_ORIGINAL, TRUE, FALSE) == TRUE) { cfc_move_title = TRUE; }
-#pragma endregion
 				if (ClickFlagCheckF(ClickX, ClickY, config_coordinate_icon_back_x, config_coordinate_icon_back_y, size_icon_auto.x, size_icon_auto.y, TRUE, FALSE) == TRUE) { cfc_move_title = TRUE; }
 				if (ClickFlagCheckF(ClickX, ClickY, config_coordinate_full_screen_switch_x[IO_WINDOW_TYPE_FULL_SCREEN], config_coordinate_full_screen_switch_y, image_option_window_type[IO_WINDOW_TYPE_FULL_SCREEN].size_x, image_option_window_type[IO_WINDOW_TYPE_FULL_SCREEN].size_y, TRUE, FALSE) == TRUE) { cfc_window_mode_change[IO_WINDOW_TYPE_FULL_SCREEN] = TRUE; }
 				else if (ClickFlagCheckF(ClickX, ClickY, config_coordinate_full_screen_switch_x[IO_WINDOW_TYPE_WINDOW], config_coordinate_full_screen_switch_y, image_option_window_type[IO_WINDOW_TYPE_WINDOW].size_x, image_option_window_type[IO_WINDOW_TYPE_WINDOW].size_y, TRUE, FALSE) == TRUE) { cfc_window_mode_change[IO_WINDOW_TYPE_WINDOW] = TRUE; }
@@ -190,10 +82,6 @@ void GameConfigControl()
 			else if (LogType != MOUSE_INPUT_LOG_DOWN)
 			{
 				BOOL x = FALSE;	// 以降の処理から抜け出す変数
-				#pragma region ver0.0043制作時コメント化コード
-				// タイトル画面へ移動
-				//if (ClickFlagCheckF(ClickX, ClickY, screen_size_x - GetDrawStringWidthToHandle("TITLE", 5, g_font3) - bairitu * 100, bairitu * CONFIG_MESSEAGE_TITLE_Y, (float)GetDrawStringWidthToHandle("TITLE", 5, g_font3), bairitu * FONT_SIZE_ORIGINAL, FALSE, cfc_move_title) == TRUE) { GameTitleNext(); }
-#pragma endregion
 				// 設定画面の前にいたモードに移行
 				if (ClickFlagCheckF(ClickX, ClickY, config_coordinate_icon_back_x, config_coordinate_icon_back_y, size_icon_auto.x, size_icon_auto.y, FALSE, cfc_move_title) == TRUE)
 				{
@@ -264,10 +152,6 @@ void GameConfigControl()
 				if (se_volume < 0) { se_volume = 0; }
 				else if (se_volume > 100) { se_volume = 100; }
 				// メッセージ速度を変更する
-				#pragma region ver0.0081制作時コメント化コード
-				//if (ClickFlagCheckF(ClickX, ClickY, config_retu2_x, config_message_speed_y, (float)GetDrawStringWidthToHandle("←", 2, g_font3), bairitu * FONT_SIZE_ORIGINAL, FALSE, cfc_message_slow) == TRUE) { GameConfigMessageSpeedChange(FALSE); }
-				//if (ClickFlagCheckF(ClickX, ClickY, config_bgm_volume_up_x, config_message_speed_y, (float)GetDrawStringWidthToHandle("→", 2, g_font3), bairitu * FONT_SIZE_ORIGINAL, FALSE, cfc_message_fast) == TRUE) { GameConfigMessageSpeedChange(TRUE); }
-#pragma endregion
 				else if (image_icon_config_text_speed[0][0].JudgementReleaseCheck() == TRUE) { g_commumessagespeed = COMMU_MESSAGE_SPEED_SLOW; }
 				else if (image_icon_config_text_speed[1][0].JudgementReleaseCheck() == TRUE) { g_commumessagespeed = COMMU_MESSAGE_SPEED_NORMAL; }
 				else if (image_icon_config_text_speed[2][0].JudgementReleaseCheck() == TRUE) { g_commumessagespeed = COMMU_MESSAGE_SPEED_FAST; }
@@ -277,9 +161,7 @@ void GameConfigControl()
 				else if (image_icon_config_dialog[1][0].JudgementReleaseCheck() == TRUE) { flag_dialog_appear = FALSE;}
 				// 全てのフラグを戻す
 				cfc_move_title = FALSE;												// タイトル画面へ移動
-				#pragma region ver0.0042制作時コメント化コード
-				//cfc_window_mode_change = FALSE;		// ウィンドウ、フルスクリーンを切り替える
-#pragma endregion
+
 				for (int i = 0; i < 2; i++) { cfc_window_mode_change[i] = FALSE; }	// ウィンドウ、フルスクリーンを切り替える
 				cfc_screen_change_720p = FALSE;										// ウィンドウ解像度を720pxにする
 				cfc_screen_change_1080p = FALSE;									// ウィンドウ解像度を1080pxにする
@@ -330,25 +212,12 @@ void GameConfigCoordinateSetting()
 	config_retu2_x = bairitu * CONFIG_MESSEAGE_GRAPH_MODE_X + GetDrawStringWidthToHandle("メッセージ速度　", 16, g_font3);																								// ２列目項目X座標
 	config_coordinate_icon_back_x = screen_size_x - size_icon_auto.x - bairitu * 99;																																	// 『BACK』アイコン左端x座標
 	config_coordinate_icon_back_y = bairitu * 99;																																										// 『BACK』アイコン上端y座標
-	#pragma region ver0.0042制作時コメント化コード
-	//config_coordinate_full_screen_switch_x = config_retu2_x + GetDrawStringWidthToHandle("フルスクリーン ", 15, g_font3);																								// フルスクリーン切り替えスイッチX座標
-	//config_coordinate_full_screen_switch_y = bairitu * CONFIG_MESSEAGE_GRAPH_MODE_Y;																																	// フルスクリーン切り替えスイッチY座標
-	//config_coordinate_screen_resolution_switch_y = config_coordinate_full_screen_switch_y + bairitu * 50;																												// 画面解像度切り替えスイッチY座標
-	//config_coordinate_screen_resolution_switch_1920_x = config_coordinate_full_screen_switch_x[0/*適当*/] + GetDrawStringWidthToHandle("1920×1080", 10, g_font3) + bairitu * 160;													// 画面解像度切り替えスイッチ（1920×1080）X座標
-	//config_bgm_message_y = config_coordinate_screen_resolution_switch_y + bairitu * CONFIG_LINE_SPACE * 2;																// ＢＧＭ音量関係Y座標
-#pragma endregion
 	config_coordinate_screen_resolution_switch_y = bairitu * 630;																																						// 画面解像度切り替えスイッチY座標
 	config_coordinate_screen_resolution_switch_1920_x = bairitu * 1050;																																					// 画面解像度切り替えスイッチ（1920×1080）X座標
 	config_bgm_message_y = bairitu * 339;																																												// ＢＧＭ音量関係Y座標
 	config_coordinate_arrow_down_x = image_option_arrow[0].size_x + bairitu * 1275;																																		// 左矢印左端X座標
-	#pragma region ver0.0042制作時コメント化コード
-	//config_bgm_volume_up_x = config_retu2_x + bairitu * 200;																											// ＢＧＭ『→』文字X座標
-#pragma endregion
 	config_bgm_volume_up_x = config_coordinate_arrow_down_x + bairitu * 150;																																			// ＢＧＭ『→』文字X座標
 	config_se_message_y = config_bgm_message_y + bairitu * CONFIG_LINE_SPACE;																																			// ＢＧＭ音量関係Y座標
-	#pragma region ver0.0042制作時コメント化コード
-	//config_message_speed_y = config_se_message_y + bairitu * CONFIG_LINE_SPACE * 2;																						// コミュメッセージ速度関係Y座標
-#pragma endregion
 	config_text_window_clear_y = config_se_message_y + bairitu * CONFIG_LINE_SPACE;																																		// テキストウィンドウ透過度関係Y座標
 	config_message_speed_y = config_text_window_clear_y + bairitu * CONFIG_LINE_SPACE;																																	// コミュメッセージ速度関係Y座標
 	for (int i = 0; i < CONFIG_MESSAGE_SPEED_NUMBER; i++) { config_coordinate_message_speed_x[i] = bairitu * 1290 + (i - 1) * image_option_message_speed[0].size_x * 1.5f - image_option_message_speed[0].size_x / 2; }	// メッセージ速度選択肢各左端x座標
@@ -380,50 +249,8 @@ void DrawGameConfig()
 	DrawExtendGraphF(0, 0, (float)screen_size_x, (float)screen_size_y, image_option[2].Handle, TRUE);
 	DrawExtendGraphF(0, 0, (float)screen_size_x, (float)screen_size_y, image_option[3].Handle, TRUE);
 	
-	#pragma region ver0.0042制作時コメント化コード
-	//DrawStringFToHandle(bairitu * CONFIG_MESSEAGE_GRAPH_MODE_X, bairitu * CONFIG_MESSEAGE_GRAPH_MODE_Y, "画面モード", GetColor(255, 255, 255), g_font3);
-	//DrawStringFToHandle(config_retu2_x, bairitu * CONFIG_MESSEAGE_GRAPH_MODE_Y, "フルスクリーン", GetColor(255, 255, 255), g_font3);
-	//DrawStringFToHandle(config_coordinate_full_screen_switch_x, config_coordinate_full_screen_switch_y, GetWindowModeFlag() == FALSE ? "■" : "□", GetColor(255, 255, 255), g_font3);
-#pragma endregion
-	#pragma region ver0.0041制作時コメント化コード
-	//DrawStringFToHandle(config_retu2_x, bairitu * CONFIG_MESSEAGE_GRAPH_MODE_Y + bairitu * 50, "1280×720", GetColor(255, 255, 255), g_font3);
-	//DrawStringFToHandle(config_coordinate_full_screen_switch_x, config_coordinate_screen_resolution_switch_y, screen_size_x == 1280 ? "■" : "□", GetColor(255, 255, 255), g_font3);
-	//DrawStringFToHandle(config_coordinate_full_screen_switch_x + bairitu * 100, config_coordinate_screen_resolution_switch_y, "1920×1080", (flag_full_hd_ok == TRUE) ? GetColor(255, 255, 255) : GetColor(128, 128, 128), g_font3);	// フルＨＤにできないモニター解像度なら灰色にする
-	//DrawStringFToHandle(config_coordinate_screen_resolution_switch_1920_x, config_coordinate_screen_resolution_switch_y, screen_size_x == 1920 ? "■" : "□", GetColor(255, 255, 255), g_font3);
-#pragma endregion
-	#pragma region ver0.0042制作時コメント化コード
-	//DrawStringFToHandle(bairitu * CONFIG_MESSEAGE_GRAPH_MODE_X, config_coordinate_screen_resolution_switch_y, "現在解像度", GetColor(255, 255, 255), g_font3);
-	////DrawStringFToHandle(config_retu2_x, bairitu * CONFIG_MESSEAGE_GRAPH_MODE_Y + bairitu * 50, (flag_full_hd_now == FALSE) ? "1280×720" : "1920×1080", GetColor(255, 255, 255), g_font3);
-	//if (flag_full_hd_now == FALSE) { DrawStringFToHandle(config_retu2_x, bairitu * CONFIG_MESSEAGE_GRAPH_MODE_Y + bairitu * 50, "1280×720", GetColor(255, 255, 255), g_font3); }
-	//else { DrawStringFToHandle(config_retu2_x, bairitu * CONFIG_MESSEAGE_GRAPH_MODE_Y + bairitu * 50, "1920×1080", GetColor(255, 255, 255), g_font3); }
-#pragma endregion
 	float image_pixel_size = image_option[flag_full_hd_now == FALSE ? IMG_OPTION_PIXEL_720 : IMG_OPTION_PIXEL_1080].size_x;
 	DrawExtendGraphF(1290 * bairitu - image_pixel_size / 2, 627 * bairitu, 1290 * bairitu + image_pixel_size / 2, image_option[IMG_OPTION_PIXEL_720].size_y + 627 * bairitu, image_option[flag_full_hd_now == FALSE ? IMG_OPTION_PIXEL_720 : IMG_OPTION_PIXEL_1080].Handle, TRUE);
-	//DrawExtendGraphF(config_coordinate_screen_resolution_switch_1920_x, config_coordinate_screen_resolution_switch_y, config_coordinate_screen_resolution_switch_1920_x + image_dialog[0].size_x, config_coordinate_screen_resolution_switch_y + image_dialog[0].size_y, image_dialog[flag_dialog_appear == FALSE ? 0 : 1].Handle, TRUE);
-	#pragma region ver0.0043制作時コメント化コード
-	//DrawStringFToHandle(screen_size_x - GetDrawStringWidthToHandle("TITLE", 5, g_font3) - bairitu * 100, bairitu * CONFIG_MESSEAGE_TITLE_Y, "TITLE", DrawTitleStringColor(screen_size_x - GetDrawStringWidthToHandle("TITLE", 5, g_font3) - bairitu * 100, bairitu * CONFIG_MESSEAGE_TITLE_Y, GetDrawStringWidthToHandle("TITLE", 5, g_font3), bairitu * FONT_SIZE_ORIGINAL), g_font3);
-#pragma endregion
-	#pragma region ver0.0042制作時コメント化コード
-	//DrawStringFToHandle(bairitu * CONFIG_MESSEAGE_GRAPH_MODE_X, config_bgm_message_y, "ＢＧＭ音量", GetColor(255, 255, 255), g_font3);
-	//DrawStringFToHandle(config_retu2_x, config_bgm_message_y, "←", DrawTitleStringColor(config_retu2_x, config_bgm_message_y, GetDrawStringWidthToHandle("←", 2, g_font3), FONT_SIZE_ORIGINAL * bairitu), g_font3);
-
-	//// （座標が合わない）
-	////DrawFormatStringFToHandle(config_retu2_x + bairitu * 100 + GetDrawStringWidthToHandle("←", 2, g_font3) - GetDrawFormatStringWidthToHandle(g_font3, "%d％", bgm_volume) / 2, config_bgm_message_y, GetColor(255, 255, 255), g_font3, "%d％", bgm_volume);
-	////（将伍Ｐ解決案）
-	//DrawFormatStringFToHandle((config_retu2_x + config_bgm_volume_up_x + GetDrawStringWidthToHandle("→", 2, g_font3)) / 2 - GetDrawFormatStringWidthToHandle(g_font3, "%d％", bgm_volume) / 2, config_bgm_message_y, GetColor(255, 255, 255), g_font3, "%d％", bgm_volume);
-
-	//DrawStringFToHandle(config_bgm_volume_up_x, config_bgm_message_y, "→", DrawTitleStringColor(config_bgm_volume_up_x, config_bgm_message_y, GetDrawStringWidthToHandle("→", 2, g_font3), FONT_SIZE_ORIGINAL * bairitu), g_font3);
-	//// ＳＥ
-	//DrawStringFToHandle(bairitu * CONFIG_MESSEAGE_GRAPH_MODE_X, config_se_message_y, "ＳＥ音量", GetColor(255, 255, 255), g_font3);
-	//DrawStringFToHandle(config_retu2_x, config_se_message_y, "←", DrawTitleStringColor(config_retu2_x, config_se_message_y, GetDrawStringWidthToHandle("←", 2, g_font3), FONT_SIZE_ORIGINAL * bairitu), g_font3);
-
-	//// （座標が合わない）
-	////DrawFormatStringFToHandle(config_retu2_x + bairitu * 100 + GetDrawStringWidthToHandle("←", 2, g_font3) - GetDrawFormatStringWidthToHandle(g_font3, "%d％", se_volume) / 2, config_se_message_y, GetColor(255, 255, 255), g_font3, "%d％", se_volume);
-	////（将伍Ｐ解決案）
-	//DrawFormatStringFToHandle((config_retu2_x + config_bgm_volume_up_x + GetDrawStringWidthToHandle("→", 2, g_font3)) / 2 - GetDrawFormatStringWidthToHandle(g_font3, "%d％", se_volume) / 2, config_se_message_y, GetColor(255, 255, 255), g_font3, "%d％", se_volume);
-
-	//DrawStringFToHandle(config_bgm_volume_up_x, config_se_message_y, "→", DrawTitleStringColor(config_bgm_volume_up_x, config_se_message_y, GetDrawStringWidthToHandle("→", 2, g_font3), FONT_SIZE_ORIGINAL * bairitu), g_font3);
-#pragma endregion
 	DrawExtendGraphF(config_coordinate_icon_back_x, config_coordinate_icon_back_y, config_coordinate_icon_back_x + size_icon_auto.x, config_coordinate_icon_back_y + size_icon_auto.y, g_imghandles.icon_back, TRUE);
 
 	DrawOptionArrow(bgm_volume, 5, config_bgm_message_y, FALSE);
@@ -439,13 +266,6 @@ void DrawGameConfig()
 	DrawFormatStringFToHandle(number_x - GetDrawFormatStringWidthToHandle(g_font3, "%d", text_window_clear_percentage) / 2, config_text_window_clear_y + bairitu * 12, GetColor(0, 0, 0), font[static_cast<int>(FontData::Type::CONFIG_VOLUME)].GetHandle(), "%d", text_window_clear_percentage);
 	DrawOptionArrow(text_window_clear_percentage, 20, config_text_window_clear_y, TRUE);
 	// メッセージ速度
-	#pragma region ver0.0042制作時コメント化コード
-	//DrawStringFToHandle(bairitu * CONFIG_MESSEAGE_GRAPH_MODE_X, config_message_speed_y, "メッセージ速度", GetColor(255, 255, 255), g_font3);
-	//DrawStringFToHandle(config_retu2_x, config_message_speed_y, "←", DrawTitleStringColor(config_retu2_x, config_message_speed_y, GetDrawStringWidthToHandle("←", 2, g_font3), FONT_SIZE_ORIGINAL * bairitu), g_font3);
-	//DrawFormatStringFToHandle(config_retu2_x + GetDrawStringWidthToHandle("←", 2, g_font3) + (config_bgm_volume_up_x - config_retu2_x - GetDrawStringWidthToHandle("←", 2, g_font3)) / 2 - GetDrawFormatStringWidthToHandle(g_font3, "%s", config_message_message_speed[g_commumessagespeed]) / 2, config_message_speed_y, GetColor(255, 255, 255), g_font3, "%s", config_message_message_speed[g_commumessagespeed]);
-	//DrawStringFToHandle(config_bgm_volume_up_x, config_message_speed_y, "→", DrawTitleStringColor(config_bgm_volume_up_x, config_message_speed_y, GetDrawStringWidthToHandle("→", 2, g_font3), FONT_SIZE_ORIGINAL * bairitu), g_font3);
-#pragma endregion
-	//for (int i = 0; i < CONFIG_MESSAGE_SPEED_NUMBER; i++) { DrawExtendGraphF(config_coordinate_message_speed_x[i], config_message_speed_y, config_coordinate_message_speed_x[i] + image_option_message_speed[i].size_x, config_message_speed_y + image_option_message_speed[0].size_y, image_option_message_speed[i].Handle, TRUE); }
 	image_icon_config_text_speed[0][g_commumessagespeed == COMMU_MESSAGE_SPEED_SLOW ? 1 : 0].DrawImage();
 	image_icon_config_text_speed[1][g_commumessagespeed == COMMU_MESSAGE_SPEED_NORMAL ? 1 : 0].DrawImage();
 	image_icon_config_text_speed[2][g_commumessagespeed == COMMU_MESSAGE_SPEED_FAST ? 1 : 0].DrawImage();

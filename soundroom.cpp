@@ -1,12 +1,6 @@
 #include "soundroom.h"
 
-#pragma region ver0.00607制作時コメント化コード
-//SEStringData se_string[SE_NUMBER + 1];
-#pragma endregion
 // 同じ範囲でマウスを押し、離されたら○○するフラグ（cfsr=click_flag_sound_room）
-#pragma region ver0.0051制作時コメント化コード
-//BOOL cfsr_play_music[BGM_NUMBER];	// ＢＧＭを再生する
-#pragma endregion
 BOOL cfsr_play_music[SR_BGM_ALTERNATIVE_NUMBER];	// ＢＧＭを再生する
 BOOL cfsr_play_se[SE_NUMBER + 1];	// ＳＥを再生する（バグが起きないか要確認）
 BOOL cfsr_move_title = FALSE;		// タイトル画面へ移動
@@ -15,13 +9,6 @@ BOOL cfsr_bgm_up = FALSE;			// ＢＧＭ音量を上げる
 BOOL cfsr_se_down = FALSE;			// ＳＥ音量を下げる
 BOOL cfsr_se_up = FALSE;			// ＳＥ音量を上げる
 
-#pragma region ver0.00391制作時コメント化コード
-//float sound_room_coordinate_alternative_x = 0;					// BGM選択肢基本x座標
-#pragma endregion
-#pragma region ver0.0051制作時コメント化コード
-//float sound_room_coordinate_alternative_x[BGM_NUMBER];			// BGM選択肢基本x座標
-//float sound_room_coordinate_alternative_y[BGM_NUMBER];			// BGM選択肢基本y座標
-#pragma endregion
 float sound_room_coordinate_alternative_x[SR_BGM_ALTERNATIVE_NUMBER];	// BGM選択肢基本x座標
 float sound_room_coordinate_alternative_y[SR_BGM_ALTERNATIVE_NUMBER];	// BGM選択肢基本y座標
 float sound_room_coordinate_alternative_se_x[SE_NUMBER + 1];	// ＳＥ選択肢基本x座標
@@ -61,9 +48,6 @@ void SoundRoomControl()
 				// ＢＧＭ選択肢
 				for (int i = 0; i < SR_BGM_ALTERNATIVE_NUMBER; i++)
 				{
-					#pragma region ver0.00391制作時コメント化コード
-					//if (ClickFlagCheckF(ClickX, ClickY, sound_room_coordinate_alternative_x, sound_room_coordinate_alternative_y[i], sound_room_size_alternative_x, sound_room_size_alternative_y, TRUE, FALSE) == TRUE){ cfsr_play_music[i] = TRUE; }
-#pragma endregion
 					if (ClickFlagCheckF(ClickX, ClickY, sound_room_coordinate_alternative_x[i], sound_room_coordinate_alternative_y[i], sound_room_size_alternative_x, sound_room_size_alternative_y, TRUE, FALSE) == TRUE) { cfsr_play_music[i] = TRUE; }
 				}
 				// ＳＥ選択肢
@@ -108,14 +92,6 @@ void SoundRoomControl()
 				else if (se_volume > 100) { se_volume = 100; }
 				// ＢＧＭを再生する（プロトタイプ）
 				#pragma region ver0.0051制作時コメント化コード
-//				for (int i = 0; i < BGM_NUMBER; i++)
-//				{
-//					#pragma region ver0.00391制作時コメント化コード
-//					//if (ClickFlagCheckF(ClickX, ClickY, sound_room_coordinate_alternative_x, sound_room_coordinate_alternative_y[i], sound_room_size_alternative_x, sound_room_size_alternative_y, FALSE, cfsr_play_music[i]) == TRUE){ MusicPlay(i); }
-//#pragma endregion
-//					if (ClickFlagCheckF(ClickX, ClickY, sound_room_coordinate_alternative_x[i], sound_room_coordinate_alternative_y[i], sound_room_size_alternative_x, sound_room_size_alternative_y, FALSE, cfsr_play_music[i]) == TRUE) { MusicPlay(i); }
-//				}
-#pragma endregion
 				for (int i = 0; i < SR_BGM_ALTERNATIVE_NUMBER; i++)
 				{
 					if (ClickFlagCheckF(ClickX, ClickY, sound_room_coordinate_alternative_x[i], sound_room_coordinate_alternative_y[i], sound_room_size_alternative_x, sound_room_size_alternative_y, FALSE, cfsr_play_music[i]) == TRUE){ MusicPlay(i - 1); }
@@ -148,33 +124,7 @@ void SoundRoomControl()
 void SoundRoomCoordinateSetting()
 {
 	// 文字代入テスト
-	#pragma region ver0.0051制作時コメント化コード
-//	for (int i = 0; i < BGM_NUMBER; i++){ music_string[i].NameChange(i); }
-//	for (int i = 0; i < SE_NUMBER + 1; i++){ se_string[i].NameChange(i); }
-//	// BGM関係選択肢座標
-//	sound_room_size_alternative_x = 330 * bairitu;																						// BGM選択肢基本x幅
-//	sound_room_size_alternative_y = 35 * bairitu;																						// BGM選択肢基本y幅
-//	#pragma region ver0.00391制作時コメント化コード
-//	//sound_room_coordinate_alternative_x = 400 * bairitu;																				// BGM選択肢基本x座標
-//	//for (int i = 0; i < BGM_NUMBER; i++){ sound_room_coordinate_alternative_y[i] = 100 * bairitu + sound_room_size_alternative_y * i; }	// BGM選択肢基本y座標
-//	//// ＳＥ関係選択肢座標
-//	//	for (int i = 0; i < SE_NUMBER + 1; i++)
-//	//{
-//	//	sound_room_coordinate_alternative_se_x[i] = sound_room_coordinate_alternative_x + sound_room_size_alternative_x * (i % 2 == 0 ? 1.5f : 2.5f);
-//	//	sound_room_coordinate_alternative_se_y[i] = 100 * bairitu + sound_room_size_alternative_y * (i / 2); // SE選択肢基本y座標
-//	//}	
-//#pragma endregion
-//	// ＢＧＭ関係選択肢座標
-//	for (int i = 0; i < BGM_NUMBER; i++)
-//	{
-//		sound_room_coordinate_alternative_x[i] = sound_room_size_alternative_x * (i % 2 == 0 ? 0 : 1.0f) + 400 * bairitu;	// BGM選択肢基本x座標
-//		sound_room_coordinate_alternative_y[i] = 100 * bairitu + sound_room_size_alternative_y * (i / 2);// BGM選択肢基本y座標
-//	}	
-#pragma endregion
 	for (int i = -1; i < BGM_NUMBER; i++) { i == -1 ? music_string_stop.NameChange(i) : music_string[i].NameChange(i); }
-	#pragma region ver0.00607制作時コメント化コード
-	//for (int i = 0; i < SE_NUMBER + 1; i++) { se_string[i].NameChange(i); }
-#pragma endregion
 	// BGM関係選択肢座標
 	sound_room_size_alternative_x = 330 * bairitu;																						// BGM選択肢基本x幅
 	sound_room_size_alternative_y = 35 * bairitu;																						// BGM選択肢基本y幅
@@ -207,14 +157,8 @@ void DrawSoundRoom()
 {
 	DrawStringFToHandle(90 * bairitu, 100 * bairitu, "SoundRoom", GetColor(255, 255, 255), g_font3);
 	// BGMボタン（プロトタイプ）
-	#pragma region ver0.0051制作時コメント化コード
-	//for (int i = 0; i < BGM_NUMBER; i++)
-#pragma endregion
 	for (int i = -1; i < BGM_NUMBER; i++)
 	{
-		#pragma region ver0.00391制作時コメント化コード
-		//int color_x = i % 2 == 1 ? GetColor(128, 128, 128) : GetColor(0, 225, 225);	// 奇数個目は灰色、偶数個目は水色
-#pragma endregion
 		int color_x = (i + 2) / 2 % 2 == 1 ? GetColor(128, 128, 128) : GetColor(0, 225, 225);	// 奇数個目は灰色、偶数個目は水色
 		DrawBoxAA(sound_room_coordinate_alternative_x[i + 1], sound_room_coordinate_alternative_y[i + 1], sound_room_coordinate_alternative_x[i + 1] + sound_room_size_alternative_x - 1, sound_room_coordinate_alternative_y[i + 1] + sound_room_size_alternative_y - 1, color_x, TRUE);
 		if(i == -1)
@@ -236,9 +180,6 @@ void DrawSoundRoom()
 	// 『TITLE』
 	DrawStringFToHandle(sound_room_coordinate_string_title_x, sound_room_coordinate_string_title_y, "TITLE", DrawTitleStringColor(sound_room_coordinate_string_title_x, sound_room_coordinate_string_title_y, GetDrawStringWidthToHandle("TITLE", 5, g_font3), FONT_SIZE_ORIGINAL * bairitu), g_font3);
 	// 『ＢＧＭ』
-	#pragma region ver0.00391制作時コメント化コード
-	//DrawStringFToHandle(sound_room_coordinate_alternative_x, sound_room_coordinate_alternative_y[0] - bairitu * 30, "ＢＧＭ", GetColor(255, 255, 255), g_font3);
-#pragma endregion
 	DrawStringFToHandle(sound_room_coordinate_alternative_x[0], sound_room_coordinate_alternative_y[0] - bairitu * 30, "ＢＧＭ", GetColor(255, 255, 255), g_font3);
 	// 『ＳＥ』
 	DrawStringFToHandle(sound_room_coordinate_alternative_se_x[0], sound_room_coordinate_alternative_y[0] - bairitu * 30, "ＳＥ", GetColor(255, 255, 255), g_font3);

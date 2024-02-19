@@ -51,9 +51,6 @@ struct state
 	int line_mouse;									// 喋る際の口パクタイプ
 	int character[3];								// 描画するキャラ、差分
 	int character_face_etc[3];						// キャラの特殊表情ＩＤ
-	#pragma region ver0.007制作時コメント化コード
-	//int character_change;					// キャラクター変更タイプ
-#pragma endregion
 	int character_change = CCC_TRANSPARENCY_FAST;	// キャラクター変更タイプ
 	int character_even_distance;					// キャラクター距離均一化のオンオフ
 	int background;									// 描画背景
@@ -259,9 +256,6 @@ public:
 	char* GetName() { return name; }
 	int GetNumber() { return number; }
 };
-#pragma region ver0.00704制作時コメント化コード
-//extern ImgDataBG bgimage[BACKGROUND_NUMBER];
-#pragma endregion
 extern ImgDataBG bgimage[];
 // 文字、画像等のサイズ倍率データ（magnification：倍率）
 class MagnificationData

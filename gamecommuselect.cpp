@@ -4,9 +4,6 @@ CommuUpperState g_commuupperstate = CPS_COMMON;	// 表示されるコミュの種類
 
 // 同じ範囲でマウスを押し、離されたら○○するフラグ（cfcs=click_flag_commu_select）
 BOOL cfcs_move_title = FALSE;										// タイトル画面へ移動
-#pragma region ver0.00399制作時コメント化コード
-//BOOL cfcs_commu_type_change[2];										// 表示するコミュの種類の切り替えを
-#pragma endregion
 BOOL cfcs_commu_type_change[COMMU_SELECT_C_TYPE_NUMBER];			// 表示するコミュの種類の切り替えを
 BOOL cfcs_commu_character_change[COMMU_SELECT_CHARACTER_NUMBER];	// 表示するコミュの種類の切り替えを
 
@@ -14,9 +11,6 @@ int commu_select_display = 0	;// 表示させられるコミュの個数
 
 float commu_select_coordinate_title_x;										// 『TITLE』アイコン左端x座標
 float commu_select_coordinate_title_y;										// 『TITLE』アイコン上端y座標
-#pragma region ver0.00399制作時コメント化コード
-//float commu_select_coordinate_c_type_x[2];									// コミュ種類選択肢左端x座標
-#pragma endregion
 float commu_select_coordinate_c_type_x[COMMU_SELECT_C_TYPE_NUMBER];			// コミュ種類選択肢左端x座標
 float commu_select_coordinate_c_type_y;										// コミュ種類選択肢上端y座標
 float commu_select_coordinate_alternative_x;								// コミュ選択肢左端x座標（Y座標はmain.h）
@@ -28,9 +22,6 @@ void GameCommuSelectNext()
 	if (g_gamestate != GAME_TITLE) { MusicPlay(BN_TITLE); }			// タイトルＢＧＭを再生する
 	g_gamestate = GAME_COMMU_SELECT;
 	GameCommuSelectAlternativeCheck();
-	#pragma region ver0.00399制作時コメント化コード
-	//MusicPlay(BN_TITLE);			// タイトルＢＧＭを再生する
-#pragma endregion
 	// 初期化処理
 	commu_before_cs = FALSE;	// コミュの閲覧を始める前はコミュセレクトモードだったか判別するフラグ
 }
@@ -82,9 +73,6 @@ void GameCommuSelectAlternativeCheck()
 	// 代入前に一度要素をリセットする
 	for (int i = 0; i < CS_COMMU_LIMIT; i++) { cs_displat_commu[i].StateReset(); }
 	// 現在表示させたいコミュの列挙定数と一致しているものを全コミュの中から検索し、一致していたら構造体に加える
-	#pragma region ver0.00704制作時コメント化コード
-	//for (int i = 0; i < COMMU_NUMBER; i++)
-#pragma endregion
 	for (int i = 0; i < GlobalStaticVariable::GetCommuNumber(); i++)
 	{
 		if(g_commuupperstate == commu_data[i].character_icon)
@@ -99,9 +87,6 @@ void GameCommuSelectCoordinateSetting()
 {
 	commu_select_coordinate_title_x = 48 * bairitu;																										// 『TITLE』アイコン左端x座標
 	commu_select_coordinate_title_y = 48 * bairitu;																										// 『TITLE』アイコン上端y座標
-	#pragma region ver0.00399制作時コメント化コード
-	//for(int i = 0; i < 2;i++){ commu_select_coordinate_c_type_x[i] = (float)(screen_size_x * (i * 2 + 1) / (2 * 2)) - size_ui_cs_alternative_type.x / 2; }
-#pragma endregion
 	// コミュ種類選択肢左端x座標（間隔が狭いので少しスペースをあけている）
 	for (int i = 0; i < COMMU_SELECT_C_TYPE_NUMBER; i++) { commu_select_coordinate_c_type_x[i] = (float)(screen_size_x * (i + 1) / (COMMU_SELECT_C_TYPE_NUMBER + 1)) - size_ui_cs_alternative_type.x / 2 + (i - 1) * 99 * bairitu; }	
 
@@ -142,9 +127,6 @@ void DrawGameCommuSelect()
 		case 2: s = "TEST";			break;
 		default:					break;
 		}
-		#pragma region ver0.00399制作時コメント化コード
-		//sprintf_s(c, 256, "%s", i == 0 ?  "MAIN COMMU" : "CHARACTER");
-#pragma endregion
 		sprintf_s(c, 256, "%s", s);
 		DrawStringFToHandle(commu_select_coordinate_c_type_x[i], commu_select_coordinate_c_type_y, "", DrawTitleStringColor(config_bgm_volume_up_x, config_message_speed_y, GetDrawStringWidthToHandle("→", 2, g_font3), FONT_SIZE_ORIGINAL * bairitu), g_font3);
 		DrawFormatStringFToHandle(commu_select_coordinate_c_type_x[i], commu_select_coordinate_c_type_y, GetColor(0, 0, 0), g_font3, "%s", c);
@@ -160,9 +142,6 @@ void DrawGameCommuSelect()
 		}
 	}
 	// キャラアイコン（表示コミュがキャラクターのものなら）
-	#pragma region ver0.00399制作時コメント化コード
-	//if (g_commuupperstate >= CPS_MEGURU)
-#pragma endregion
 	if (g_commuupperstate >= CPS_MEGURU && g_commuupperstate < CPS_TEST)
 	{
 		for (int i = 0; i < COMMU_SELECT_CHARACTER_NUMBER; i++) { DrawExtendGraphF(commu_select_coordinate_character_x, commu_select_coordinate_character_y[i], commu_select_coordinate_character_x + size_ui_map_icon2.x, commu_select_coordinate_character_y[i] + size_ui_map_icon2.y, g_imghandles.ui_map_icon[i], TRUE); }
@@ -171,9 +150,6 @@ void DrawGameCommuSelect()
 // コミュ種類選択肢クリック確認用関数
 BOOL GameMapControlCTYPECheck(BOOL x)
 {
-	#pragma region ver0.00399制作時コメント化コード
-	//for (int i = 0; i < 2; i++)
-#pragma endregion
 	for (int i = 0; i < COMMU_SELECT_C_TYPE_NUMBER; i++)
 	{
 		if (x == TRUE)
@@ -189,9 +165,6 @@ BOOL GameMapControlCTYPECheck(BOOL x)
 			if (ClickFlagCheckF(ClickX, ClickY, commu_select_coordinate_c_type_x[i], commu_select_coordinate_c_type_y, size_ui_cs_alternative_type.x, size_ui_cs_alternative_type.y, FALSE, cfcs_commu_type_change[i]) == TRUE)
 			{
 				// 表示させるコミュを再確認、表示させる
-				#pragma region ver0.00399制作時コメント化コード
-				//g_commuupperstate = static_cast<CommuUpperState>(i);
-#pragma endregion
 				switch (i)
 				{
 				case 0: g_commuupperstate = CPS_COMMON; break;
@@ -221,9 +194,6 @@ BOOL GameMapControlCCharacterCheck(BOOL x)
 		}
 		else
 		{
-			#pragma region ver0.00399制作時コメント化コード
-			//if (ClickFlagCheckF(ClickX, ClickY, commu_select_coordinate_character_x, commu_select_coordinate_character_y[i], size_ui_map_icon.x, size_ui_map_icon.y, FALSE, cfcs_commu_character_change[i]) == TRUE && g_commuupperstate >= CPS_MEGURU)
-#pragma endregion
 			if (ClickFlagCheckF(ClickX, ClickY, commu_select_coordinate_character_x, commu_select_coordinate_character_y[i], size_ui_map_icon2.x, size_ui_map_icon2.y, FALSE, cfcs_commu_character_change[i]) == TRUE && g_commuupperstate >= CPS_MEGURU && g_commuupperstate < CPS_TEST)
 			{
 				// 表示させるコミュを再確認、表示させる
@@ -253,9 +223,6 @@ BOOL GameMapControlCAlternativeCheck(BOOL x)
 			if (ClickFlagCheckF(ClickX, ClickY, commu_select_coordinate_alternative_x, commu_select_coordinate_alternative_y[i], size_ui_cs_alternative.x, size_ui_cs_alternative.y, FALSE, cfcs_move_commu[i]) == TRUE)
 			{
 				// （存在していれば）コミュを閲覧する
-				#pragma region ver0.00607制作時コメント化コード
-				//if (cs_displat_commu[i].id >= 1) {GameMainCommunicationNext(cs_displat_commu[i].id - 1, TRUE); }
-#pragma endregion
 				if (cs_displat_commu[i].id >= 1) { GameMainCommunicationNext(cs_displat_commu[i].id - 1, TRUE, 0); }
 				return TRUE;
 			}

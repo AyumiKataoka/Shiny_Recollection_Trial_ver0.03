@@ -22,9 +22,6 @@ extern char* config_message_message_speed[3];	// İ’èƒ‚[ƒh‚Å•`‰æ‚³‚ê‚éw•¶šƒXƒ
 extern BOOL config_before_mc;	// ƒƒCƒ“ƒRƒ~ƒ…‚©‚çİ’èƒ‚[ƒh‚É—ˆ‚½‚©
 // “¯‚¶”ÍˆÍ‚Åƒ}ƒEƒX‚ğ‰Ÿ‚µA—£‚³‚ê‚½‚ç››‚·‚éƒtƒ‰ƒOicfc=click_flag_configj
 extern BOOL cfc_move_title;				// ƒ^ƒCƒgƒ‹‰æ–Ê‚ÖˆÚ“®
-#pragma region ver0.0042§ìƒRƒƒ“ƒg‰»ƒR[ƒh
-//extern BOOL cfc_window_mode_change;		// ƒEƒBƒ“ƒhƒEAƒtƒ‹ƒXƒNƒŠ[ƒ“‚ğØ‚è‘Ö‚¦‚é
-#pragma endregion
 extern BOOL cfc_window_mode_change[2];	// ƒEƒBƒ“ƒhƒEAƒtƒ‹ƒXƒNƒŠ[ƒ“‚ğØ‚è‘Ö‚¦‚é
 extern BOOL cfc_screen_change_720p;		// ƒEƒBƒ“ƒhƒE‰ğ‘œ“x‚ğ720px‚É‚·‚é
 extern BOOL cfc_screen_change_1080p;	// ƒEƒBƒ“ƒhƒE‰ğ‘œ“x‚ğ1080px‚É‚·‚é
@@ -38,9 +35,6 @@ extern BOOL cfc_dialog_change;			// ƒ_ƒCƒAƒƒOƒ{ƒbƒNƒX•\¦ƒtƒ‰ƒO‚ğØ‚è‘Ö‚¦
 extern BOOL cfc_text_window_clear[2];	// ƒƒbƒZ[ƒW“§‰ß“x‚ğ‘Œ¸
 
 extern float config_retu2_x;									// ‚Q—ñ–Ú€–ÚXÀ•W
-#pragma region ver0.0042§ìƒRƒƒ“ƒg‰»ƒR[ƒh
-//extern float config_coordinate_full_screen_switch_x;			// ƒtƒ‹ƒXƒNƒŠ[ƒ“Ø‚è‘Ö‚¦ƒXƒCƒbƒ`XÀ•W
-#pragma endregion
 extern float config_coordinate_icon_back_x;						// wBACKxƒAƒCƒRƒ“¶’[xÀ•W
 extern float config_coordinate_icon_back_y;						// wBACKxƒAƒCƒRƒ“ã’[yÀ•W
 extern float config_coordinate_full_screen_switch_x[2];			// ƒtƒ‹ƒXƒNƒŠ[ƒ“Ø‚è‘Ö‚¦ƒXƒCƒbƒ`XÀ•W
