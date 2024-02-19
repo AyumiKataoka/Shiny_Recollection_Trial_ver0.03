@@ -1,0 +1,1 @@
+C:\DxLib_VC\Tool\DXArchive/DxaEncode.exe -K:46399292 C:\グローバルフォルダ\ドキュメント\Shiny_Recollection_Trial\media
